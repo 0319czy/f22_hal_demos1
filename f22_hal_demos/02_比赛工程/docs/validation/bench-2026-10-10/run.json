@@ -1,0 +1,15 @@
+{
+  "mcu_uid": "30FFDA0530574B3023531443",
+  "date": "2026-10-10",
+  "power": "USB only, user confirmed normal/slight warm",
+  "firmware": {
+    "demo_selftest": {
+      "bytes": 25812,
+      "sha256": "bcf8a9b088a53ecbd547f8569e3d1b0389c11b5e0d26f9381b583adc221fae0e"
+    },
+    "demo01_vofa": {
+      "bytes": 23924,
+      "sha256": "b67c0543a541244042f0f0bc8654696120e5b54d52e6beb13cc997b8b4e4bcaf"
+    }
+  }
+}

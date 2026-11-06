@@ -1,0 +1,26 @@
+[
+  {
+    "dtr": true,
+    "rts": true,
+    "bytes": 0,
+    "hex": ""
+  },
+  {
+    "dtr": true,
+    "rts": false,
+    "bytes": 0,
+    "hex": ""
+  },
+  {
+    "dtr": false,
+    "rts": true,
+    "bytes": 0,
+    "hex": ""
+  },
+  {
+    "dtr": false,
+    "rts": false,
+    "bytes": 0,
+    "hex": ""
+  }
+]

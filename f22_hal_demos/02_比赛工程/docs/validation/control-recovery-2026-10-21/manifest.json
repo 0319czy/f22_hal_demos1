@@ -1,0 +1,51 @@
+{
+  "status": "flashed_and_readback_verified",
+  "candidate_profile": "contest_tethered_flow_brake_trial_jp13",
+  "bytes": 48020,
+  "sha256": "9c501737cb0c38f3fd871cfec1e617103141f56a397c71abd32efe1fe6b7b908",
+  "height_recovery": {
+    "reproduced_original_fault_before_fix": true,
+    "recorded_height_mm": 28.832,
+    "raw_tof_mm": 36,
+    "descending_mps": -0.524,
+    "requires_fresh_raw_near_floor": true,
+    "mode": "terminal_landing_existing_20percent_per_second_fade",
+    "critical_fault_guards_preserved": true
+  },
+  "brake_trial": {
+    "velocity_only": true,
+    "position_hold": false,
+    "angle_limit_deg": 1,
+    "velocity_gain_deg_per_mps": 2,
+    "gyro_norm_limit_dps": 3,
+    "tilt_gate_deg": 8,
+    "quality_min": 50,
+    "minimum_height_m": 0.08,
+    "scale": "nominal_unaccepted",
+    "rotation_calibration": "unaccepted; low-rate gating only mitigates contamination",
+    "loss_policy": "existing250ms_land_request"
+  },
+  "tests": [
+    "near_floor_regression_noflow",
+    "near_floor_regression_flow",
+    "brake_signs_limits_no_position_chase_angular_gate_near_ground_stop",
+    "full_check_closed_loop_13_builds",
+    "new_brake_target_build",
+    "binary_marker_and_symbols"
+  ],
+  "hardware_flight_validation": false,
+  "board_last_verified": "contest_tethered_flow_brake_trial_jp13, readback verified; reset telemetry state=0/fault=0/PWM=0, link=1/ready=1",
+  "flash": {
+    "probe": "814dc35a",
+    "target": "stm32f103rc",
+    "transport": "JP11 wireless SWD, connect-under-reset",
+    "programmed_bytes": 47104,
+    "readback_bytes": 49152,
+    "candidate_matches_readback_prefix": true,
+    "readback_file": "flash-readback-49152.bin",
+    "readback_sha256": "7e6dd9427f16b4e9963323c0110e10820d2ae95c9b39ad3a05d7f50d3b69c242",
+    "boot_observation": "state=0 fault=0 link=1 ready=1 calibrated=1 PWM=0,0,0,0; flow_model=provisional_brake_only; output_locked=0",
+    "hardware_flight_validation": false,
+    "candidate_sha256": "9c501737cb0c38f3fd871cfec1e617103141f56a397c71abd32efe1fe6b7b908"
+  }
+}

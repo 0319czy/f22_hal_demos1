@@ -1,0 +1,9 @@
+{
+  "src/main.c": "75a8184ef1bf61b01fce54c39cce994f053e04835b0cbcc1073134887e7b6c0a",
+  "src/flight/imu_calibration.c": "4cd13a799d33473937df7dab5942966c013be5e8bff40b530afb7dbd302f77ee",
+  "src/flight/imu_calibration.h": "be911221cc6368dff5d8c50ef581d3a18f0c3f348ac9f7acae79c905fb65d42b",
+  "scripts/show_remote_keys.py": "e38ab8ecf550f0ab3365fb17bba8a01298e3019a5757599c983907247628d701",
+  "tests/test_imu_calibration.c": "663da33d09075b5452a491a3271b462aada0fc8707539a1b1186c4dac25843e0",
+  "tests/test_imu_recalibration.py": "0e5e6c40021873f65e980267567eab6df6cb13e40b9d44519f55989470515f25",
+  "scripts/check_closed_loop.sh": "2ecab3ce0d8ce66fc90c2be85784e746333bb7147c99256487de82d994511db9"
+}

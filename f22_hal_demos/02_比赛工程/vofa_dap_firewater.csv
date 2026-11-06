@@ -1,0 +1,2 @@
+state,fault,roll_deg,pitch_deg,gyro_x_dps,gyro_y_dps,gyro_z_dps,height_m,vz_mps,height_valid,tof_m,tof_valid,flow_dx,flow_dy,flow_quality,flow_valid,collective,height_target_m,height_feedforward,motor_M1_pm,motor_M2_pm,motor_M3_pm,motor_M6_pm,rate_corr_roll,rate_corr_pitch,rate_corr_yaw,left_trim,front_trim,yaw_trim,collective_trim,rate_kp,vertical_kp
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

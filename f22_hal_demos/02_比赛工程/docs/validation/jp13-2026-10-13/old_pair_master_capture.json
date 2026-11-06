@@ -1,0 +1,6 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_305410062758-if02",
+  "baud": 115200,
+  "bytes": 0,
+  "hex": ""
+}

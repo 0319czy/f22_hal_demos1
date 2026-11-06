@@ -1,0 +1,8 @@
+{
+  "config": [
+    "CFG TX read=1 applied=1 rollback=0 original=C000001D2E00 active=C000001D2E00\r\n",
+    "CFG TX read=1 applied=1 rollback=0 original=C000001D2E00 active=C00000352E00\r\n"
+  ],
+  "host_switched_57600": true,
+  "bytes": 9284
+}

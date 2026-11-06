@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-20",
+  "profile": "contest_flow_calibration_jp13",
+  "artifact": ".pio/build/contest_flow_calibration_jp13/firmware.bin",
+  "bytes": 43360,
+  "sha256": "733bb61fa37f55e6632c4b26a01cf9e6d29f9ab394697f8fac8b40c83c966dbf",
+  "build": "/home/sz/.platformio/penv/bin/pio run -e contest_flow_calibration_jp13",
+  "build_result": "PASS",
+  "flash_performed": false,
+  "serial_opened": false,
+  "hardware_tested": false,
+  "motor_safety": "FLOW_ID_PROBE compile profile forces HOVER_STOP; independent PWM driver rejects all nonzero values; image contains output_locked=1",
+  "behavior": "F2/F3/F4 are recorded as allowed marker events only; no START/LAND/CALIBRATE command is queued",
+  "tests": {
+    "marker_unit": "PASS: F2/F3/F4 event markers allowed and ClosedLoopRadio_Take returns HOVER_NONE",
+    "full_regression": "PASS: bash scripts/check_closed_loop.sh; 13 PlatformIO environments built; calibration image lock and FCAL checks passed"
+  },
+  "next": "Flash only the locked calibration profile when the user explicitly requests it; capture short known-direction movement data, then evaluate calibration fit."
+}

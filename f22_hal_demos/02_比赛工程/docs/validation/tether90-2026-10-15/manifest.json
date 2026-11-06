@@ -1,0 +1,200 @@
+{
+  "recorded_at": "2026-10-15T17:37:20.148173+08:00",
+  "profile": "contest_tethered_flight_jp13",
+  "status": "90% flight trial built, flashed, complete41624-byte readback matches; actual flight pending",
+  "firmware": {
+    "file": "firmware/contest_tethered_flight_jp13_pwm90.bin",
+    "bytes": 41624,
+    "sha256": "dec7f44022cc41ad253163e2a990fc2a8547893549230a669167d97ce54cc73e"
+  },
+  "source_sha256": {
+    "platformio.ini": "f4b8cdae02f48a00819b95832b904d8efec3a8aa4715cb3f693c5d8b1894f51c",
+    "src/main.c": "357b6283c20f88112eda80c4c1142917e4fa9c44f825fb20a8a59fe7aa7b5304",
+    "src/flight/closed_loop.c": "2b7f393d1b8a8c7d27fae80457d9dd7061ec6124457749cd07590143eb7bc6b0",
+    "src/flight/closed_loop.h": "fbbfa7817138cabc93a25cff448cd00502e3e32bf9612dd1d9e39e2528373192",
+    "src/flight/closed_loop_profile.h": "8644b811b48f641cb683fdd39ae7fc38df41d9479a28e8378603c3b9a9abda94",
+    "src/flight/closed_loop_config.h": "3a3081030d6e3ad4b8e7e37df3575b3a97c5689345054249a618ead21b8baddf",
+    "src/flight/aircraft1.c": "f3ac0dfbd406a17a1ff71a94e4a9b565f075adeeae32a3ad6fa7c701d37d56bd",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "tests/test_tethered_flight.c": "891851356cb53498875d0a1306b64de2c3d76b2e1be0be411d6bac4f7d99dc75",
+    "tests/test_aircraft1_pwm.c": "9a0e92608be632b7cbc9b14e769a1b59bc13b25e3b8f1cb704252328e86929c1",
+    "scripts/check_closed_loop.sh": "be0b9bb33132711e2c609e04bb84ac507c301d6ddfe6461cfe007c67c2dd6534",
+    "scripts/show_remote_keys.py": "460bab671767209eb0989e43b816b2694e296e1d388f4a9312e2c576b303db7d"
+  },
+  "behavior": {
+    "boot": "zero; explicit fresh F2 required",
+    "imu_mount": [
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "launch_base_ceiling": 0.9,
+    "motor_hard_ceiling": 0.9,
+    "launch_ramp_per_sec": 0.5,
+    "launch_timeout_sec": 3,
+    "target_sensor_range_m": 0.2,
+    "height_reference": "capture prior emitted mixed mean on takeoff; not calibrated equilibrium duty",
+    "takeoff": "valid range >=8cm; if valid ground baseline captured, also >=baseline+4cm",
+    "high_throttle_mixing": "common collective shift before clipping to preserve motor differentials",
+    "F3": "land; launch abort and final fade latched, no height-PI reacceleration",
+    "F4": "immediate zero and clear; fresh F2 needed",
+    "flow_control": false,
+    "flight_axes_permission": "only explicit trial/bench; ordinary old flight remains0",
+    "telemetry_marker": "flight=tether90"
+  },
+  "checks": {
+    "exit_code": 0,
+    "log": "check.log",
+    "environments_passed": 8,
+    "controller_driver_integration": "90% cap and actual PWM register doubles; no hardware",
+    "synthetic_regression": "capture below90% and no return to90%, high-ground false takeoff prevention, near100% differential preservation, valid/invalid landing, F3 valid-ground abort, final fade jitter, fault/stop guards",
+    "before_fix_regression": "../tether100-2026-10-15/f3-regression-before-fix.log",
+    "display": "display-check.log, synthetic stdin only",
+    "read_only_review": "two landing issues identified, reproduced and fixed; final source review found no further critical issue"
+  },
+  "hardware": {
+    "probe_id": "814dc35a",
+    "serial_by_id_present": true,
+    "preflash_attempts": [
+      {
+        "recorded_at": "2026-10-15T17:31:43.014057+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "commander",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "-c",
+          "savemem 0x08000000 262144 docs/validation/tether90-2026-10-15/preflash_256k.bin"
+        ],
+        "exit_code": 1
+      },
+      {
+        "recorded_at": "2026-10-15T17:35:51.237910+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "commander",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "-c",
+          "savemem 0x08000000 262144 docs/validation/tether90-2026-10-15/preflash-reconnected_256k.bin"
+        ],
+        "exit_code": 0,
+        "bytes": 262144,
+        "sha256": "3f97eefda4c483ebfb703a4bd53f287cad08e46e7b6dfa028783fcf57af65f2e",
+        "matches_previous_bench_image": true
+      }
+    ],
+    "flash_attempted": true,
+    "readback_verified": true,
+    "operator_serial_monitor_left_running": true,
+    "upload": {
+      "recorded_at": "2026-10-15T17:35:54.111431+08:00",
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_tethered_flight_jp13_pwm90.bin"
+      ],
+      "exit_code": 0
+    },
+    "operator_supply_confirmation_requested": true,
+    "failed_upload_attempts": [
+      {
+        "recorded_at": "2026-10-15T17:32:44.934640+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "load",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "--erase",
+          "sector",
+          "--base-address",
+          "0x08000000",
+          "-v",
+          "firmware/contest_tethered_flight_jp13_pwm90.bin"
+        ],
+        "exit_code": 1
+      },
+      {
+        "recorded_at": "2026-10-15T17:34:26.123433+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "load",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "--erase",
+          "sector",
+          "--base-address",
+          "0x08000000",
+          "-vv",
+          "firmware/contest_tethered_flight_jp13_pwm90.bin"
+        ],
+        "exit_code": 1
+      }
+    ],
+    "readback": {
+      "recorded_at": "2026-10-15T17:35:54.931629+08:00",
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 41624 docs/validation/tether90-2026-10-15/readback.bin"
+      ],
+      "exit_code": 0,
+      "bytes": 41624,
+      "sha256": "dec7f44022cc41ad253163e2a990fc2a8547893549230a669167d97ce54cc73e",
+      "matches_image": true
+    },
+    "operator_reconnection_quote": "刚才没接好，现在已接好",
+    "recovery": "USB DAP open timed out before SWD; operator reconnected; backup, load and readback then succeeded. No claim of software repair to the probe.",
+    "programmed_bytes": 40960,
+    "programmed_pages": 20,
+    "skipped_bytes": 2048
+  },
+  "motor_commands_sent": false,
+  "serial_port_opened_by_agent": false,
+  "flight_accepted": false
+}

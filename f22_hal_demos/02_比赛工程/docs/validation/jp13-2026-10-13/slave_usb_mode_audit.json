@@ -1,0 +1,64 @@
+{
+  "phases": {
+    "HW115200": {
+      "bytes": 0,
+      "hex": "",
+      "sample": ""
+    },
+    "HW9600": {
+      "bytes": 0,
+      "hex": "",
+      "sample": ""
+    },
+    "SW9600": {
+      "bytes": 0,
+      "hex": "",
+      "sample": ""
+    },
+    "SW9600_INVERTED": {
+      "bytes": 0,
+      "hex": "",
+      "sample": ""
+    }
+  },
+  "usb_lines": [
+    "0 sr=0000 pa2=0",
+    "SEND SW9600_INVAUDIT_BOOT mapr_before=04000000 mapr_now=04000000 core=72000000 pclk1=36000000",
+    "MODE HW115200 baud=115200 cycle=0 mapr=04000000 pa2cfg=B brr=312 cr1=200C",
+    "SEND HW115200 n=0 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=1 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=2 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=3 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=4 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=5 status=0 sr=00C0 pa2=1",
+    "MODE HW9600 baud=9600 cycle=0 mapr=04000000 pa2cfg=B brr=3750 cr1=200C",
+    "SEND HW9600 n=0 status=0 sr=00C0 pa2=1",
+    "SEND HW9600 n=1 status=0 sr=00C0 pa2=1",
+    "SEND HW9600 n=2 status=0 sr=00C0 pa2=1",
+    "SEND HW9600 n=3 status=0 sr=00C0 pa2=1",
+    "SEND HW9600 n=4 status=0 sr=00C0 pa2=1",
+    "SEND HW9600 n=5 status=0 sr=00C0 pa2=1",
+    "MODE SW9600 baud=9600 cycle=0 mapr=04000000 pa2cfg=3 brr=0 cr1=0000",
+    "SEND SW9600 n=0 status=0 sr=0000 pa2=1",
+    "SEND SW9600 n=1 status=0 sr=0000 pa2=1",
+    "SEND SW9600 n=2 status=0 sr=0000 pa2=1",
+    "SEND SW9600 n=3 status=0 sr=0000 pa2=1",
+    "SEND SW9600 n=4 status=0 sr=0000 pa2=1",
+    "SEND SW9600 n=5 status=0 sr=0000 pa2=1",
+    "MODE SW9600_INVERTED baud=9600 cycle=0 mapr=04000000 pa2cfg=3 brr=0 cr1=0000",
+    "SEND SW9600_INVERTED n=0 status=0 sr=0000 pa2=0",
+    "SEND SW9600_INVERTED n=1 status=0 sr=0000 pa2=0",
+    "SEND SW9600_INVERTED n=2 status=0 sr=0000 pa2=0",
+    "SEND SW9600_INVERTED n=3 status=0 sr=0000 pa2=0",
+    "SEND SW9600_INVERTED n=4 status=0 sr=0000 pa2=0",
+    "SEND SW9600_INVERTED n=5 status=0 sr=0000 pa2=0",
+    "MODE HW115200 baud=115200 cycle=1 mapr=04000000 pa2cfg=B brr=312 cr1=200C",
+    "SEND HW115200 n=0 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=1 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=2 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=3 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=4 status=0 sr=00C0 pa2=1",
+    "SEND HW115200 n=5 status=0 sr=00C0 pa2=1",
+    "MODE HW9600 baud=9600 cycle=1 mapr=04000000 pa2cfg=B brr=3750 cr1=200C"
+  ]
+}

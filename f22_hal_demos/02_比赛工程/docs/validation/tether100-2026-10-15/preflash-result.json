@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-15T17:04:01.477945+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 262144 docs/validation/tether100-2026-10-15/preflash_256k.bin"
+  ],
+  "exit_code": 1
+}

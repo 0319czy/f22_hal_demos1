@@ -1,0 +1,57 @@
+{
+  "status": "PROVISIONAL_NOT_ACCEPTED",
+  "capture": "live-return-after-reset/capture.json",
+  "raw_log": "live-return-after-reset/serial.log",
+  "samples": "live-return-after-reset/samples.jsonl",
+  "motor_command_sent": false,
+  "motor_pwm_observed": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "flow_identity": "product 0x49 / inverse 0xB6",
+  "selected_interval_host_seconds": [
+    26.6129,
+    33.0399
+  ],
+  "start_snapshot": "return-start-provisional.json",
+  "end_snapshot": "return-end-provisional.json",
+  "accepted_windows_delta": 270,
+  "rejected_windows_delta": 0,
+  "poll_errors_delta": 0,
+  "saturated": false,
+  "height_mm_start_end": [
+    317,
+    222
+  ],
+  "c_forward_right_mcount": [
+    -86.812,
+    20.163
+  ],
+  "angle_change_rad_roll_pitch_yaw": [
+    0.106514,
+    -0.201147,
+    0.098407
+  ],
+  "operator_reported_displacement_m": [
+    -0.2,
+    0
+  ],
+  "nominal_uncompensated_predicted_displacement_m": [
+    -0.185078496152,
+    0.042986427198
+  ],
+  "reason_not_accepted": "Noisy hand-carried path: approx -11.5 deg pitch, +6.1 deg roll and +5.6 deg yaw integrated over selected interval; height changes 317 to 222 mm; endpoint timing provisional and start/end dwell are not clearly isolated. The earlier forward candidate yielded about twice this uncompensated scale, so neither coefficient is accepted.",
+  "interpretation": "The weighted forward count is negative, matching the reported tailward motion. Applying the old nominal scale without rotational compensation predicts about 18.5 cm backward and 4.3 cm lateral for this selected interval. This is a consistency check only, not an accepted calibration.",
+  "accepted": false,
+  "flow_quality_min_max_in_interval": [
+    124,
+    161
+  ],
+  "b_roll_pitch_m_rad": [
+    0.030134,
+    -0.054671
+  ],
+  "uncompensated_scale_for_reported_backward_20cm_movement": 0.0023038289637377324
+}

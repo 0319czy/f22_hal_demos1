@@ -1,0 +1,9 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "seconds": 90.16,
+  "lines": 448,
+  "raw_log": "114031-serial.log",
+  "timed_log": "114031-timed.jsonl",
+  "motor_command_sent": false
+}

@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-15T16:33:35.037832+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 262144 docs/validation/attitude-check20-2026-10-15/preflash_256k.bin"
+  ],
+  "exit_code": 0,
+  "matches_previous_image": true,
+  "backup_sha256": "35408a452f56d8c2ff2f6cb6ad89715aba8401f294e5a62b826db7a70386a23b"
+}

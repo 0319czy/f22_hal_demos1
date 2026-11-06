@@ -1,0 +1,58 @@
+{
+  "raw_log": "114031-serial.log",
+  "timed_log": "114031-timed.jsonl",
+  "complete_samples": 444,
+  "partial_samples_excluded": 1,
+  "id_pairs": [
+    [
+      "73",
+      "182"
+    ]
+  ],
+  "flow_errors": [
+    "0"
+  ],
+  "all_flow_present": true,
+  "all_imu_tof_present": true,
+  "high_samples": 102,
+  "high_time_span": [
+    25.849,
+    46.284
+  ],
+  "high_ranges": {
+    "mm": [
+      91,
+      388
+    ],
+    "squal": [
+      110,
+      146
+    ],
+    "dx": [
+      -21,
+      13
+    ],
+    "dy": [
+      -13,
+      20
+    ],
+    "roll_cd": [
+      -775,
+      1092
+    ],
+    "pitch_cd": [
+      -2373,
+      812
+    ]
+  },
+  "all_motor_outputs_zero": true,
+  "operator": "Confirmed completed static/front/back/right/left handheld movement; per-action timestamps not marked",
+  "assessment": "Identification/SPI reads and varying motion stream recovered; positive/negative raw counts observed at valid height. Axis direction, scale and rotation compensation NOT accepted from this test.",
+  "limitations": [
+    "Telemetry is ~5Hz snapshot of faster sensor sampling, not complete integrated motion counts; cannot sum printed dx/dy to estimate centimetres.",
+    "Handheld motion includes pitch/roll changes; no pure translation segments or per-action markers guaranteed.",
+    "Ground optical quality alone does not make near-field fused velocity valid."
+  ],
+  "motor_command_sent": false,
+  "capture_complete": true
+}

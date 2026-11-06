@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-10-15T17:35:54.931629+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 41624 docs/validation/tether90-2026-10-15/readback.bin"
+  ],
+  "exit_code": 0,
+  "bytes": 41624,
+  "sha256": "dec7f44022cc41ad253163e2a990fc2a8547893549230a669167d97ce54cc73e",
+  "matches_image": true
+}

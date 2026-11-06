@@ -1,0 +1,150 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "bytes": 492966,
+  "lines": 883,
+  "latest": {
+    "state": "5",
+    "fault": "12",
+    "dt_ms": "6",
+    "link": "1",
+    "packets": "10351",
+    "imu": "1",
+    "roll_cd": "202",
+    "pitch_cd": "28",
+    "height_mm": "28",
+    "vz_mmps": "-524",
+    "height_valid": "0",
+    "tof_innovation_rejects": "0",
+    "tof": "1",
+    "valid": "0",
+    "mm": "10",
+    "tof_status": "9",
+    "tof_age_ms": "4",
+    "tof_live": "1",
+    "flow": "1",
+    "flow_present": "1",
+    "squal": "49",
+    "flow_err": "0",
+    "dx": "-3",
+    "dy": "11",
+    "axes": "0",
+    "armlevel": "1",
+    "calibrated": "1",
+    "flow_id": "73",
+    "flow_inv": "182",
+    "flow_fault": "0",
+    "flow_reg": "22",
+    "flow_io": "0",
+    "flow_reads": "3",
+    "flow_attempts": "1",
+    "flow_init": "0",
+    "PWM_permille_M1_M2_M3_M6": "0,0,0,0",
+    "trip": "0",
+    "output_locked": "0",
+    "debug_output": "1",
+    "flight": "tether100_noflow",
+    "u_permille": "0",
+    "ref_permille": "875",
+    "target_mm": "200",
+    "link_lost_land": "0",
+    "proto": "2",
+    "seq": "15759",
+    "ready": "1",
+    "radio_fault": "0",
+    "reject": "0",
+    "crc": "0",
+    "timeout": "0",
+    "key_drop": "0"
+  },
+  "trials": [
+    {
+      "number": 1,
+      "start_host": "2026-10-21T16:20:25.777271",
+      "samples": 42,
+      "roll_min": 1.68,
+      "roll_max": 19.42,
+      "pitch_min": -13.0,
+      "pitch_max": 1.19,
+      "max_abs_gyro_dps": [
+        50.69,
+        45.69,
+        56.35
+      ],
+      "sat_samples": [
+        7,
+        7,
+        6
+      ],
+      "max_pwm": 1000,
+      "states": [
+        1,
+        0
+      ],
+      "valid_height_samples": 0,
+      "end_state": 0,
+      "end_fault": 0,
+      "end_host": "2026-10-21T16:20:27.981335"
+    },
+    {
+      "number": 2,
+      "start_host": "2026-10-21T16:20:40.607257",
+      "samples": 20,
+      "roll_min": 2.0,
+      "roll_max": 3.06,
+      "pitch_min": -1.15,
+      "pitch_max": 0.44,
+      "max_abs_gyro_dps": [
+        6.52,
+        2.87,
+        7.26
+      ],
+      "sat_samples": [
+        0,
+        0,
+        0
+      ],
+      "max_pwm": 505,
+      "states": [
+        1,
+        0
+      ],
+      "valid_height_samples": 0,
+      "end_state": 0,
+      "end_fault": 0,
+      "end_host": "2026-10-21T16:20:41.809337"
+    },
+    {
+      "number": 3,
+      "start_host": "2026-10-21T16:21:02.446823",
+      "samples": 65,
+      "roll_min": -5.88,
+      "roll_max": 4.17,
+      "pitch_min": -1.0,
+      "pitch_max": 8.85,
+      "max_abs_gyro_dps": [
+        51.22,
+        54.96,
+        197.19
+      ],
+      "sat_samples": [
+        1,
+        11,
+        29
+      ],
+      "max_pwm": 1000,
+      "states": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "valid_height_samples": 4,
+      "end_state": 5,
+      "end_fault": 12,
+      "end_host": "2026-10-21T16:21:05.857798"
+    }
+  ],
+  "active_trial": null,
+  "updated_host": "2026-10-21T16:23:03.317230"
+}

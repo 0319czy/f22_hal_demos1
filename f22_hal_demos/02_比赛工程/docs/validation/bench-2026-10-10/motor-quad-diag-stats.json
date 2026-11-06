@@ -1,0 +1,19 @@
+{
+  "bytes": 1598,
+  "frames": 17,
+  "pc9_states": [
+    [
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      1,
+      1,
+      2,
+      0
+    ]
+  ],
+  "battery": "user confirmed disconnected"
+}

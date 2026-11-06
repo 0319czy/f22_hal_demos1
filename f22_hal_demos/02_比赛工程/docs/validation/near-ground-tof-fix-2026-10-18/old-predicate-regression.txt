@@ -1,0 +1,3 @@
+Expected failure against prior production freshness predicate. This uses synthetic boundary inputs, not hardware.
+old_predicate: tests/test_tof_control.c:38: main: Assertion `Tof_ControlFresh(&tof, 0U)' failed.
+returncode=-6

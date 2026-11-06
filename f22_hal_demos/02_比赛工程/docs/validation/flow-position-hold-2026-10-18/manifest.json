@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-18",
+  "scope": "Relative XY optical-flow position hold software candidate",
+  "result": "host tests and 11 PlatformIO environments passed",
+  "control": {
+    "attitude_loop": "IMU attitude/rate loop remains active throughout",
+    "position_reference": "capture local XY at first trusted optical-flow sample",
+    "range_hysteresis": {
+      "enter_projected_tof_m": 0.10,
+      "exit_below_projected_tof_m": 0.08,
+      "note": "ToF projection is a proxy; optical-center offset is not calibrated"
+    },
+    "position_outer_loop": {
+      "deadband_m": 0.015,
+      "velocity_gain_per_s": 0.8,
+      "velocity_target_limit_mps": 0.20
+    },
+    "velocity_inner_loop": {
+      "deadband_mps": 0.015,
+      "tilt_limit_deg": 5,
+      "tilt_target_slew_deg_per_s": 10
+    },
+    "flow_loss_land_request_s": 0.25,
+    "frame_transform": "NED map error rotated into FRD body axes using yaw"
+  },
+  "calibration_gate": {
+    "flow_calibrated": 0,
+    "flow_axes_verified": 0,
+    "provisional_signs": "forward=+dy, right=+dx",
+    "scale_and_rotation_accepted": false,
+    "physical_flow_control_enabled": false
+  },
+  "built_candidate": {
+    "profile": "contest_flow_assist_jp13",
+    "bytes": 42712,
+    "sha256": "00cebfd238db1a6746c07a53e085f406cd94be2def5d447ddb8fc85585c03c98",
+    "output_locked": true,
+    "executable_flow_motor_path_in_binary": false,
+    "flashed": false
+  },
+  "checks": [
+    {
+      "command": "cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -g -DCL_HOST_REPLAY_ONLY=1 -DCL_TETHERED_FLIGHT=1 -DCL_FLOW_ASSIST=1 -Isrc/flight tests/test_flow_assist.c src/flight/flow_assist.c src/flight/closed_loop.c src/flight/aircraft1.c src/flight/pid.c -lm -o /tmp/test_flow_position_hold && /tmp/test_flow_position_hold",
+      "result": "passed; synthetic logic only"
+    },
+    {
+      "command": "PATH=/home/sz/.platformio/penv/bin:$PATH bash scripts/check_closed_loop.sh",
+      "result": "passed; host regressions, output-lock assertions, and all 11 firmware environments"
+    },
+    {
+      "command": "python3 -m py_compile scripts/show_remote_keys.py",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- src/config.h src/main.c platformio.ini scripts/check_closed_loop.sh",
+      "result": "passed"
+    }
+  ],
+  "not_verified": [
+    "optical-flow scale, rotation compensation, or ToF-to-optical-center offset",
+    "active motor response or in-air position hold",
+    "firmware installation on the aircraft"
+  ],
+  "board_status": "The last confirmed image remains contest_tethered_flight_debug_jp13_pwm100.bin, which does not include optical-flow control."
+}

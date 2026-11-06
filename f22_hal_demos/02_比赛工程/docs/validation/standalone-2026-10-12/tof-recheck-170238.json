@@ -1,0 +1,50 @@
+{
+  "frames": 100,
+  "fields": {
+    "state": [
+      "5"
+    ],
+    "fault": [
+      "6"
+    ],
+    "tof": [
+      "1"
+    ],
+    "valid": [
+      "0"
+    ],
+    "mm": [
+      "0"
+    ],
+    "flow": [
+      "1"
+    ],
+    "flow_present": [
+      "1"
+    ],
+    "flow_err": [
+      "0"
+    ],
+    "armlevel": [
+      "0"
+    ],
+    "PWM_permille_M1_M2_M3_M6": [
+      "0,0,0,0"
+    ]
+  },
+  "ranges": {
+    "roll_cd": [
+      -181,
+      -177
+    ],
+    "pitch_cd": [
+      1879,
+      1884
+    ],
+    "squal": [
+      71,
+      98
+    ]
+  },
+  "first_fault_captured": false
+}

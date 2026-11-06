@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-16",
+  "purpose": "Determine whether saved serial data supports offline replay of synchronized IMU and ToF height fusion.",
+  "audited_files": [
+    {
+      "path": "docs/validation/flow-axis-check-2026-10-16/114322-timed.jsonl",
+      "bytes": 553475,
+      "closed_loop_rows": 887,
+      "duration_seconds": 180.18,
+      "median_closed_loop_interval_seconds": 0.2,
+      "contains_acc_mg": false,
+      "contains_synchronized_imu_and_tof_samples": false,
+      "finding": "Contains low-rate attitude, ToF, flow, and PWM summaries; dt_ms describes control-loop timing, not the telemetry sample interval."
+    },
+    {
+      "path": "docs/validation/standalone-2026-10-12/test-30s-163945.json",
+      "finding": "Contains aggregate counts and isolated fault snapshots, not a continuous synchronized sensor stream."
+    }
+  ],
+  "result": "No saved record can validate the new height observer against synchronized high-rate IMU and ToF input. A future capture must preserve sample timestamps and raw vertical accelerometer/ToF values."
+}

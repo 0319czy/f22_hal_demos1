@@ -1,0 +1,6 @@
+{
+  "script": "scripts/show_remote_keys.py",
+  "sha256": "e9920997ddfc8eccdaaec9b8c3e9a5ca1eedb3633af7e9cd2e687d80efe01d68",
+  "checks_passed": true,
+  "firmware_unchanged": true
+}

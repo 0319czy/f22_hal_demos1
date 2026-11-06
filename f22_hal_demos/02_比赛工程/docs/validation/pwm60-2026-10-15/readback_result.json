@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 40996 docs/validation/pwm60-2026-10-15/readback.bin"
+  ],
+  "time": "2026-10-15T12:27:45.439160+08:00",
+  "exit_code": 0,
+  "bytes": 40996,
+  "sha256": "c91c9a28bc75182e3d781b45d5e747f0069747569c1e3a58a07fddc0490308c9",
+  "matches_image": true
+}

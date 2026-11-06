@@ -1,0 +1,82 @@
+{
+  "radians_per_count": 0.03170244334391561,
+  "translation": [
+    0,
+    1,
+    1,
+    0
+  ],
+  "rotation": [
+    7.1542368793244835,
+    5.430097039767816,
+    17.910609094361018,
+    7.518065379753108
+  ],
+  "rank": 5,
+  "normalized_condition": 5.55440095868932,
+  "trials": [
+    {
+      "name": "tailward_20cm",
+      "kind": "translation",
+      "measured_m": [
+        -0.2,
+        0.0
+      ],
+      "predicted_m": [
+        -0.20403828566000004,
+        -0.08532711340987881
+      ],
+      "error_m": 0.08542262015376303,
+      "yaw_change_deg": -13.498312695487064
+    },
+    {
+      "name": "forward_20cm",
+      "kind": "translation",
+      "measured_m": [
+        0.2,
+        0.0
+      ],
+      "predicted_m": [
+        0.12568236667999613,
+        -0.03477207549233956
+      ],
+      "error_m": 0.08205003264064867,
+      "yaw_change_deg": -0.40330499199258646
+    },
+    {
+      "name": "pitch_rotation",
+      "kind": "rotation",
+      "measured_m": [
+        0.0,
+        0.0
+      ],
+      "predicted_m": [
+        -0.0005463542384516358,
+        0.0023122631555857133
+      ],
+      "error_m": 0.0023759343119188433,
+      "yaw_change_deg": 1.4098199506989035
+    },
+    {
+      "name": "roll_rotation",
+      "kind": "rotation",
+      "measured_m": [
+        0.0,
+        0.0
+      ],
+      "predicted_m": [
+        -0.0007687271175165489,
+        0.004516817076160989
+      ],
+      "error_m": 0.004581765803781857,
+      "yaw_change_deg": 1.5140982694127136
+    }
+  ],
+  "plausible_scale": false,
+  "calibration_accepted": false,
+  "reason": "Candidate fit only: inspect measured motion/pivot, conditioning and independent holdout errors before accepting; flags remain unchanged.",
+  "assumptions": [
+    "Translations use operator-reported 20 cm along body forward/back; rotations provisionally treated as zero horizontal translation.",
+    "Tailward trial contains about 13.5 deg yaw; no independent sideways or holdout validation yet."
+  ]
+}

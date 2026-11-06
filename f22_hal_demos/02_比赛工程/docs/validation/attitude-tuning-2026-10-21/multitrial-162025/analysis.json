@@ -1,0 +1,114 @@
+{
+  "operator_sequence": "rightward translation then tether becomes taut then rotates; large tilt after contact/tension",
+  "cannot_infer": "no tether-force sensor or horizontal trajectory in current no-flow profile; external-disturbance onset not timestamped",
+  "trial_summary": [
+    {
+      "number": 1,
+      "start_host": "2026-10-21T16:20:25.777271",
+      "samples": 42,
+      "roll_min": 1.68,
+      "roll_max": 19.42,
+      "pitch_min": -13.0,
+      "pitch_max": 1.19,
+      "max_abs_gyro_dps": [
+        50.69,
+        45.69,
+        56.35
+      ],
+      "sat_samples": [
+        7,
+        7,
+        6
+      ],
+      "max_pwm": 1000,
+      "states": [
+        1,
+        0
+      ],
+      "valid_height_samples": 0,
+      "end_state": 0,
+      "end_fault": 0,
+      "end_host": "2026-10-21T16:20:27.981335"
+    },
+    {
+      "number": 2,
+      "start_host": "2026-10-21T16:20:40.607257",
+      "samples": 20,
+      "roll_min": 2.0,
+      "roll_max": 3.06,
+      "pitch_min": -1.15,
+      "pitch_max": 0.44,
+      "max_abs_gyro_dps": [
+        6.52,
+        2.87,
+        7.26
+      ],
+      "sat_samples": [
+        0,
+        0,
+        0
+      ],
+      "max_pwm": 505,
+      "states": [
+        1,
+        0
+      ],
+      "valid_height_samples": 0,
+      "end_state": 0,
+      "end_fault": 0,
+      "end_host": "2026-10-21T16:20:41.809337"
+    },
+    {
+      "number": 3,
+      "start_host": "2026-10-21T16:21:02.446823",
+      "samples": 65,
+      "roll_min": -5.88,
+      "roll_max": 4.17,
+      "pitch_min": -1.0,
+      "pitch_max": 8.85,
+      "max_abs_gyro_dps": [
+        51.22,
+        54.96,
+        197.19
+      ],
+      "sat_samples": [
+        1,
+        11,
+        29
+      ],
+      "max_pwm": 1000,
+      "states": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "valid_height_samples": 4,
+      "end_state": 5,
+      "end_fault": 12,
+      "end_host": "2026-10-21T16:21:05.857798"
+    }
+  ],
+  "trial3": {
+    "tof_valid_range_mm": [
+      245,
+      295
+    ],
+    "peak_body_z_rate_dps": 197.19,
+    "fault": 12,
+    "fault_name": "CL_HEIGHT_INVALID",
+    "fault_height_estimate_m": 0.028832,
+    "fault_height_min_m": 0.03,
+    "fault_raw_tof_mm": 36,
+    "link_valid": true,
+    "postfault_pwm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "not_hover_acceptance": true
+  },
+  "decision": "do not tune yaw using post-tether/contact data; retain parameters; investigate drift before external force; no further thrust increase",
+  "capture_stopped_by_agent_after_three_trials": true
+}

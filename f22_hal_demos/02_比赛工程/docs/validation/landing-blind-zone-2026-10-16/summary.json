@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-16",
+  "scope": "Prevent fused-height invalidity alone from triggering final landing thrust fade",
+  "finding": "The prior landing state treated any invalid fused height as near-ground evidence and began final collective reduction.",
+  "change": [
+    "Added a sample flag for fresh raw ToF status with a 5-39 mm reading, below the fused-height validity threshold.",
+    "Landing final fade now requires the landing target to be near the configured floor and either a stable valid floor estimate or fresh raw near-ground ToF evidence for 300 ms.",
+    "Added a host regression proving fused-height invalidity without raw near-ground evidence does not begin final fade, while the confirmed blind-zone path still completes and the fade remains latched."
+  ],
+  "validation": {
+    "command": "bash scripts/check_closed_loop.sh",
+    "result": "PASS",
+    "embedded_build_environments": 10,
+    "host_tests": "PASS; includes sanitizer-enabled synthetic controller, sensor, radio, PWM-register-double, and landing tests",
+    "documentation_links": "PASS; python3 scripts/check_docs.py reports 244 local links",
+    "git_diff_check": "PASS"
+  },
+  "limits": [
+    "Tests and builds are synthetic; no sensor replay, serial capture, or flight validation was performed.",
+    "Complete ToF loss after the inertial height estimate expires still reaches CL_TOF_LOST and zeros motor output; the safe in-flight fallback is unresolved and blocks flight use.",
+    "HOVER_STOP remains immediate output zero. The requested paired remote mapping for a normal slow landing and separate emergency stop is not implemented or end-to-end validated.",
+    "The 0.20 duty-per-second final fade rate has not been validated against measured descent speed or landing impact."
+  ],
+  "hardware": {
+    "flashed": false,
+    "serial_opened": false,
+    "motors_started": false,
+    "last_confirmed_board_image": "FLOW_ID_PROBE motor-locked diagnostic"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "profile": "contest_motor_radio50_usb",
+  "file": "firmware/contest_motor_radio50_usb.bin",
+  "size": 12852,
+  "sha256": "d60f6c8a52893b6d62b319a701a153ca617302343de3ec89b6312f7a46fa7dd1",
+  "build_passed": true,
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": false,
+  "duty_percent": 50,
+  "outputs": [
+    "M1",
+    "M2",
+    "M3",
+    "M6"
+  ],
+  "start_key": "F1/P1, command4",
+  "stop_keys": [
+    "F3",
+    "F4",
+    "KEY1",
+    "KEY2"
+  ],
+  "diagnostics": "shared board USB USART1 9600, last16 raw bytes every2s",
+  "e49_boot_query": "mode2 C1C1C1 read only",
+  "sensors_sampled": false,
+  "flight_closed_loop": false,
+  "validation_log": "docs/validation/standalone-2026-10-12/motor-radio50-usb-raw-upload.log"
+}

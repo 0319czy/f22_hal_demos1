@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-10-15T16:43:30.727338+08:00",
+  "source": "operator reply in conversation",
+  "operator_quote": "可以了都是对的",
+  "context": "Reply to USB-only propeller-free attitude bench procedure: right side M1/M3 low and nose M1/M2 low, inspect PWM relationships, then F4.",
+  "accepted": "Operator confirms displayed PWM differential directions in that procedure.",
+  "limits": [
+    "No numeric or raw serial excerpt supplied in this reply.",
+    "Opposite tilt directions and dynamic rate response not separately documented.",
+    "Powered motor speed response, restoring torque and flight not accepted by this report."
+  ],
+  "next": "Keep propellers removed. F4 to zero before connecting motor battery. Using unchanged 15% base/20% ceiling bench, verify actual motor speed response to small tilts and F4 stop."
+}

@@ -1,0 +1,10 @@
+{
+  "start": "2026-10-16T12:11:05.852139+08:00",
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "motor_command_sent": false,
+  "seconds": 1200.194,
+  "samples": 5898,
+  "partial_frames": 0,
+  "serial_released": true
+}

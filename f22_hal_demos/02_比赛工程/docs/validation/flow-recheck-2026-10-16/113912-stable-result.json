@@ -1,0 +1,140 @@
+{
+  "time": "2026-10-16T11:39:42.338401+08:00",
+  "seconds": 30,
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "bytes": 90339,
+  "complete_samples": 150,
+  "partial_samples_excluded": 1,
+  "raw_log": "113912-stable-serial.log",
+  "motor_command_sent": false,
+  "values": {
+    "state": [
+      "0"
+    ],
+    "fault": [
+      "0"
+    ],
+    "imu": [
+      "1"
+    ],
+    "tof": [
+      "1"
+    ],
+    "flow": [
+      "1"
+    ],
+    "flow_present": [
+      "1"
+    ],
+    "flow_id": [
+      "73"
+    ],
+    "flow_inv": [
+      "182"
+    ],
+    "flow_fault": [
+      "0"
+    ],
+    "flow_err": [
+      "0"
+    ],
+    "PWM_permille_M1_M2_M3_M6": [
+      "0,0,0,0"
+    ],
+    "output_locked": [
+      "1"
+    ],
+    "key_drop": [
+      "0"
+    ],
+    "valid": [
+      "0"
+    ],
+    "mm": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "dx": [
+      "-1",
+      "-11",
+      "-2",
+      "-3",
+      "0",
+      "1",
+      "11",
+      "2",
+      "3",
+      "4"
+    ],
+    "dy": [
+      "-1",
+      "-2",
+      "-3",
+      "-4",
+      "-5",
+      "-6",
+      "-7",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "9"
+    ],
+    "squal": [
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "90",
+      "92"
+    ],
+    "calibrated": [
+      "1"
+    ],
+    "flow_probe": [
+      "0"
+    ],
+    "spi_transport": [
+      "duplex"
+    ]
+  },
+  "not_claimed": "direction/scale calibration, lateral closed-loop acceptance or flight readiness"
+}

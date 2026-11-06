@@ -1,0 +1,2 @@
+state,roll_deg,pitch_deg,yaw_relative_deg,height_m,vz_mps,x_m,y_m,vx_mps,vy_mps,flow_dx,flow_dy,flow_quality,imu_comm_ok,tof_valid,flow_valid,imu_mount_verified,flow_calibrated,height_target_m,collective_example,virtual_FL,virtual_FR,virtual_RR,virtual_RL,actual_pwm,stable_seconds,hover_qualified,radio_link_valid,radio_last_command,radio_frames,uart_errors,output_enabled
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,18 @@
+{
+  "frames": 149,
+  "flow_valid_frames": 149,
+  "present_all_one": true,
+  "squal_min": 79,
+  "squal_max": 179,
+  "flow_err_values": [
+    0
+  ],
+  "dx_min": -11,
+  "dx_max": 21,
+  "dy_min": -17,
+  "dy_max": 12,
+  "tof_valid_frames": 75,
+  "tof_mm_min": 0,
+  "tof_mm_max": 286,
+  "pwm_all_zero": true
+}

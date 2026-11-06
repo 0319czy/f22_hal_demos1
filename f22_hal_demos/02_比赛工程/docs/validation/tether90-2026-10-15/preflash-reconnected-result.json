@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-10-15T17:35:51.237910+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "-c",
+    "savemem 0x08000000 262144 docs/validation/tether90-2026-10-15/preflash-reconnected_256k.bin"
+  ],
+  "exit_code": 0,
+  "bytes": 262144,
+  "sha256": "3f97eefda4c483ebfb703a4bd53f287cad08e46e7b6dfa028783fcf57af65f2e",
+  "matches_previous_bench_image": true
+}

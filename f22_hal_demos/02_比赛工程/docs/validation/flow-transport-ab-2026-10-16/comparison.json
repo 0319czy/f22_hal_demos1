@@ -1,0 +1,44 @@
+{
+  "CL_samples": 76,
+  "bytes": 47124,
+  "values": {
+    "imu": [
+      "0",
+      "1"
+    ],
+    "tof": [
+      "0",
+      "1"
+    ],
+    "valid": [
+      "0"
+    ],
+    "flow_id": [
+      "73"
+    ],
+    "flow_inv": [
+      "255"
+    ],
+    "flow_cfg": [
+      "0,0"
+    ],
+    "dx": [
+      "-27650"
+    ],
+    "dy": [
+      "-27650"
+    ],
+    "squal": [
+      "254"
+    ],
+    "spi_transport": [
+      "duplex"
+    ],
+    "output_locked": [
+      "1"
+    ],
+    "PWM_permille_M1_M2_M3_M6": [
+      "0,0,0,0"
+    ]
+  }
+}

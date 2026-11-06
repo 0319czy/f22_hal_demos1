@@ -1,0 +1,77 @@
+{
+  "status": "PROVISIONAL_NOT_ACCEPTED",
+  "capture": "live-level-forward-repeat/capture.json",
+  "raw_log": "live-level-forward-repeat/serial.log",
+  "samples": "live-level-forward-repeat/samples.jsonl",
+  "motor_command_sent": false,
+  "motor_pwm_observed": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "flow_identity": "product 0x49 / inverse 0xB6",
+  "selected_interval_host_seconds": [
+    110.0652,
+    122.9134
+  ],
+  "interval_ms": [
+    322033,
+    334868
+  ],
+  "start_snapshot": "forward-repeat-start-provisional.json",
+  "end_snapshot": "forward-repeat-end-provisional.json",
+  "accepted_windows_delta": 547,
+  "rejected_windows_delta": 0,
+  "poll_errors_delta": 0,
+  "saturated": false,
+  "height_mm_start_end": [
+    143,
+    86
+  ],
+  "height_mm_min_max_valid": [
+    86,
+    323
+  ],
+  "flow_quality_min_max": [
+    116,
+    140
+  ],
+  "c_forward_right_mcount": [
+    34.485,
+    12.409
+  ],
+  "b_roll_pitch_m_rad": [
+    0.019175,
+    -0.000686
+  ],
+  "angle_change_rad_roll_pitch_yaw": [
+    0.081712,
+    -0.009314,
+    -0.066326
+  ],
+  "operator_reported_displacement_m": [
+    0.2,
+    0
+  ],
+  "nominal_uncompensated_predicted_displacement_m": [
+    0.07352,
+    0.026455
+  ],
+  "nominal_scale_radians_per_count": 0.002131946,
+  "reason_not_accepted": "The selected 12.85s interval is the complete elevated segment, not a precisely isolated translation: it includes raising from 143mm, varying up to 323mm, then lowering to 86mm. Integrated attitude changed about +4.68deg roll, -0.53deg pitch, -3.80deg yaw. The movement endpoints were not externally time-marked, so this cannot identify a clean 20cm scale trial.",
+  "interpretation": "Positive forward-weighted count agrees with the previously established forward sign and the sensor returns valid motion windows. At the old nominal scale, the whole mixed interval predicts about 7.35cm forward and 2.65cm right. This is not an actual lateral-drift measurement and does not imply the 20cm translation was captured cleanly; no coefficient or gate is accepted.",
+  "accepted": false,
+  "capture_summary": {
+    "start": "2026-10-16T12:40:40.584022+08:00",
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "motor_command_sent": false,
+    "seconds": 139.023,
+    "samples": 686,
+    "partial_frames": 1,
+    "serial_released": true
+  },
+  "all_samples_pwm_zero": true,
+  "all_samples_output_locked": true
+}

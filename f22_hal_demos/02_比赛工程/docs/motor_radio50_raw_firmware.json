@@ -1,0 +1,14 @@
+{
+  "profile": "contest_motor_radio50",
+  "file": "firmware/contest_motor_radio50_raw.bin",
+  "size": 13384,
+  "sha256": "cf5d497b90d22d493291292396e26f41b1435edb4df75a71ef08b48876086429",
+  "build_passed": true,
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": false,
+  "diagnostics": "JP13 USART2 TX 115200; recent 16 RX bytes, packet counts and UART errors",
+  "validation_log": "docs/validation/standalone-2026-10-12/motor-radio50-jp13-raw-upload.log",
+  "motor_pwm_percent": 50,
+  "flight_closed_loop": false
+}

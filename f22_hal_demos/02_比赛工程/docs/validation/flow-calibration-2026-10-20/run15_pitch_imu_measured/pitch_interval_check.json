@@ -1,0 +1,20 @@
+{
+  "start_event": 51,
+  "end_event": 52,
+  "pitch_change_deg": 11.35,
+  "roll_change_deg": -1.44,
+  "bad_delta": 0,
+  "accepted_windows": 325,
+  "height_start_end_mm": [
+    119,
+    185
+  ],
+  "gyro_angle_change_deg": [
+    -1.7374945137342215,
+    11.618208986544783,
+    1.4098199506989035
+  ],
+  "sensor_interval_valid": true,
+  "calibration_accepted": false,
+  "note": "Sensor interval passes; no verified zero-translation pivot or complete independent roll/translation fit yet."
+}

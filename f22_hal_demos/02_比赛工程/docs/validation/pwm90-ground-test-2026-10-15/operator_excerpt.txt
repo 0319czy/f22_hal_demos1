@@ -1,0 +1,11 @@
+Source: operator pasted serial output, selected lines; not an independent capture.
+Attempt1: state=1 fault=0 PWM(M1/M2/M3/M6)=775,845,900,845 roll=1.12 pitch=4.57
+state=1 fault=0 PWM(M1/M2/M3/M6)=850,865,900,865 roll=-0.90 pitch=12.58
+[FAULT] code=7 from=1 t_ms=88222 imu_raw=1 imu_used=1 calibrated=1 settled_ms=86709 armlevel=0 acc_mg=-20,-56,-725 gyro_cdps=7532,3545,-11506 roll_cd=101 pitch_cd=1714 height_um=0 vz_mmps=0 height_valid=0 tof_mm=0 status=9 fresh=1 age_ms=42 output_trip=0 dt_us=6000
+After stop, raw ToF remained0.0cm through F4/IDLE and next launch.
+Attempt2: state=1 fault=0 PWM(M1/M2/M3/M6)=725,835,835,885 roll=-7.81 pitch=8.52
+state=1 fault=0 PWM(M1/M2/M3/M6)=775,900,900,900 roll=-11.50 pitch=12.68
+[FAULT] code=7 from=1 t_ms=94180 imu_raw=1 imu_used=1 calibrated=1 settled_ms=92667 armlevel=0 acc_mg=186,46,677 gyro_cdps=5600,1295,-4201 roll_cd=-630 pitch_cd=1557 height_um=0 vz_mmps=0 height_valid=0 tof_mm=0 status=9 fresh=1 age_ms=7 output_trip=0 dt_us=6000
+Both faults set all PWM0. F4 returned IDLE.
+Operator first said: 有一点离地的趋势了，100%的话都不能起飞的话怎么办？？？
+Operator clarified: 一侧先翘起，或机身打转

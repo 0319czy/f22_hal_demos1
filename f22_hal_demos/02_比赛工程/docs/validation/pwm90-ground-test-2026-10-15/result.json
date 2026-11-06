@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-15",
+  "source": "operator pasted logs and answered physical-observation question; no independent capture",
+  "firmware_record": "docs/validation/pwm90-2026-10-15/manifest.json",
+  "attempts": 2,
+  "max_timer_duty_permille": 900,
+  "fault_codes": [
+    7,
+    7
+  ],
+  "output_trip": [
+    0,
+    0
+  ],
+  "valid_liftoff_range": false,
+  "raw_tof_became_and_remained_zero": true,
+  "fault_pitch_deg": [
+    17.14,
+    15.57
+  ],
+  "fault_gyro_body_cdps": [
+    [
+      7532,
+      3545,
+      -11506
+    ],
+    [
+      5600,
+      1295,
+      -4201
+    ]
+  ],
+  "operator_observation": "一侧先翘起，或机身打转",
+  "interpretation": [
+    "Timer-register duty reached90%; no output-trip fault.",
+    "Both attempts failed to obtain valid >=8cm range before2s launch timeout.",
+    "Operator confirmed asymmetric lifting/spinning; this is not stable vertical takeoff.",
+    "Peak absolute reported yaw rate in fault snapshots is115.06deg/s; dynamic IMU signals do not alone establish an exact hardware defect.",
+    "Total thrust adequacy remains unknown; lifting one side does not prove thrust exceeds whole-aircraft weight.",
+    "Persistent raw0 while idle and next launch needs a motor-disabled distance-response check;0 is invalid, not measured altitude0.",
+    "At the current50percentage-points/s ramp, hypothetical100% is reached at2s, coincident with launch timeout. A timeout alone cannot establish maximum available thrust.",
+    "Mixer signs are internally consistent with the recorded motor map; actual motor/propeller positions, rotation and body-axis response remain physically unverified."
+  ],
+  "next": "Keep current90% image, no100% modification. Stop/disable motor power and inspect propeller type/orientation, actual motor layout/rotation, stabilizing differential, tether restraint, then ToF response with motors disabled. Load-voltage and aircraft mass/thrust measurements follow if direction checks pass.",
+  "flight_accepted": false,
+  "code_changed_this_analysis": false
+}

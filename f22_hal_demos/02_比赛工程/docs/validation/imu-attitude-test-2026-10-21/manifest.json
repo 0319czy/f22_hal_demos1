@@ -1,0 +1,34 @@
+{
+  "status": "flashed_readback_verified",
+  "profile": "contest_tethered_flight_debug_jp13_pwm100",
+  "control_scope": "IMU attitude/rate plus ToF vertical control; optical-flow sensor may be sampled for telemetry but is not used by the flight controller",
+  "bytes": 46572,
+  "sha256": "8c83bf778cfc548150f355ef7acf0183836fbcf524ca3ffc923f29472c2fa7a9",
+  "readback_bytes": 49152,
+  "readback_prefix_matches": true,
+  "probe": "814dc35a",
+  "target": "stm32f103rc",
+  "motor_output_enabled": true,
+  "max_duty_permille": 1000,
+  "flight_validation": false,
+  "postflash_log": "postflash.raw.log",
+  "readback_sha256": "550aced211861b1e7eea163f86a10ac0019d6b9df96634b51f119e82f71b9120",
+  "postflash_state": {
+    "state": 0,
+    "fault": 0,
+    "link": 1,
+    "ready": 1,
+    "imu": 1,
+    "calibrated": 1,
+    "pwm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "flight": "tether100_noflow",
+    "flow_controller_enabled": false,
+    "tof_raw_mm": 6,
+    "tof_height_valid": false
+  }
+}

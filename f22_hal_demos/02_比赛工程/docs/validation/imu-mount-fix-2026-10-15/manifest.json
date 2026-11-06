@@ -1,0 +1,111 @@
+{
+  "recorded_at": "2026-10-15T16:16:40.059135+08:00",
+  "profile": "contest_motor_direction",
+  "status": "flashed and complete readback matched; operator subsequently said corrected tilt signs are right; physical restoring torque and flight not accepted",
+  "purpose": "fixed5% diagnostic with corrected IMU horizontal reference",
+  "operator_observations": "operator-report.txt",
+  "operator_postflash_reply": "对了",
+  "postflash_confirmation_limits": "Oral acknowledgement; no numeric postflash pose logs or raw samples supplied",
+  "mount_before": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    -1
+  ],
+  "mount_after": [
+    0,
+    -1,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    -1
+  ],
+  "source_imu_axes_verified": false,
+  "firmware": {
+    "file": "firmware/contest_motor_direction_pwm5_imu_mount_fix.bin",
+    "bytes": 38684,
+    "sha256": "c12599db821d3245044665a184007a2b9b760948f44d880a4a47100e32172a6e"
+  },
+  "source_sha256": {
+    "src/main.c": "b7938edaa4b5be4e46652147ed80ea6f04aa27cc39dbaf56d718d729079c3ec0",
+    "src/flight/aircraft1.c": "f3ac0dfbd406a17a1ff71a94e4a9b565f075adeeae32a3ad6fa7c701d37d56bd",
+    "src/flight/aircraft1.h": "956a7c19ff0c7d3f2459cde1e422f5f845307542c90fd15fab7ff6eb4c952a1a",
+    "src/flight/closed_loop_config.h": "4fca32767160f1c02cf157da694fdb48d190b548bf6b0ce442a6bc2c301f84b9",
+    "src/flight/closed_loop_profile.h": "406345c01266cf23ca2e3b00361245ef2b4101f225c8c5b955a0f532339c4921",
+    "tests/test_closed_loop.c": "8d2a835f09868011f14453d4e7d71f4b2aced378a97665430e2babbf760241f4",
+    "scripts/check_closed_loop.sh": "57cfd116c889298ae22a78d60dcac118e4c6914b959090203db6f16341a130d2",
+    "src/bench/motor_direction.c": "816a219d193f9b7128cbabf457dc1e979961fa07ae11215f80b59bc639be7093",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d"
+  },
+  "preflash_backup": {
+    "file": "docs/validation/imu-mount-fix-2026-10-15/preflash_256k.bin",
+    "bytes": 262144,
+    "sha256": "1ce7fb32cc8beccbc064e1dfe20d989e6c76d5bf02deea855712e514779b0076",
+    "matched_previous_fixed5_image": true
+  },
+  "flash": {
+    "time": "2026-10-15T16:13:12.439339+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_motor_direction_pwm5_imu_mount_fix.bin"
+    ],
+    "exit_code": 0
+  },
+  "readback": {
+    "time": "2026-10-15T16:13:35.728471+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 38684 docs/validation/imu-mount-fix-2026-10-15/readback.bin"
+    ],
+    "exit_code": 0,
+    "bytes": 38684,
+    "sha256": "c12599db821d3245044665a184007a2b9b760948f44d880a4a47100e32172a6e",
+    "matches_image": true
+  },
+  "checks": {
+    "log": "check.log",
+    "exit_code": 0,
+    "six_builds_passed": true,
+    "old_mapping_synthetic_regression": "regression-before.log (expected assertion failure)",
+    "new_mapping_synthetic_regression": "acceleration and angular-rate mapping, attitude signs and restoring motor demands passed; proper-rotation determinant passed",
+    "physical_torque_verified": false
+  },
+  "behavior": {
+    "boot": "zero PWM; no automatic motor start",
+    "F2": "fixed5% on all four motors, not attitude feedback",
+    "F3_F4": "stop",
+    "flight_axes_gate_in_new_flight_builds": "unverified until further acceptance; not used by fixed5 diagnostic"
+  },
+  "motor_commands_sent": false,
+  "serial_monitor_opened": false,
+  "flight_accepted": false
+}

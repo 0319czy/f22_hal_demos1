@@ -1,0 +1,44 @@
+{
+  "start_event": 100,
+  "end_event": 110,
+  "ignored_repeated_F2": 9,
+  "duration_s": 10.928,
+  "epoch_start_end": [
+    1,
+    1
+  ],
+  "accepted_windows": 459,
+  "bad_delta": 0,
+  "roll_pitch_delta_deg": [
+    -0.79,
+    -0.52
+  ],
+  "gyro_integral_deg": [
+    -0.6343215749893343,
+    -0.5917508108111142,
+    3.1290371107684516
+  ],
+  "range_start_end_mm": [
+    108,
+    111
+  ],
+  "raw_count_delta_dx_dy": [
+    -29,
+    184
+  ],
+  "range_minmax_mm": [
+    98,
+    120
+  ],
+  "sensor_interval_valid": true,
+  "counts_height": [
+    19.485,
+    -3.022
+  ],
+  "rotation_height": [
+    -0.0013,
+    -0.001247
+  ],
+  "physical_motion_verified": false,
+  "calibration_accepted": false
+}

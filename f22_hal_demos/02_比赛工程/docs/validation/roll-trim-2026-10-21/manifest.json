@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-21",
+  "change": "REVERTED per user request. Briefly added CL_ROLL_TRIM lateral-CG differential compensation (-0.010 duty) then removed it; code is back to no lateral trim.",
+  "files": [
+    "src/flight/closed_loop_tuning.h",
+    "src/flight/closed_loop.c"
+  ],
+  "serial_evidence": "logs/serial/20261021-193531-921303.raw.log",
+  "flight_observations": {
+    "roll_cd": "positive throughout launch (+2deg baseline -> +9.9deg), consistent with right-side-heavy drift",
+    "controller_correction_pm": "-6 to -80 (commanded left roll) but could not stop the right roll",
+    "tof": "mm=5..16, valid=0 all flight; height_valid=0; vertical loop never engaged",
+    "gyro_peak": "+/-250 deg/s (tumble); rate loop output only +/-8% duty",
+    "state": "LAUNCH(1) -> LAND(4); never reached ASCEND/HOLD",
+    "radio_fault": "136 transient link drops"
+  },
+  "verification": "contest_imu_tof_low_hover_jp13 builds SUCCESS (flash 17.6%, RAM 9.5%). NOT flashed, NOT flight-verified.",
+  "conclusion": "Roll trim is a secondary fix. Dominant blockers: ToF near-ground blind zone (sitting 7-18mm < 40mm min) so the height loop never engages, and a too-weak rate loop (tumble at +/-250 deg/s)."
+}

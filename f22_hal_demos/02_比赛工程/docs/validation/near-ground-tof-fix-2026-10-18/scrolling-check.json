@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "real_log_replay_samples": 236,
+  "checks": [
+    "append-only output without terminal clearing",
+    "chronological key/fault events retained",
+    "91.5 percent peak visible with interval0",
+    "partial CL warning without replacing last good fields",
+    "raw serial bytes saved including partial record",
+    "readable transcript saved",
+    "disconnect reported and files closed"
+  ],
+  "hardware": "No serial device opened. Serial-path storage checked with a byte-stream double."
+}

@@ -1,0 +1,22 @@
+{
+  "summary": "/data/Downloads/f22_hal_demos/02_\u6bd4\u8d5b\u5de5\u7a0b/docs/validation/radio-latency-2026-10-13/summary-20261013-211308.json",
+  "tx_frames": 1203,
+  "matched_frames": 1064,
+  "unmatched_tx_observations": 139,
+  "startup_unmatched_rx": 20,
+  "command_counts": {
+    "0": 1009,
+    "4": 2,
+    "1": 6,
+    "2": 4,
+    "3": 43
+  },
+  "observed_delay_ms": {
+    "min": 71.164142,
+    "p50": 87.96061499999999,
+    "p95": 104.53935659999999,
+    "max": 126.786841
+  },
+  "negative_delays": 0,
+  "aligned_rx_sequence_gaps": 135
+}

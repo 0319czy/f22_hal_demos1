@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "project": "/home/sz/coderepo/f22_hal_demos/02_比赛工程",
+  "profile": "contest_flow_id_probe_jp13",
+  "command": "/home/sz/.platformio/penv/bin/pio run -e contest_flow_id_probe_jp13",
+  "result": "success",
+  "platformio_platform": "ststm32 19.6.0",
+  "target": "STM32F103RCT6",
+  "reported_ram_usage_bytes": 4652,
+  "reported_ram_capacity_bytes": 49152,
+  "reported_flash_usage_bytes": 40836,
+  "reported_flash_capacity_bytes": 262144,
+  "binary_path": ".pio/build/contest_flow_id_probe_jp13/firmware.bin",
+  "binary_size_bytes": 41328,
+  "binary_sha256": "1b87ccd1adee9756e08577e5b9a1cdf3f82d75fcd6f64cc62378a5038b75f210",
+  "output_lock": {
+    "cl_flight_output_locked": true,
+    "flow_id_probe_forces_stop": true,
+    "pwm_driver_rejects_output": true,
+    "aircraft1_physical_pwm": 0
+  },
+  "verification": {
+    "build": true,
+    "git_diff_check": true,
+    "host_tests": "passed: bash scripts/check_closed_loop.sh (exit 0; synthetic-input suites)",
+    "platformio_matrix": "10 environments passed in check_closed_loop.sh",
+    "height_observer_test": "passed: rest, vertical sign, ToF correction, 40mm edge, innovation rejection/boundary/recovery, tilt projection, 100ms hold and long-gap recovery (synthetic)",
+    "real_sensor_log_replay": "not possible from saved records: the inspected 180s log has 887 CL summaries at 200ms median spacing and no synchronized acceleration samples; see sensor-log-audit.json",
+    "serial_capture": "not run",
+    "hardware_access": "not performed",
+    "flash": "not performed"
+  },
+  "notes": [
+    "Innovation gate is a fixed 0.10m + 0.5m/s * sample interval threshold while inertial prediction is fresh; it has not been tuned on real sensor noise.",
+    "This is a compile-check artifact from a motor-locked diagnostic profile, not a flight image.",
+    "No claim is made that the new height observer or takeoff transition is validated for flight."
+  ]
+}

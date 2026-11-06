@@ -1,0 +1,116 @@
+{
+  "recorded_at": "2026-10-15T21:49:51.826585+08:00",
+  "status": "PARTIAL: flashed and complete readback verified; actual optical identity recovery and calibration pending operator log",
+  "profile": "contest_flow_assist_jp13",
+  "firmware": {
+    "file": "firmware/contest_flow_assist_jp13_pwm100_spi_candidate.bin",
+    "bytes": 43200,
+    "sha256": "ce4a0e9cc031efbfddd81c9183081a530d6767f3b4e117ce5ea260fdd53a266c"
+  },
+  "source_sha256": {
+    "src/sensors/f22_sensor_bus.c": "3956a9a0c758fe5653c3a431a3dbee487ce1baea94befd3229dc233140281ba0",
+    "src/sensors/flow.c": "62315eaffab6cf0552a91df498491a4227560649a37972486a9e06ed4c00e67f",
+    "src/sensors/flow.h": "827bcc95aadaf4bd10e04c7b843a8f691682ccb4fb362466b6973dafa24ed33f",
+    "src/main.c": "1477a0ce5682ddb4b22dcb7d100610978e129e3f5cce8abbef8f23f777cf301d",
+    "src/flight/closed_loop_profile.h": "62d662f3a94c00b80cf37c6f45dc9a9c195d7e06a4bc4216e67baedb087b2130",
+    "src/flight/closed_loop_config.h": "3a3081030d6e3ad4b8e7e37df3575b3a97c5689345054249a618ead21b8baddf",
+    "scripts/show_remote_keys.py": "763cb1ab8d683d4580025bc1a72a5370be487712eb10ad2076472efec5196628",
+    "scripts/check_closed_loop.sh": "e29f0a788a563188ec7df5ad4cc617aa3614e4d0b792d9970d5451c2b884481d",
+    "tests/test_flow_spi.py": "e66d0677a729a8efc0125430bbe52e37c5da355f65b95c3a9ae0ebab654856ba",
+    "tests/test_flow_driver.c": "dac60e6cdf1d270d9b0082e83567d662345b880c19f87adcb4233aa91ee402a3"
+  },
+  "observation": {
+    "source": "operator-selected-line.txt",
+    "id": 73,
+    "inverse": 255,
+    "failure_stage": 6,
+    "register": 95,
+    "hal_adapter_status": 0,
+    "attempts": 77,
+    "physical_root_cause": "unknown; wrong inverse despite successful HAL transaction, not explained by low optical height"
+  },
+  "changes": [
+    "boot-only NCS serial-port reset pulse",
+    "select bank0 before every reset/init attempt",
+    "500us single-register read address-to-data delay, burst retains50us",
+    "SPI adapter preserves HAL status as0/-1/-2/-3",
+    "ID49/inverseB6 check retained, no forced calibration acceptance"
+  ],
+  "primary_sources": [
+    "https://raw.githubusercontent.com/bitcraze/Bitcraze_PMW3901/master/src/Bitcraze_PMW3901.cpp",
+    "https://raw.githubusercontent.com/bitcraze/crazyflie-firmware/master/src/drivers/src/pmw3901.c"
+  ],
+  "tests": {
+    "check.log": "nine environments plus existing regression passed",
+    "spi-check.log": "actual SPI helper extracted with injected HAL; no physical timing claim",
+    "inverse_ff": "actual driver injected49/FF rejected; bank-select/reset ordering and failure recovery tested"
+  },
+  "motor_limit": 1.0,
+  "flow_calibrated": false,
+  "serial_monitor_opened": false,
+  "motor_command_sent": false,
+  "hardware": {
+    "backup": {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-id49-ff-2026-10-15/preflash_256k.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.9733055809992948,
+      "log": "backup.log",
+      "sha256": "1c1b345f8804d858dcfb58de66b4b7ddc82ee7b0a35936e9bb77fb985594580b",
+      "matches_prior100_prefix": true
+    },
+    "upload": {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_assist_jp13_pwm100_spi_candidate.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.8054493540003023,
+      "log": "upload.log"
+    },
+    "readback": {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 43200 docs/validation/flow-id49-ff-2026-10-15/readback.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.8833742650022032,
+      "log": "readback.log",
+      "bytes": 43200,
+      "sha256": "ce4a0e9cc031efbfddd81c9183081a530d6767f3b4e117ce5ea260fdd53a266c",
+      "matches_image": true
+    }
+  }
+}

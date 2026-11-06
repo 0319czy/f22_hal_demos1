@@ -1,0 +1,22 @@
+{
+  "before": {
+    "SCL": 1,
+    "SDA": 0,
+    "SR2": 2
+  },
+  "gpio_released": {
+    "SCL": 1,
+    "SDA": 0,
+    "SR2": 2
+  },
+  "after_bus_clear": {
+    "SCL": 1,
+    "SDA": 1,
+    "SR2": 0
+  },
+  "after_restore": {
+    "SCL": 1,
+    "SDA": 1,
+    "SR2": 0
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "status": "PARTIAL",
+  "calibration_accepted": false,
+  "marker_policy": "first F2 / first subsequent F3; repeated F2 ignored",
+  "trials": [
+    {
+      "name": "run15_pitch_imu_measured",
+      "kind": "rotation",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot",
+      "start_event": 38,
+      "end_event": 52,
+      "ignored_repeated_F2": 13,
+      "duration_s": 10.289,
+      "accepted_windows": 435,
+      "bad_delta": 0,
+      "counts_height": [
+        6.378,
+        7.588
+      ],
+      "rotation_height": [
+        -0.003066,
+        0.03816
+      ],
+      "gyro_integral_deg": [
+        -1.7006533275073095,
+        11.821379820698171,
+        1.1077566011059337
+      ],
+      "raw_count_delta_dx_dy": [
+        44,
+        17
+      ],
+      "range_start_end_mm": [
+        118,
+        185
+      ],
+      "range_minmax_mm": [
+        114,
+        191
+      ],
+      "roll_pitch_delta_deg": [
+        -1.49,
+        11.35
+      ],
+      "largest_device_vs_host_time_jump_s": 85.9803,
+      "zero_translation_is_assumed": true
+    },
+    {
+      "name": "run16_roll_imu_measured",
+      "kind": "rotation",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot",
+      "start_event": 59,
+      "end_event": 67,
+      "ignored_repeated_F2": 7,
+      "duration_s": 8.569,
+      "accepted_windows": 357,
+      "bad_delta": 0,
+      "counts_height": [
+        6.731,
+        17.685
+      ],
+      "rotation_height": [
+        0.034404,
+        -0.006743
+      ],
+      "gyro_integral_deg": [
+        14.951161776600292,
+        -3.097008770020639,
+        1.4743349984306342
+      ],
+      "raw_count_delta_dx_dy": [
+        125,
+        60
+      ],
+      "range_start_end_mm": [
+        105,
+        127
+      ],
+      "range_minmax_mm": [
+        104,
+        150
+      ],
+      "roll_pitch_delta_deg": [
+        14.97,
+        -3.31
+      ],
+      "largest_device_vs_host_time_jump_s": 583.6724,
+      "zero_translation_is_assumed": true
+    },
+    {
+      "name": "run17_forward_20cm",
+      "kind": "translation",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement",
+      "start_event": 75,
+      "end_event": 94,
+      "ignored_repeated_F2": 18,
+      "duration_s": 16.116,
+      "accepted_windows": 671,
+      "bad_delta": 0,
+      "counts_height": [
+        24.831,
+        -3.299
+      ],
+      "rotation_height": [
+        0.00281,
+        -0.004649
+      ],
+      "gyro_integral_deg": [
+        1.4062103165895796,
+        -2.499184606581138,
+        -12.340479583086697
+      ],
+      "raw_count_delta_dx_dy": [
+        -31,
+        223
+      ],
+      "range_start_end_mm": [
+        110,
+        111
+      ],
+      "range_minmax_mm": [
+        98,
+        120
+      ],
+      "roll_pitch_delta_deg": [
+        -0.23,
+        -1.78
+      ],
+      "largest_device_vs_host_time_jump_s": 102.2324,
+      "zero_translation_is_assumed": false
+    },
+    {
+      "name": "run11_pitch",
+      "kind": "holdout",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot",
+      "start_event": 46,
+      "end_event": 54,
+      "ignored_repeated_F2": 7,
+      "duration_s": 5.917,
+      "accepted_windows": 246,
+      "bad_delta": 0,
+      "counts_height": [
+        -26.55,
+        1.135
+      ],
+      "rotation_height": [
+        0.004176,
+        -0.03377
+      ],
+      "gyro_integral_deg": [
+        1.5198851431435345,
+        -13.028831078156868,
+        4.212099230904247
+      ],
+      "raw_count_delta_dx_dy": [
+        -4,
+        -173
+      ],
+      "range_start_end_mm": [
+        117,
+        139
+      ],
+      "range_minmax_mm": [
+        115,
+        156
+      ],
+      "roll_pitch_delta_deg": [
+        1.09,
+        -13.43
+      ],
+      "largest_device_vs_host_time_jump_s": 659.4668,
+      "zero_translation_is_assumed": true
+    },
+    {
+      "name": "run06",
+      "kind": "holdout",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement",
+      "start_event": 4,
+      "end_event": 6,
+      "ignored_repeated_F2": 1,
+      "duration_s": 7.863,
+      "accepted_windows": 334,
+      "bad_delta": 0,
+      "counts_height": [
+        3.572,
+        -1.286
+      ],
+      "rotation_height": [
+        -0.000487,
+        -0.000213
+      ],
+      "gyro_integral_deg": [
+        -0.25788830358838355,
+        -0.09482451509415124,
+        -0.36778160869447546
+      ],
+      "raw_count_delta_dx_dy": [
+        -11,
+        31
+      ],
+      "range_start_end_mm": [
+        117,
+        109
+      ],
+      "range_minmax_mm": [
+        107,
+        121
+      ],
+      "roll_pitch_delta_deg": [
+        -0.43,
+        -0.4
+      ],
+      "largest_device_vs_host_time_jump_s": 62.0078,
+      "zero_translation_is_assumed": false
+    },
+    {
+      "name": "run05",
+      "kind": "holdout",
+      "sensor_interval_valid": true,
+      "physical_motion_verified": false,
+      "declared_displacement_m": [
+        -0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement",
+      "start_event": 1,
+      "end_event": 2,
+      "ignored_repeated_F2": 0,
+      "duration_s": 11.713,
+      "accepted_windows": 498,
+      "bad_delta": 0,
+      "counts_height": [
+        -5.872,
+        -1.427
+      ],
+      "rotation_height": [
+        0.001915,
+        0.00077
+      ],
+      "gyro_integral_deg": [
+        0.8020836174036393,
+        0.1779606911676337,
+        -13.498312695487064
+      ],
+      "raw_count_delta_dx_dy": [
+        -14,
+        -54
+      ],
+      "range_start_end_mm": [
+        112,
+        115
+      ],
+      "range_minmax_mm": [
+        94,
+        121
+      ],
+      "roll_pitch_delta_deg": [
+        0.01,
+        0.25
+      ],
+      "largest_device_vs_host_time_jump_s": 8.3151,
+      "zero_translation_is_assumed": false
+    }
+  ],
+  "candidate": {
+    "radians_per_count": 0.007811821051101111,
+    "translation": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "rotation": [
+      1.8061130852136726,
+      1.4630587762892322,
+      4.344424854847394,
+      1.9846286664134036
+    ],
+    "rank": 5,
+    "normalized_condition": 2.266527106212558,
+    "trials": [
+      {
+        "name": "run15_pitch_imu_measured",
+        "kind": "rotation",
+        "measured_m": [
+          0.0,
+          0.0
+        ],
+        "predicted_m": [
+          -0.0004689855200090947,
+          -0.0031373251696181384
+        ],
+        "error_m": 0.0031721848366540184,
+        "gyro_z_integral_deg": 1.1077566011059337
+      },
+      {
+        "name": "run16_roll_imu_measured",
+        "kind": "rotation",
+        "measured_m": [
+          0.0,
+          0.0
+        ],
+        "predicted_m": [
+          0.0003092582397886748,
+          0.0020688136801790187
+        ],
+        "error_m": 0.00209180082755817,
+        "gyro_z_integral_deg": 1.4743349984306342
+      },
+      {
+        "name": "run17_forward_20cm",
+        "kind": "translation",
+        "measured_m": [
+          0.2,
+          0.0
+        ],
+        "predicted_m": [
+          0.19570191100140993,
+          -0.028752492819547833
+        ],
+        "error_m": 0.029071969530424846,
+        "gyro_z_integral_deg": -12.340479583086697
+      },
+      {
+        "name": "run11_pitch",
+        "kind": "holdout",
+        "measured_m": [
+          0.0,
+          0.0
+        ],
+        "predicted_m": [
+          -0.16553868227529944,
+          0.057745008763937684
+        ],
+        "error_m": 0.1753212518965963,
+        "gyro_z_integral_deg": 4.212099230904247
+      },
+      {
+        "name": "run06",
+        "kind": "holdout",
+        "measured_m": [
+          0.2,
+          0.0
+        ],
+        "predicted_m": [
+          0.029095033386381832,
+          -0.007507541061459294
+        ],
+        "error_m": 0.17106978338090992,
+        "gyro_z_integral_deg": -0.36778160869447546
+      },
+      {
+        "name": "run05",
+        "kind": "holdout",
+        "measured_m": [
+          -0.2,
+          0.0
+        ],
+        "predicted_m": [
+          -0.05045627502799262,
+          -0.020995206310092364
+        ],
+        "error_m": 0.15101034523007598,
+        "gyro_z_integral_deg": -13.498312695487064
+      }
+    ],
+    "plausible_scale": true,
+    "calibration_accepted": false,
+    "reason": "Candidate fit only: inspect measured motion/pivot, conditioning and independent holdout errors before accepting; flags remain unchanged."
+  },
+  "limitations": [
+    "Sensor interval validity does not verify operator displacement or rotation pivot.",
+    "Gyro Z integral is not an Euler yaw measurement.",
+    "The fitter sums body-frame motion without per-sample yaw rotation.",
+    "Hand-held rotations use an unverified zero horizontal translation assumption.",
+    "A plausible scale and small training residual alone cannot accept calibration."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "profile": "contest_aircraft1_standalone",
+  "file": "firmware/contest_aircraft1_standalone_flow_diag.bin",
+  "size": 37780,
+  "sha256": "6d9ec63f79c0710f0fada78ac962031a473e72de653f3d277f2412555f1d2742",
+  "diagnostic_fields": [
+    "flow_present",
+    "squal",
+    "flow_err"
+  ],
+  "build_passed": true,
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": true,
+  "uid_bytes": "30ffd90530574b3036751643",
+  "capture": {
+    "frames": 149,
+    "flow_valid_frames": 149,
+    "present_all_one": true,
+    "squal_min": 79,
+    "squal_max": 179,
+    "flow_err_values": [
+      0
+    ],
+    "dx_min": -11,
+    "dx_max": 21,
+    "dy_min": -17,
+    "dy_max": 12,
+    "tof_valid_frames": 75,
+    "tof_mm_min": 0,
+    "tof_mm_max": 286,
+    "pwm_all_zero": true
+  }
+}

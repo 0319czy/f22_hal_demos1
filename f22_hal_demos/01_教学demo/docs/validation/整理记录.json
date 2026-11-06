@@ -1,0 +1,17 @@
+{
+  "original_capture_sha256": "d1df6a93af3e448e8e864f4cf50f171dbf13c0413c47cc3e124cc578fe78961a",
+  "new_capture_path": "01_教学demo/data/vofa+.csv",
+  "root_capture_alias": "vofa+.csv",
+  "competition_pdf_alias": "9e20f478899dc29eb19741386f9343c8_4836805879143077643_m_2026年江西省大学生智能机器人大赛实施方案 2026.7.pdf",
+  "manuals": [
+    "F22_控制器手册_v2.0.pdf",
+    "DM22_电机组件手册.pdf",
+    "TLE100_遥控器手册.pdf",
+    "F22_原理图_v2.0.pdf"
+  ],
+  "teaching_environments": 9,
+  "teaching_build_and_host_tests": "PASS",
+  "teaching_relative_links": "PASS",
+  "capture_contents_preserved": true,
+  "real_hardware_validation": "NOT_RUN"
+}

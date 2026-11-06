@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-16",
+  "environment": "contest_tethered_flight_jp13_pwm100",
+  "profile": "CL_TETHERED_FLIGHT=1, CL_TETHERED_PWM100=1, CL_FLOW_ASSIST unset",
+  "binary": "firmware/contest_tethered_flight_jp13_pwm100_noflow.bin",
+  "size_bytes": 42488,
+  "sha256": "57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264",
+  "limits": {
+    "controller_and_driver_ceiling": "100%",
+    "launch_ramp": "50 percentage points per second from zero; reaches 100% in approximately 2 seconds",
+    "launch_timeout": "3 seconds; existing fault stop unchanged",
+    "flow_closed_loop": false,
+    "flow_calibration_required": false,
+    "attitude_imu_and_existing_failsafes_preserved": true
+  },
+  "verification": {
+    "command": "bash scripts/check_closed_loop.sh",
+    "host_regressions": "passed, including tether100 controller and PWM register-double tests",
+    "platformio_builds": "10 environments succeeded",
+    "symbol_check": "ClosedLoop_Step, Aircraft1Pwm_Apply, Aircraft1Pwm_Trip and HAL_SYSTICK_Callback present; FlowAssist_Step absent",
+    "image_marker_check": "TETHER100_NOFLOW and flight=tether100_noflow present; TETHER90 marker absent",
+    "hardware_flash": true,
+    "flash": {
+      "probe": "Horco CMSIS-DAP 814dc35a",
+      "interface": "JP11 SWD",
+      "command": "pyocd load --no-config --probe 814dc35a --target stm32f103rc --connect under-reset --erase sector --base-address 0x08000000 firmware/contest_tethered_flight_jp13_pwm100_noflow.bin",
+      "result": "programmed 20480 bytes (10 sectors), skipped 22528 bytes (11 sectors)",
+      "pre_flash_backup": "flash-before.bin, 262144 bytes, sha256 c3c6d17d9e39e214d1c7e257b278ea5955ab5b2967f21817da9c50d8c7cabcaf",
+      "readback": "flash-after.bin, 42488 bytes, byte-for-byte identical to candidate",
+      "readback_sha256": "57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264"
+    },
+    "fresh_boot": {
+      "serial_port": "/dev/ttyACM0 (Horco CMSIS-DAP CDC)",
+      "baud": 115200,
+      "boot_marker": "TETHER100_NOFLOW",
+      "telemetry_profile": "flight=tether100_noflow",
+      "imu": "valid",
+      "calibration": "ok=1 reason=ok",
+      "flow_control": "not compiled; diagnostic sensor read only",
+      "tof": "present, currently invalid at near-ground 14-22 mm readings",
+      "radio": "link=0 packets=0 at capture; F2 not yet issued",
+      "startup_pwm": "0,0,0,0"
+    },
+    "hardware_motor_or_flight_test": false
+  },
+  "board_current": {
+    "environment": "contest_tethered_flight_jp13_pwm100_noflow",
+    "image_readback_and_fresh_boot_confirmed": true,
+    "motor_output_test": "pending; radio link was 0 at fresh boot capture"
+  },
+  "diagnosis": "An initial fresh boot printed TETHER90 because main.c selected the mode label using CL_FLOW_ASSIST instead of the 100%-no-flow profile macro. Corrected both boot and telemetry markers, added image-marker regression checks, rebuilt, reflashed, read back, and confirmed TETHER100_NOFLOW. The previous telemetry ref_permille=1000 was consistent with the 100% configuration; the old label alone was misleading.",
+  "operator_history": "The prior 90% tethered trial reported side tipping/spin and did not confirm clearance above 8 cm. The operator confirmed propellers installed, battery connected, tether secured, and area clear for this requested 100% test. The current 100% image is flashed and boot-verified; no F2/motor output test has occurred because the current radio link is 0."
+}

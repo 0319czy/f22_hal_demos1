@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-16",
+  "environment": "contest_tethered_flight_jp13_pwm100_softland",
+  "binary": "docs/validation/frame-incident-2026-10-16/withdrawn-softland-42628.bin",
+  "size_bytes": 42628,
+  "sha256": "ef529418d6e7caea2f4c99bc48e607b9bec208488a18a19a5dd36989470f28fe",
+  "keymap": {
+    "F1": "idle IMU calibration",
+    "F2": "takeoff",
+    "F3": "immediate emergency stop / clear fault",
+    "F4": "request controlled landing; repeated packets sustain landing without timer reset"
+  },
+  "behavior": {
+    "max_pwm_permille": 1000,
+    "launch_ramp_permille_per_second": 500,
+    "launch_timeout_seconds": 3,
+    "landing_target_descent_mps": 0.1,
+    "near_ground_fade_duty_per_second": 0.2,
+    "landing_timeout_seconds": 8,
+    "flow_closed_loop": false,
+    "landing_reference": "use last delivered collective, keep attitude-rate state; first-airborne LAND does not become blind ground abort",
+    "faults": "link/IMU/tilt/ToF/output/watchdog guards remain hard stop"
+  },
+  "verification": {
+    "command": "bash scripts/check_closed_loop.sh",
+    "host_tests": "PASS, including soft-land v2/v3 receiver to controller integration and original profiles",
+    "build_environments": 11,
+    "builds": "PASS",
+    "hardware_flash": false,
+    "hardware_landing_test": "not run",
+    "serial_display": "PASS with synthetic state4/keymap line",
+    "hardware_flash_blocker": "Operator reports broken airframe; all flight/flash activity suspended. F3 emergency remap lacks paired-transmitter validation.",
+    "documentation_links": "PASS: python3 scripts/check_docs.py"
+  },
+  "limitations": [
+    "Smooth PWM/target descent is not proof of soft physical touchdown.",
+    "No horizontal optical-flow control; lateral drift remains unresolved.",
+    "F3 wire packet is the prior LAND packet; transmitter queue/air latency has not been remeasured. F3 key bit is also honored while F4 frames have TX priority.",
+    "Landing requires usable attitude/range; serious faults still immediately stop motors."
+  ],
+  "board_current": "Last verified 42488-byte TETHER100_NOFLOW, F3=land, F4=immediate stop. New F4-land firmware not yet loaded.",
+  "operator_power_status": "飞机已经断电",
+  "status": "WITHDRAWN_AFTER_AIRFRAME_DAMAGE"
+}

@@ -1,0 +1,92 @@
+{
+  "time": "2026-10-16T12:08:48.255183+08:00",
+  "firmware": {
+    "path": "firmware/contest_flow_calibration_jp13.bin",
+    "bytes": 44040,
+    "sha256": "4d6fed6c8fcb00532cd3e7fd78a30048a392f5be827669ec99beb72ee3bb14b4"
+  },
+  "steps": [
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-calibration-2026-10-16/backup.bin"
+      ],
+      "exit": 0,
+      "seconds": 3.2163132609998684,
+      "log": "backup.log"
+    },
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_calibration_jp13.bin"
+      ],
+      "exit": 0,
+      "seconds": 3.1781055780002134,
+      "log": "upload.log"
+    },
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 44040 docs/validation/flow-calibration-2026-10-16/readback.bin"
+      ],
+      "exit": 0,
+      "seconds": 1.164025649999985,
+      "log": "readback.log"
+    },
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "reset"
+      ],
+      "exit": 0,
+      "seconds": 0.8590021330001036,
+      "log": "reset.log"
+    }
+  ],
+  "motor_command_sent": false,
+  "calibration_flags_changed": false,
+  "prior_matches": true,
+  "readback_matches": true,
+  "status": "full flash readback verified; exclusive monitor conflict resolved; subsequent FCAL capture healthy",
+  "initial_capture_error": "[Errno 11] Could not exclusively lock port /dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02: [Errno 11] Resource temporarily unavailable",
+  "capture_after_retry": "boot-static.json"
+}

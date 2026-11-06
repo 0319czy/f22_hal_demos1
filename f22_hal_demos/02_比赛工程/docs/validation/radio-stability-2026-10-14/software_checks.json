@@ -1,0 +1,7 @@
+{
+  "receiver_build": "PASS (compile and link; see receiver_build.log, receiver_recheck.log)",
+  "remote_build_and_flash": "PASS (see remote_upload.json and remote_upload.log)",
+  "parser": "PASS cc -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined; radio_trace CRC/corruption/split/legacy/wrap cases",
+  "collector": "PASS 5 unittest cases, including truncated compact record rejection",
+  "motor_scope": "diagnostic profile; all M1-M7 output GPIO LOW; no PWM/motor timers linked"
+}

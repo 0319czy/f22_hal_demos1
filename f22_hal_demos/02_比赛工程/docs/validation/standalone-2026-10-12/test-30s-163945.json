@@ -1,0 +1,47 @@
+{
+  "frames": 148,
+  "state_counts": {
+    "5": 42,
+    "0": 29,
+    "2": 6,
+    "3": 71
+  },
+  "fault_counts": {
+    "6": 2,
+    "0": 106,
+    "8": 14,
+    "5": 26
+  },
+  "tof_mm": [
+    0,
+    117
+  ],
+  "active_frames": 77,
+  "flow_valid_frames": 0,
+  "dt_ms_counts": {
+    "6": 145,
+    "5": 3
+  },
+  "active_motor_permille_ranges": [
+    [
+      10,
+      200
+    ],
+    [
+      15,
+      200
+    ],
+    [
+      15,
+      200
+    ],
+    [
+      15,
+      200
+    ]
+  ],
+  "fault_snapshots": [
+    "16:39:49 [FAULT] code=8 from=0 t_ms=532999 imu_raw=1 imu_used=1 calibrated=1 settled_ms=531878 armlevel=1 acc_mg=-68,18,-957 gyro_cdps=1811,1746,3024 roll_cd=-120 pitch_cd=-95 height_um=92000 vz_mmps=-5 height_valid=1 tof_mm=92 status=9 fresh=1 age_ms=12 output_trip=0 dt_us=6000",
+    "16:40:09 [FAULT] code=5 from=3 t_ms=553079 imu_raw=1 imu_used=1 calibrated=1 settled_ms=551958 armlevel=0 acc_mg=-38,416,-926 gyro_cdps=-3662,432,-156 roll_cd=-2520 pitch_cd=-221 height_um=64737 vz_mmps=-8 height_valid=1 tof_mm=64 status=9 fresh=1 age_ms=7 output_trip=0 dt_us=6000"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "capture": {
+    "start": "2026-10-16T11:43:22.916898+08:00",
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "raw_log": "114322-serial.log",
+    "timed_log": "114322-timed.jsonl",
+    "motor_command_sent": false,
+    "stage": "front_back"
+  },
+  "complete_samples": 886,
+  "partial_samples_excluded": 1,
+  "last_t": 180.2,
+  "all_identification_good": true,
+  "all_pwm_zero": true,
+  "forward_user_reply": {
+    "t": 67.511967,
+    "event": "forward_completed_user_reply"
+  },
+  "forward_valid_height_samples": 106,
+  "forward_ranges": {
+    "mm": [
+      87,
+      332
+    ],
+    "dx": [
+      -20,
+      11
+    ],
+    "dy": [
+      -19,
+      16
+    ],
+    "squal": [
+      113,
+      155
+    ],
+    "roll_cd": [
+      -931,
+      576
+    ],
+    "pitch_cd": [
+      -228,
+      999
+    ]
+  },
+  "after_reply_valid_height_samples": 0,
+  "status": "PARTIAL: initial forward action acknowledged; backward reply arrived after capture ended, while captured height remained near ground. No signed axis accepted. Continuing with fixed-aircraft moving-paper protocol.",
+  "limit": "5Hz snapshots, handheld tilt and multiple lift intervals prevent asserting a unique signed axis from forward segment alone",
+  "firmware_changed": false,
+  "motor_command_sent": false
+}

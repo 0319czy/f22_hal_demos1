@@ -1,0 +1,8 @@
+{
+  "firmware": "/home/sz/coderepo/f22_hal_demos/02_比赛工程/remote/tle100/.pio/build/tle100_latency_fast/firmware.hex",
+  "sha256": "a94ce62e2540f15914d178581f095512dc9463d98e2d860514672a2ea80bebbb",
+  "backup": "/home/sz/.cache/f22-progisp-pio/original-20261014-115703.bin",
+  "backup_sha256": "4341c5f3a6836c4847a5b65fd7021b539364d4667441d08231633ab06960b276",
+  "progisp_result": "1: Erase,Blank,Write Flash,Verify Flash,Successfully done (10/14/2026 11:57:10 AM)",
+  "time": "2026-10-14 11:57:10"
+}

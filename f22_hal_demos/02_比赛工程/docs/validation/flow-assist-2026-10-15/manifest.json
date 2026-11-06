@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-10-15T21:28:06.309871+08:00",
+  "status": "PARTIAL: software regression and nine builds passed; NOT FLASHED; real flow identity, calibration and flight stability pending",
+  "profile": "contest_flow_assist_jp13",
+  "firmware": {
+    "file": "firmware/contest_flow_assist_jp13_candidate.bin",
+    "bytes": 43124,
+    "sha256": "d1a8af9bd5babd3b0fc783db36b6b540bf174d10b9452960f84bb00730356201"
+  },
+  "current_verified_board_image": {
+    "file": "firmware/contest_tethered_flight_jp13_pwm90.bin",
+    "bytes": 41624,
+    "sha256": "dec7f44022cc41ad253163e2a990fc2a8547893549230a669167d97ce54cc73e"
+  },
+  "source_sha256": {
+    "platformio.ini": "f0c518c6b5433048689df66eaaac31339db64856afac226d7e26220e494b8267",
+    "src/main.c": "3e6e8092caaf396e0caa0a5a558a769be04e21688417341ca8912c6b0fb895f2",
+    "src/sensors/flow.c": "6db74bb5d2973fe44e5e250add95eb04ba99d282e3859035b0b79fc06fdb0d68",
+    "src/sensors/flow.h": "96636d17306e7709fcce427809eae8364e9b11362200bc8e83ff117281c73fd9",
+    "src/flight/closed_loop.c": "5518428261eddedcb3aea06ee79bde7382838313093195bede866dd8ee954a90",
+    "src/flight/closed_loop.h": "17b502ad5f9744f6eda3126bcb9facc0e9e82fdd8133765e752ca0497bb4ea81",
+    "src/flight/flow_assist.c": "ab8ce69e74d27380337b631e009bc06dc6bb31d003a7104aa7c3e2a94b09fe2c",
+    "src/flight/flow_assist.h": "a451f668131da26f8cdef05dec1b7c3f146d43bf4f59320e8e47a889d6bc0b23",
+    "src/config.h": "1a9fa80628c315726f8866d0a274b37422b4c9b4a2a09d00d57aa812349ea0fd",
+    "src/flight/closed_loop_config.h": "3a3081030d6e3ad4b8e7e37df3575b3a97c5689345054249a618ead21b8baddf",
+    "src/flight/closed_loop_profile.h": "8644b811b48f641cb683fdd39ae7fc38df41d9479a28e8378603c3b9a9abda94",
+    "scripts/check_closed_loop.sh": "51d8f9e139f2b61f654364ce7dd10090e6cf25e8e0ce28400e8eb87fdb9321f4",
+    "scripts/show_remote_keys.py": "19c1cff9373b488b76e54a024474a59a9ccb2d2761760c1e865dab32d1ceb421",
+    "tests/test_flow_driver.c": "7128ea0e286413c883a39489e420ffd6637a5acb9614df5d9174f3d6893647d8",
+    "tests/test_flow_recovery.py": "2aafef162a629cf64845d0eaabf8347263f7f3900ff1b6e5894fdd023eb11f69",
+    "tests/test_flow_assist.c": "27e472c414f730e2c1973e581c6b1c9f6c1bbf68762da09ca8252869d8943d3a"
+  },
+  "operator_choice": "Retain frame; IMU attitude/rate feedback always active; add trusted optical velocity correction, including descent above blind zone. Not a complete sensor takeover.",
+  "behavior": {
+    "flow_requested": true,
+    "calibration_verified": false,
+    "start_missing_flow_fault": 14,
+    "start_unverified_flow_fault": 13,
+    "max_motor_duty": 0.9,
+    "optical_min_range_m": 0.08,
+    "blend_seconds": 0.5,
+    "fade_seconds": 0.25,
+    "max_angle_deg": 5,
+    "angle_slew_deg_per_sec": 10,
+    "continuous_untrusted_flow_above_range_land_seconds": 0.25,
+    "map_recognition": false,
+    "absolute_XY_position_hold": false
+  },
+  "evidence": {
+    "regression": "check.log",
+    "saved_input_display": "display-check.log",
+    "driver": "synthetic injected SPI failures and recovery; no live sensor claim",
+    "recovery": "real ServiceFlow helper extracted into isolated harness; not whole main or hardware integration",
+    "controller": "synthetic real controller/assist state transitions and F3/F4; no flight claim",
+    "documentation": "docs-check.log",
+    "source_and_artifact_hashes": "verified after packaging"
+  },
+  "remaining": [
+    "physical PMW3901 identification failure not located yet",
+    "physical flow axes, scale and rotation compensation unverified",
+    "SPI adapter reports generic -1; detailed HAL status not available",
+    "IMU cannot guarantee zero lateral drift below optical working distance",
+    "no new serial capture, flash, reset or motor command performed"
+  ]
+}

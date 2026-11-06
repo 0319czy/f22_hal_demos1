@@ -1,0 +1,32 @@
+日期：2026-10-15
+来源：操作者粘贴的串口摘录；不是本机直接采集，原始完整日志未保存。
+采集时飞机是否静止：未知。
+
+关键观测：
+
+    [CAL] ok=0 reason=moving_rate samples=0 axis=6 io=0 id=104 calibrated=0 reused=0 ...
+    [CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=1 valid=0 mm=25 ... PWM_permille_M1_M2_M3_M6=0,0,0,0 ...
+    [CAL] ok=0 reason=moving_rate samples=4 axis=6 io=0 id=104 calibrated=0 reused=0 ... gyro_sd_cdps=338,171,203 ...
+    [CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=1 valid=1 mm=51 ... PWM_permille_M1_M2_M3_M6=0,0,0,0 ...
+
+解释边界：ID 104（0x68）符合当前驱动期待的IMU ID，io=0表示该次总线操作返回HAL_OK；这不能证明姿态估计有效。moving_rate表示校准采样中至少一个原始陀螺轴超过10 deg/s，样本数为0或4时便被拒绝。周期行imu=0、calibrated=0，因此roll/pitch的0只是无效数据占位，不能用于判断安装轴向。ToF曾读到20～32mm（无效）及42～61mm（部分有效）；flow_present=1；link=0、packets=0表示该时刻没有有效遥控链路，与IMU校准失败分开处理。
+
+下一步：拆桨、断开动力电池，只接USB；飞机水平稳固放置，上电后3秒不要触碰，也不要按F2。看是否出现CAL ok=1、samples=100，以及周期行imu=1 calibrated=1。若静止仍重复moving_rate，再记录导致拒绝的原始gyro值后定位，不先放宽阈值。
+
+后续追加（同日，操作者再次粘贴，仍非完整原始采集）：
+
+[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=1 roll_cd=-90 pitch_cd=-19 tof=1 valid=0 mm=0 flow=1 flow_present=1 squal=56 flow_err=0 dx=-1 dy=3 axes=0 armlevel=1 calibrated=1 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0
+
+追加摘录各周期行持续imu=1、calibrated=1、armlevel=1、state=0、fault=0及四路PWM全零。横滚约−0.86°～−1.61°，俯仰约−0.15°～−0.60°；没有动作标签，不能验证机体轴向。ToF原始0～1mm，valid=0；用户明确说明飞机放在桌面，近距读数小，当前不据此判传感器损坏。link/packets仍为0。追加记录未含CAL成功事件、采集时间戳或固件哈希。
+
+最新下一步：保持拆桨断动力，不按F2、不重复F1；每次从平放基准出发做右侧下倾、左侧下倾、机头下倾、机头上仰，约10°后停2秒，各贴一行带动作名称的姿态数据。预期依次为roll增大、roll减小、pitch减小、pitch增大。初次moving_rate来源仍未查明；本轮没有修改或烧录固件。
+
+方向检查新增口述：用户表示“机头压低的数值是正的”。未提供对应数值、字段或停住后的原始行，因此仅记录为口述观察。代码observation.c采用FRD姿态约定；closed_loop.c的pitch目标减测量值经角速度控制后，前电机加p、后电机减p。按当前物理机头定义，机头压低应使pitch下降；若该反馈指pitch且稳定后仍为正，需修正实际安装坐标对应关系。已请求确认字段，并需右侧压低的roll/pitch变化来确定完整映射，本轮未改矩阵或烧录。
+
+后续字段确认：用户回答“俯仰为正，横滚基本不变”。因此已确认机头下倾的俯仰符号与当前控制预期相反；下一步要求右侧下倾约10°、停2秒后记录横滚符号，以判断两水平轴是否整体反向或仍有其他轴向问题。仍未修改安装矩阵、混控、显示符号，也未烧录。
+
+后续口述及纠正：用户对右侧压低问题回答“负”，但进一步给出以下原始行，并明确该数据对应“右高左低，前低后高”：
+
+[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=1 roll_cd=-3008 pitch_cd=1976 tof=1 valid=1 mm=52 flow=0 flow_present=1 squal=0 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 calibrated=1 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0
+
+本段前部约横滚−30°、俯仰+20°，两个轴同时倾斜；横滚负与用户最终明确的左侧低一致。不能将此行解释为右侧低横滚负。因此基于较早口述的整体180°候选已撤回；临时合成回归及构建仅验证了该假设下的行为，不是实物验收。当前恢复原+Y/+X/−Z矩阵，源码CL_IMU_AXES_VERIFIED=0。未烧录。下一步按已确认电机位置分别执行：M1/M3侧压低，及M1/M2前侧压低；各自回水平再做，约10°后停2秒，记录实际字段正负。

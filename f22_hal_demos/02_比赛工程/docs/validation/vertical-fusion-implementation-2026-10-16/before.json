@@ -1,0 +1,47 @@
+{
+  "purpose": "pre-edit snapshot of existing working-tree files; user changes preserved",
+  "files": [
+    {
+      "path": "src/flight/observation.h",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/src__flight__observation.h.before",
+      "sha256": "5623dfea26dcc20ffecb5a27cdb9af64bedac735dc5299b83e4799901bbe60ff",
+      "bytes": 1187
+    },
+    {
+      "path": "src/flight/observation.c",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/src__flight__observation.c.before",
+      "sha256": "e23be6aea49c9d5e39c889da49268ac721f3830292640a4f4a58c76845c658dd",
+      "bytes": 3719
+    },
+    {
+      "path": "src/flight/closed_loop.h",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/src__flight__closed_loop.h.before",
+      "sha256": "83cdf49ccb9256b5cd56846b5d01c655c2d3bfcf5ac863a5bd6ea8f096969b2b",
+      "bytes": 2183
+    },
+    {
+      "path": "src/flight/closed_loop.c",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/src__flight__closed_loop.c.before",
+      "sha256": "a534e1a65359333f27f9c410f6be6eb7c2239eddc96283fcaf563754aec200a2",
+      "bytes": 12225
+    },
+    {
+      "path": "src/main.c",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/src__main.c.before",
+      "sha256": "b95c0800fd70cbca7a7f7c69bfc21004b608b03c67bb852b21252cc05fd68614",
+      "bytes": 38594
+    },
+    {
+      "path": "docs/CONTROL_DESIGN_2026-10-16.md",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/docs__CONTROL_DESIGN_2026-10-16.md.before",
+      "sha256": "a76e6046c99fc658066953ee63645274b61f0a9f9e52b4192a323af720f115f1",
+      "bytes": 16219
+    },
+    {
+      "path": "PROJECT_PLAN.md",
+      "snapshot": "docs/validation/vertical-fusion-implementation-2026-10-16/PROJECT_PLAN.md.before",
+      "sha256": "773571aebf60f11d96b12938c5219d25c035e66f3fe53e87cee876a4a54088cd",
+      "bytes": 40281
+    }
+  ]
+}

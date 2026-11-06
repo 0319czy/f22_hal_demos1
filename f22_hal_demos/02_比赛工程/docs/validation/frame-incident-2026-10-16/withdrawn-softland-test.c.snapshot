@@ -1,0 +1,132 @@
+#include "closed_loop_radio.h"
+#include "closed_loop.h"
+#include "closed_loop_config.h"
+#include <assert.h>
+#include <math.h>
+#include <stdio.h>
+
+static uint16_t sequence;
+static uint32_t now;
+static unsigned version;
+static uint8_t token;
+static RadioCommand previous;
+static void Packet(ClosedLoopRadio *in, RadioCommand command, uint8_t keys)
+{
+    ++sequence; now += 20;
+    if (command != RADIO_HEARTBEAT && command != previous) token = (token+1U)&15U;
+    previous = command;
+    uint8_t p[12] = {0xa5,0x5a,(uint8_t)version,(uint8_t)sequence,
+        (uint8_t)(sequence>>8),(uint8_t)command,(uint8_t)(keys|(version == 3 ? token<<4 : 0)),
+        (uint8_t)now,(uint8_t)(now>>8),(uint8_t)(now>>16),(uint8_t)(now>>24),0};
+    p[11] = Radio_Crc(p, 11);
+    for (unsigned i = 0; i < sizeof(p); ++i) ClosedLoopRadio_Feed(in, p[i], now);
+}
+static void Init(ClosedLoopRadio *in, ClosedLoop *c, ClosedLoopSample *s)
+{
+    sequence = 0; now = 0; token = 0; previous = RADIO_HEARTBEAT;
+    ClosedLoopRadio_Init(in);
+    ClosedLoopConfig cfg = {CL_HOVER_DUTY,CL_MAX_DUTY,.20f,1,0};
+    ClosedLoop_Init(c, cfg);
+    *s = (ClosedLoopSample){.imu_valid=1,.link_valid=1,.tof_present=1,.tof_fresh=1};
+    Packet(in, RADIO_HEARTBEAT, 0);
+}
+static void Step(ClosedLoopRadio *in, ClosedLoop *c, ClosedLoopSample *s,
+                 ClosedLoopOutput *o)
+{
+    s->link_valid = ClosedLoopRadio_LinkValid(in, now);
+    ClosedLoop_Step(c, s, ClosedLoopRadio_Take(in, now), .005f, o);
+}
+static void Zero(const ClosedLoopOutput *o)
+{ for (unsigned k = 0; k < 4; ++k) assert(o->motor[k] == 0); }
+static void Launch(ClosedLoopRadio *in, ClosedLoop *c, ClosedLoopSample *s,
+                   ClosedLoopOutput *o)
+{
+    Packet(in, RADIO_START, 2); Step(in, c, s, o);
+    for (unsigned i = 0; i < 200; ++i) {
+        Packet(in, RADIO_HEARTBEAT, 0); Step(in, c, s, o);
+    }
+    assert(c->state == CL_LAUNCH && o->collective > .5f);
+}
+static void LandingAndEmergency(void)
+{
+    ClosedLoopRadio in; ClosedLoop c; ClosedLoopSample s; ClosedLoopOutput o;
+    Init(&in, &c, &s); Launch(&in, &c, &s, &o);
+    /* F4 on the first airborne sample must not become a ground-launch abort
+     * or pull the uncaptured 100% reference into the height loop. */
+    float before = o.collective;
+    s.range_valid = 1; s.range_m = .12f;
+    Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+    assert(c.state == CL_LAND && !c.landing_flare && c.fault == CL_OK);
+    assert(o.collective > .4f && fabsf(o.collective-before) < .002f);
+    assert(fabsf(c.height_feedforward-before) < .0001f);
+    float target = c.target_range;
+    for (unsigned i = 0; i < 40; ++i) {
+        Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+        assert(c.state == CL_LAND && o.collective > 0);
+    }
+    assert(c.seconds > .20f && c.target_range < target-.019f);
+    Packet(&in, RADIO_LAND, 4); Step(&in, &c, &s, &o);
+    assert(c.state == CL_IDLE); Zero(&o); /* physical F3 */
+    /* Held F4 has transmitter priority; F3 key bit in those frames still kills. */
+    s.range_valid = 0;
+    Packet(&in, RADIO_HEARTBEAT, 0); Launch(&in, &c, &s, &o);
+    Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+    assert(c.state == CL_LAND && o.collective > 0);
+    Packet(&in, RADIO_STOP, 12); Step(&in, &c, &s, &o);
+    assert(c.state == CL_IDLE); Zero(&o);
+}
+static void QueuePriority(void)
+{
+    ClosedLoopRadio in; ClosedLoop c; ClosedLoopSample s;
+    Init(&in, &c, &s);
+    Packet(&in, RADIO_START, 2);
+    Packet(&in, RADIO_STOP, 8); /* F4 replaces queued START with LAND. */
+    Packet(&in, RADIO_HEARTBEAT, 0);
+    Packet(&in, RADIO_START, 2);
+    assert(ClosedLoopRadio_Take(&in, now) == HOVER_REQUEST_LAND);
+    Packet(&in, RADIO_STOP, 12); /* F3 down while held F4 dominates TX. */
+    Packet(&in, RADIO_STOP, 8);
+    Packet(&in, RADIO_HEARTBEAT, 0);
+    Packet(&in, RADIO_START, 2);
+    assert(ClosedLoopRadio_Take(&in, now) == HOVER_STOP && !in.ready);
+    Packet(&in, RADIO_START, 2);
+    assert(ClosedLoopRadio_Take(&in, now) == HOVER_NONE);
+}
+static void BlindFade(void)
+{
+    ClosedLoopRadio in; ClosedLoop c; ClosedLoopSample s; ClosedLoopOutput o;
+    Init(&in, &c, &s); Launch(&in, &c, &s, &o);
+    float before = o.collective;
+    for (unsigned i = 0; i < 700; ++i) {
+        Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+        assert(o.collective <= before + .00001f);
+        assert(c.fault == CL_OK);
+        before = o.collective;
+    }
+    assert(c.state == CL_IDLE); Zero(&o);
+}
+static void Guards(void)
+{
+    for (unsigned fault = 0; fault < 4; ++fault) {
+        ClosedLoopRadio in; ClosedLoop c; ClosedLoopSample s; ClosedLoopOutput o;
+        Init(&in, &c, &s); Launch(&in, &c, &s, &o);
+        Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+        if (fault == 0) now += RADIO_LINK_TIMEOUT_MS;
+        if (fault == 1) s.imu_valid = 0;
+        if (fault == 2) s.roll = 25;
+        if (fault == 3) s.output_fault = 1;
+        Step(&in, &c, &s, &o);
+        assert(c.state == CL_FAULT); Zero(&o);
+        Packet(&in, RADIO_STOP, 8); Step(&in, &c, &s, &o);
+        assert(c.state == CL_FAULT); Zero(&o); /* F4 cannot clear a fault */
+        Packet(&in, RADIO_LAND, 4); Step(&in, &c, &s, &o);
+        assert(c.state == CL_IDLE); Zero(&o);
+    }
+}
+int main(void)
+{
+    for (version = 2; version <= 3; ++version) {
+        LandingAndEmergency(); QueuePriority(); BlindFade(); Guards();
+    }
+    puts("Soft-land key/controller integration: v2/v3 F4 descent/retries, F3 stop priority, first-airborne handover, blind fade and faults PASS (synthetic; no flight claim)");
+}

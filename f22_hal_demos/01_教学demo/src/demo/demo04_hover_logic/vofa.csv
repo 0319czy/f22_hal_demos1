@@ -1,0 +1,2 @@
+state,height_m,height_target_m,vertical_speed_mps,roll_deg,pitch_deg,x_m,y_m,vx_mps,vy_mps,collective,roll_correction,pitch_correction,yaw_correction,virtual_FL,virtual_FR,virtual_RR,virtual_RL,actual_pwm,input_simulated
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

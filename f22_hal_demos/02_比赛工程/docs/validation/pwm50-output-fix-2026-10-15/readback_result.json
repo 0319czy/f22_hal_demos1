@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 40992 docs/validation/pwm50-output-fix-2026-10-15/readback.bin"
+  ],
+  "exit_code": 0,
+  "matches_image": true,
+  "time": "2026-10-15T12:20:47.556078+08:00",
+  "bytes": 40992,
+  "sha256": "632ec96e7a5a2bed090a87e82a7e5c5b82df0eb8b053702370c1f43d3c573df7"
+}

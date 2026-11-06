@@ -1,0 +1,54 @@
+{
+  "motor_ccr": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "spi2": {
+    "cr1": "0x367",
+    "sr": "0x2"
+  },
+  "registers": [
+    {
+      "address": 0,
+      "address_rx": 255,
+      "value": 73
+    },
+    {
+      "address": 1,
+      "address_rx": 255,
+      "value": 255
+    },
+    {
+      "address": 95,
+      "address_rx": 255,
+      "value": 255
+    },
+    {
+      "address": 2,
+      "address_rx": 255,
+      "value": 254
+    },
+    {
+      "address": 7,
+      "address_rx": 0,
+      "value": 0
+    },
+    {
+      "address": 78,
+      "address_rx": 0,
+      "value": 0
+    },
+    {
+      "address": 91,
+      "address_rx": 0,
+      "value": 0
+    },
+    {
+      "address": 127,
+      "address_rx": 0,
+      "value": 0
+    }
+  ]
+}

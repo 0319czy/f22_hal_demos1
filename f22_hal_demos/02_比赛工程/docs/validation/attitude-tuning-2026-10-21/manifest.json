@@ -1,0 +1,32 @@
+{
+  "profile": "contest_tethered_flight_debug_jp13_pwm100",
+  "bytes": 46412,
+  "sha256": "63bd5c5d7b9d3c37e37a2c17c9abf135f129d1e02ae23fd5e4a6b08e2ec59149",
+  "readback_match": true,
+  "motor_output_enabled": true,
+  "horizontal_feedback_enabled": false,
+  "height_feedback_enabled": true,
+  "gains_changed": false,
+  "trace_ms": 50,
+  "keys": {
+    "F2": "takeoff",
+    "F3": "land",
+    "F4": "immediate_stop"
+  },
+  "postflash": {
+    "state": 0,
+    "fault": 0,
+    "imu": 1,
+    "calibrated": 1,
+    "pwm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "link": 0
+  },
+  "host_regression": "PASS synthetic tether flight; not flight acceptance",
+  "operator_confirmed": "battery connected, motors stopped",
+  "flight_test_performed": false
+}

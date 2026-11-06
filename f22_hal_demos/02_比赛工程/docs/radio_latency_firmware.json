@@ -1,0 +1,45 @@
+{
+  "profiles": [
+    "contest_radio_latency_compact",
+    "tle100_latency_fast"
+  ],
+  "motors_enabled": false,
+  "flash_status": "both_uploaded_and_verified_2026-10-14",
+  "radio_uart_baud": 9600,
+  "radio_air_rate_bps": 50000,
+  "jp13_diagnostic_baud": 115200,
+  "configuration": "C2 volatile at startup; readback required; explicit rollback on failure",
+  "sha256": {
+    "firmware/contest_radio_latency_compact.bin": "f49255b49068b41228d131162073d9457cb86ec8cb0df0f3796fd732026ef362",
+    "remote/tle100/tle100_latency_fast.hex": "f8c200d7f376561d9aaa1841a23c049487dfedc381551148e76f4bf25d0f3bcf"
+  },
+  "software_tests": "C parser ASAN/UBSAN PASS; 5 Python collector tests PASS (includes compact truncation)",
+  "remote_upload": {
+    "firmware": "/home/sz/coderepo/f22_hal_demos/02_比赛工程/remote/tle100/.pio/build/tle100_latency_fast/firmware.hex",
+    "sha256": "f8c200d7f376561d9aaa1841a23c049487dfedc381551148e76f4bf25d0f3bcf",
+    "backup": "/home/sz/.cache/f22-progisp-pio/original-20261014-122412.bin",
+    "backup_sha256": "f8ec4d083bcef352ad391145a16bd1450f414793157fe3e5c448a8a5ef97f280",
+    "progisp_result": "1: Erase,Blank,Write Flash,Verify Flash,Successfully done (10/14/2026 12:24:20 PM)",
+    "time": "2026-10-14 12:24:20"
+  },
+  "receiver_uid": "30ffd90530574b3036751643",
+  "receiver_upload_log": "docs/validation/radio-stability-2026-10-14/receiver_upload.log",
+  "runtime_result": "docs/validation/radio-stability-2026-10-14/final-auto/result.json",
+  "runtime_scope": "300s automatic synthetic F1-F4 + heartbeat via real RF; 6062 TX/6062 raw matches; 396 complete key presses first packet matched; manual profile restored afterwards",
+  "protocol": "12 byte diagnostic v2; receiver also accepts legacy v1; old motor profile does not accept v2",
+  "reliability_limit": "sequence/CRC checked; no RF ACK retransmission; finite zero-loss observation is not a universal guarantee",
+  "latency_limit": "PC observation includes JP13, wireless DAP and USB; not zero latency or synchronized one-way RF",
+  "minimum_frame_start_interval_ms": 35,
+  "manual_remote_upload_log": "docs/validation/radio-stability-2026-10-14/manual_restore_upload.log",
+  "automatic_sender_receipt": "docs/validation/radio-stability-2026-10-14/auto_remote_upload.json",
+  "manual_restore_sanity": {
+    "verdict": "PASS",
+    "seconds": 10,
+    "tx": 200,
+    "matched": 200,
+    "commands": [
+      0
+    ],
+    "evidence": "docs/validation/radio-stability-2026-10-14/manual-restored/result.json"
+  }
+}

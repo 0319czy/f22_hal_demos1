@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "attach",
+    "-c",
+    "savemem 0x08000000 38696 docs/validation/motor-direction-pwm1-2026-10-15/readback.bin"
+  ],
+  "time": "2026-10-15T12:44:16.142655+08:00",
+  "exit_code": 0,
+  "bytes": 38696,
+  "sha256": "0dee6230589ce14e660e905d5ac6fe3be0d0d3b9310ebc0f49a79a26a474b278",
+  "matches_image": true
+}

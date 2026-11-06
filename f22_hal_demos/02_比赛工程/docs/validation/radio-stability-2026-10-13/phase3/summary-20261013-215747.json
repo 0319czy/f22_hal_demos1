@@ -1,0 +1,98 @@
+{
+  "remote": "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.0-port0",
+  "receiver": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "tx_observation_seconds": 20.0,
+  "warmup_seconds": 3,
+  "drain_seconds": 1,
+  "post_window_rx_excluded": 19,
+  "measurement": "PC observation difference; includes JP13/DAP/USB; board uptimes not subtracted",
+  "totals": {
+    "tx": 400,
+    "rx": 401,
+    "rx_bad": 0
+  },
+  "matched": 400,
+  "unmatched": {
+    "tx": 0,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 0,
+    "rx": 1
+  },
+  "unmatched_note": "Unmatched observations include capture boundaries and telemetry loss; not pure RF loss",
+  "sequence_gaps": {
+    "tx": 0,
+    "rx": 0
+  },
+  "duplicates": {
+    "tx": 0,
+    "rx": 0
+  },
+  "restart_or_reorder": {
+    "tx": 0,
+    "rx": 0
+  },
+  "matched_window_rx_sequence_gaps": 0,
+  "sequence_gap_note": "Unfiltered rx gaps can include pre-capture DAP backlog; matched-window gaps exclude it",
+  "remote_bad_frames": 0,
+  "remote_noise_bytes": 0,
+  "negative_delays": 0,
+  "observed_delay_ms": {
+    "min": 68.044671,
+    "p50": 80.299293,
+    "p95": 119.29203974999997,
+    "max": 142.864019
+  },
+  "commands_matched": [
+    0
+  ],
+  "receiver_stats": [
+    "STAT bytes=15347 frames=1278 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=15598 frames=1299 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=15826 frames=1318 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=16077 frames=1339 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=16318 frames=1359 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=16560 frames=1380 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=16800 frames=1400 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=17040 frames=1420 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=17280 frames=1440 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=17508 frames=1459 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=17760 frames=1480 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=18000 frames=1500 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=18233 frames=1519 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=18472 frames=1539 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=18713 frames=1559 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=18956 frames=1579 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=19197 frames=1599 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=19440 frames=1620 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=19680 frames=1640 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=19920 frames=1660 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=20148 frames=1679 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0"
+  ],
+  "events": "docs/validation/radio-stability-2026-10-13/phase3/events-20261013-215747.jsonl",
+  "csv": "docs/validation/radio-stability-2026-10-13/phase3/matched-20261013-215747.csv",
+  "receiver_diagnostics": [
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2"
+  ]
+}

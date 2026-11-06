@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-14",
+  "profile": "contest_aircraft1_radio_v2_jp13",
+  "status": "flashed through JP11 and full image readback verified; flight test pending",
+  "requested_pwm_profile": {
+    "nominal_duty": 0.5,
+    "single_motor_max_duty": 0.5,
+    "launch_ramp_duty_per_second": 0.5,
+    "time_to_nominal_seconds": 1.0,
+    "launch_timeout_seconds": 2.0,
+    "f4_stop_retained": true,
+    "flow_axes_verified": false
+  },
+  "firmware": {
+    "file": "firmware/contest_aircraft1_radio_v2_jp13_pwm50_candidate.bin",
+    "bytes": 40996,
+    "sha256": "0347fd15dff4eba4b11831e0f244a45036632a2f831e73058ff18a3a8a98e4ff"
+  },
+  "source_sha256": {
+    "src/flight/closed_loop_config.h": "773e7dc832113da87b054ff94e50e02be35d94181e7031d64f0e10e248703a25",
+    "src/flight/closed_loop.c": "e3e6aaa699b57a52bc9c41dd1756e3c9f06cf83cc281c1970b7c02e2f48c3300",
+    "tests/test_closed_loop.c": "b58c87b614c13d74f6ba5a2dbe9d7e09c36c2226d72632acdd5b3f6a689b7958",
+    "platformio.ini": "95615dd7c1e7789478d3aeb5e8827a2f937c938f224a87ebb0d7dc5be5659274",
+    "scripts/check_closed_loop.sh": "ed081f579c3958c2bf51cef25ccc9c6a8ce4a093c179ce684788aa0b8419e1b8"
+  },
+  "verification": {
+    "host_closed_loop_tests": "passed with AddressSanitizer and UndefinedBehaviorSanitizer, including 50% ramp, ceiling, timeout, and stop behavior",
+    "platformio_environments": [
+      "contest_hover",
+      "contest_aircraft1_closed_loop",
+      "contest_aircraft1_pwm_closed_loop",
+      "contest_aircraft1_radio_v2_jp13",
+      "contest_aircraft1_standalone"
+    ],
+    "build_result": "all five passed; physical PWM remains limited to the existing intended environments",
+    "log": "docs/validation/pwm50-2026-10-14/check.log",
+    "log_sha256": "0876e87a5e3e8268e3d6f039f7932109629057a3a5f259cc2855ce0f6e394943",
+    "hardware_test": "Flash programming and full image readback passed; PWM, boot serial state and flight were not tested in this flash session"
+  },
+  "flashed_at": "2026-10-14T22:26:42.834106+08:00",
+  "programmer": {
+    "probe_uid": "814dc35a",
+    "target": "stm32f103rc",
+    "connection": "JP11 SWD via Horco CMSIS-DAP",
+    "base_address": "0x08000000"
+  },
+  "preflash_backup": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "-c",
+      "savemem 0x08000000 0x40000 docs/validation/pwm50-2026-10-14/preflash_256k.bin"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 2.77300763130188,
+    "bytes": 262144,
+    "sha256": "4ca28528a8d5f8b91acc5f0c9d40769228798d0c9e86e4e37f6e8f5e1315c518",
+    "file": "docs/validation/pwm50-2026-10-14/preflash_256k.bin"
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_aircraft1_radio_v2_jp13_pwm50_candidate.bin"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 1.3933978080749512,
+    "erased_bytes": 4096,
+    "programmed_bytes": 4096,
+    "skipped_bytes": 38912,
+    "log": "docs/validation/pwm50-2026-10-14/flash.log"
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 40996 docs/validation/pwm50-2026-10-14/readback.bin"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 0.8159348964691162,
+    "bytes": 40996,
+    "sha256": "0347fd15dff4eba4b11831e0f244a45036632a2f831e73058ff18a3a8a98e4ff",
+    "matches_image": true,
+    "file": "docs/validation/pwm50-2026-10-14/readback.bin",
+    "log": "docs/validation/pwm50-2026-10-14/readback.log"
+  },
+  "motor_commands_sent": false,
+  "postflash_serial_capture": "not performed; operator monitor not opened automatically",
+  "earlier_connection_failure": "probe enumerated but CMSIS-DAP open timed out; connection recovered after user reconnection; cause unconfirmed",
+  "superseded_by": "docs/validation/pwm50-output-fix-2026-10-15/manifest.json",
+  "known_defect_discovered_2026_10_15": "Previous controller profile requested 50% but physical driver default remained 20%; Aircraft1Pwm_Apply rejected demands above .20 and latched CL_OUTPUT_FAULT (fault9)."
+}

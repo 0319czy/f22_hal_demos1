@@ -1,0 +1,2 @@
+imu_ok,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,imu_temp,acc_norm,bias_x,bias_y,bias_z,cal_samples,read_errors,interval_ms,cal_failures
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

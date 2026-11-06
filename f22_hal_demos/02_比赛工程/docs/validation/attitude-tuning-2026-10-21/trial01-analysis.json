@@ -1,0 +1,20 @@
+{
+  "operator": "heading approximately unchanged, later obstacle contact or tether tension",
+  "launch_trace_count": 24,
+  "launch_roll_range_deg": [
+    0.25,
+    4.33
+  ],
+  "launch_roll_limit_samples": 2,
+  "interpretation": "roll authority saturated before LAND; post-contact gyro not valid for yaw tuning; not proof of insufficient total thrust",
+  "next_change": "no-flow attitude debug roll correction limit .04 -> .08, retain P/I, other axes and protections",
+  "events": [
+    "KEY F4 event=1 seq=1637 allowed=1 ready=0",
+    "KEY F4 event=2 seq=1642 allowed=1 ready=0",
+    "KEY F2 event=3 seq=1670 allowed=1 ready=1",
+    "KEY F3 event=4 seq=1703 allowed=1 ready=1",
+    "KEY F3 event=5 seq=1721 allowed=1 ready=1",
+    "[FAULT] code=5 from=4 t_ms=349608 imu_raw=1 imu_used=1 calibrated=1 settled_ms=347925 armlevel=0 acc_mg=-49,886,362 gyro_cdps=-16580,-25008,24985 roll_cd=-2694 pitch_cd=-946 height_um=0 vz_mmps=0 height_valid=0 tof_mm=10 status=9 fresh=1 age_ms=4 output_trip=0 dt_us=6000",
+    "KEY F4 event=6 seq=1730 allowed=1 ready=0"
+  ]
+}

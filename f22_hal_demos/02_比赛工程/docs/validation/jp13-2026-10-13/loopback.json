@@ -1,0 +1,19 @@
+{
+  "uid": "30ffd90530574b3036751643",
+  "firmware_sha256": "8f3b9ae34aae970a8beed655dc04d62a0420ae8e758434eb6e35dbd07dc0a7b2",
+  "build": "contest_jp13_loopback",
+  "flash_verified": true,
+  "baud_jp13": 115200,
+  "shorted_pins": [
+    2,
+    3
+  ],
+  "usb_baud": 9600,
+  "loops_observed": 8,
+  "bytes_per_loop": 16,
+  "all_match": true,
+  "all_uart_errors": 0,
+  "dap_bytes_during_same_8_seconds": 0,
+  "motors": "all outputs held low",
+  "pending": "verify JP13 GND to DAP GND continuity"
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-14",
+  "programmer": "Horco CMSIS-DAP",
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "device_id_register": "0xE0042000",
+  "device_id_value": "0x10036414",
+  "preflash_backup": "preflash_256k.bin",
+  "preflash_backup_bytes": 262144,
+  "preflash_backup_sha256": "4ca28528a8d5f8b91acc5f0c9d40769228798d0c9e86e4e37f6e8f5e1315c518",
+  "firmware": "firmware/contest_aircraft1_radio_v2_jp13.bin",
+  "firmware_bytes": 40996,
+  "firmware_sha256": "913617db55baaf1660ac07ec13042a62a9df916566d28132a56eda7d4ef2c8f3",
+  "pyocd_load_result": "success; target pages already matched, 0 bytes erased/programmed, 43008 bytes skipped",
+  "readback_compare": "success after actual write; all 40996 bytes match at 0x08000000",
+  "conclusion": "JP11 SWD programming path works and an actual page erase/program completed; full selected firmware image was verified by readback.",
+  "forced_write_attempt": "A sector erase via commander returned an IPSR=3 halt-state error after erasing the first sector; read32 confirmed 0x08000000 was erased.",
+  "actual_flash_write": "pyocd load with connect=under-reset succeeded; erased/programmed 2048 bytes (1 page), skipped 40960 bytes (20 pages) because they already matched.",
+  "wireless_dap_remote_test": {
+    "host_usb_device": "/dev/ttyACM0",
+    "probe_uid": "814dc35a",
+    "target_id_read": "0x10036414",
+    "prewrite_serial_capture": {
+      "baud": 115200,
+      "duration_seconds": 8,
+      "bytes": 13547
+    },
+    "fresh_page_backup": {
+      "file": "remote_prewrite_first_page.bin",
+      "bytes": 2048,
+      "sha256": "b0e5a91c2839593616e3f34edbd3ed97c3115337933f7c04474fa0ac781640cc"
+    },
+    "remote_programming": "success; erased/programmed 2048 bytes (one page), skipped 40960 bytes (20 identical pages)",
+    "full_image_readback": "success; all 40996 bytes match",
+    "post_reset_serial_capture": {
+      "baud": 115200,
+      "duration_seconds": 3,
+      "bytes": 6320
+    },
+    "post_reset_telemetry": {
+      "state": 0,
+      "fault": 0,
+      "imu": 1,
+      "calibrated": 1,
+      "pwm_permille": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "radio_link": 0,
+      "radio_packets": 0,
+      "tof_present": 1,
+      "tof_valid": 0,
+      "flow_present": 1,
+      "flow_axes_verified": 0
+    },
+    "motor_commands_sent": false
+  }
+}

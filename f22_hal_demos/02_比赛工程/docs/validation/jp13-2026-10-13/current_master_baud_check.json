@@ -1,0 +1,32 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "results": [
+    {
+      "baud": 115200,
+      "bytes": 43,
+      "valid_lines": 0,
+      "replacement_characters": 23,
+      "lines": []
+    },
+    {
+      "baud": 9600,
+      "bytes": 42,
+      "valid_lines": 0,
+      "replacement_characters": 21,
+      "lines": []
+    },
+    {
+      "baud": 115200,
+      "bytes": 565,
+      "valid_lines": 5,
+      "replacement_characters": 0,
+      "lines": [
+        "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+        "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+        "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+        "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+        "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000"
+      ]
+    }
+  ]
+}

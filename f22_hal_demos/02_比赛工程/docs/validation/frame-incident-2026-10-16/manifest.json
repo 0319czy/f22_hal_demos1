@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-16",
+  "status": "FLIGHT_SUSPENDED_AIRFRAME_DAMAGE",
+  "operator_report": {
+    "frame": "broken",
+    "damage_timing": "unknown; operator answered 不知道",
+    "power": "aircraft powered off"
+  },
+  "board_current": {
+    "image": "board-image-42488.bin",
+    "sha256": "57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264",
+    "state": "old TETHER100_NOFLOW remains on board, powered off; not changed by this incident review"
+  },
+  "new_artifact": {
+    "path": "firmware/contest_incident_review_locked.bin",
+    "environment": "contest_tethered_flight_jp13_pwm100",
+    "bytes": 39924,
+    "sha256": "2eb8b1f3328556a55aa3613b2ddeb52c9ee7d6ca373e140e7e4b8fa5f5598c58",
+    "motor_output": "quarantined in controller and PWM driver",
+    "flashed": false
+  },
+  "withdrawn": {
+    "image": "withdrawn-softland-42628.bin",
+    "reason": "Receiver-only F3 emergency remap is not end-to-end safe with either existing transmitter protocol",
+    "flashed": false
+  },
+  "implemented": [
+    "default CL_TETHERED_FLIGHT controller START/active-state inhibit",
+    "independent physical PWM nonzero/NaN rejection",
+    "host replay macro rejected with embedded ARM/Thumb/HAL/current STM32 flags",
+    "unverified receiver-only key remap reverted; legacy F4 emergency retained",
+    "CL_TETHERED_PWM100 START/active cycle isolated from unused optical flow I/O; validity cleared immediately"
+  ],
+  "checks": {
+    "full_regression": "PASS bash scripts/check_closed_loop.sh; check-closed-loop-final.log",
+    "platformio_builds": 10,
+    "driver_and_controller_lock_profiles": 3,
+    "flow_runtime_timeout_modes": 2,
+    "negative_embedded_replay_defines": [
+      "STM32F103xE",
+      "__arm__",
+      "__thumb__",
+      "USE_HAL_DRIVER"
+    ],
+    "transmitter_defect_reproductions": "proto2 scheduler and real proto3 KeyEvents; candidate F3 pulse loss/full FIFO confirmed",
+    "hardware_operations": "none during incident review; no serial, reset, flash or motor command"
+  },
+  "unresolved_before_flight": [
+    "Repair airframe and validate physical assembly/dynamic thrust independently.",
+    "Define and validate normal landing versus emergency actions with paired-transmitter urgent event handling.",
+    "Separate high-altitude range dropout from corroborated near-ground final fade.",
+    "Validate staged takeoff handover using real ToF sampling/filtering, calibrated usable thrust, transient rejection.",
+    "Validate vertical correction authority/landing when captured reference is excessive.",
+    "Provide calibrated lateral feedback before claiming position stability.",
+    "Define bounded degraded handling for range/link faults; do not remove critical attitude/output protection.",
+    "Review independent hardware watchdog and CPU interrupt-failure behavior."
+  ],
+  "causality": "F4 immediate motor cut is observed in the captured segment. Unique physical cause/timing of frame damage is not established.",
+  "report": "docs/FRAME_INCIDENT_2026-10-16.md"
+}

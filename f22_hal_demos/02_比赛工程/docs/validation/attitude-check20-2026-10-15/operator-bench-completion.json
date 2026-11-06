@@ -1,0 +1,16 @@
+{
+  "recorded_at": "2026-10-15T16:47:01.927379+08:00",
+  "source": "operator reply in conversation",
+  "operator_quote": "对的",
+  "context": "Reply to left side low -> M2/M6 acceleration, tail low -> M3/M6 acceleration, F4 -> all four motors stop.",
+  "accepted": [
+    "Operator confirms the two remaining propeller-free motor response directions.",
+    "Operator confirms F4 physically stops all four motors."
+  ],
+  "scope": "Together with earlier replies, qualitative static four-direction propeller-free differential and stop check passed.",
+  "limits": [
+    "No numeric motor speed or serial trace supplied.",
+    "Dynamic rate response, propeller thrust, restoring torque, hover and flight remain unaccepted."
+  ],
+  "next": "Motors stopped, motor battery unplugged, USB telemetry retained: lift level over unobstructed floor to roughly 10/20/40 cm and check ToF validity, trend and stationary readings; no F2."
+}

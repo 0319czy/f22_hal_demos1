@@ -1,0 +1,76 @@
+{
+  "first": "20:01:03",
+  "last": "20:01:23",
+  "frames": 99,
+  "values": {
+    "state": [
+      "0",
+      "1",
+      "5"
+    ],
+    "fault": [
+      "0",
+      "7",
+      "8"
+    ],
+    "imu": [
+      "1"
+    ],
+    "tof": [
+      "1"
+    ],
+    "valid": [
+      "0",
+      "1"
+    ],
+    "flow": [
+      "1"
+    ],
+    "flow_present": [
+      "1"
+    ],
+    "flow_err": [
+      "0"
+    ],
+    "trip": [
+      "0"
+    ],
+    "PWM_permille_M1_M2_M3_M6": [
+      "0,0,0,0",
+      "105,160,110,200",
+      "120,170,110,190",
+      "125,105,155,200",
+      "15,30,10,40",
+      "20,65,30,70",
+      "35,90,40,100",
+      "45,115,70,115",
+      "5,5,0,5",
+      "70,145,70,140",
+      "85,145,100,175"
+    ]
+  },
+  "ranges": {
+    "mm": [
+      6,
+      101
+    ],
+    "roll_cd": [
+      -1470,
+      1410
+    ],
+    "pitch_cd": [
+      -979,
+      648
+    ],
+    "squal": [
+      106,
+      146
+    ]
+  },
+  "last_frame": "20:01:23 [CL LOCAL] state=5 fault=8 dt_ms=6 link=1 packets=0 imu=1 roll_cd=-505 pitch_cd=-152 tof=1 valid=1 mm=69 flow=1 flow_present=1 squal=126 flow_err=0 dx=1 dy=10 axes=0 armlevel=1 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0",
+  "faults": [
+    "20:01:15 [FAULT] code=7 from=1 t_ms=78986 imu_raw=1 imu_used=1 calibrated=1 settled_ms=45048 armlevel=0 acc_mg=-34,215,-969 gyro_cdps=-233,1241,1328 roll_cd=-423 pitch_cd=243 height_um=57866 vz_mmps=17 height_valid=1 tof_mm=61 status=9 fresh=1 age_ms=4 output_trip=0 dt_us=6000",
+    "20:01:21 [FAULT] code=8 from=0 t_ms=84603 imu_raw=1 imu_used=1 calibrated=1 settled_ms=50668 armlevel=1 acc_mg=-38,54,-1021 gyro_cdps=2893,-1216,789 roll_cd=-386 pitch_cd=-322 height_um=54000 vz_mmps=-27 height_valid=1 tof_mm=54 status=9 fresh=1 age_ms=36 output_trip=0 dt_us=6000",
+    "20:01:22 [FAULT] code=8 from=0 t_ms=86554 imu_raw=1 imu_used=1 calibrated=1 settled_ms=52619 armlevel=1 acc_mg=-31,47,-997 gyro_cdps=1628,-594,1491 roll_cd=-368 pitch_cd=-255 height_um=58000 vz_mmps=6 height_valid=1 tof_mm=58 status=9 fresh=1 age_ms=36 output_trip=0 dt_us=6000"
+  ]
+}

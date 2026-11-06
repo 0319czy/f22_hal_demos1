@@ -1,0 +1,24 @@
+{
+  "totals": {
+    "tx": 400,
+    "rx": 391,
+    "rx_bad": 0
+  },
+  "matched": 390,
+  "unmatched": {
+    "tx": 5,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 5,
+    "rx": 1
+  },
+  "observed_delay_ms": {
+    "min": 38.440589,
+    "p50": 64.532174,
+    "p95": 77.7484193,
+    "max": 82.468231
+  },
+  "matched_window_rx_sequence_gaps": 10,
+  "rejected_as_final": "Reduced latency but CRC loss observed; receiver UART reverted to9600"
+}

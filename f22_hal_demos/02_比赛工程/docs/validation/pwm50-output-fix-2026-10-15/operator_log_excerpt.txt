@@ -1,0 +1,4 @@
+Source: operator pasted serial log on 2026-10-15; excerpt, not an independent capture.
+state=1 fault=0 PWM(M1/M2/M3/M6)=175,195,160,175
+[FAULT] code=9 from=1 t_ms=45042 imu_raw=1 imu_used=1 calibrated=1 settled_ms=24200 armlevel=1 acc_mg=-32,30,-1017 gyro_cdps=-73,-81,22 roll_cd=-183 pitch_cd=-172 height_um=0 vz_mmps=0 height_valid=0 tof_mm=9 status=9 fresh=1 age_ms=36 output_trip=1 dt_us=6000
+state=5 fault=9 PWM(M1/M2/M3/M6)=0,0,0,0

@@ -1,0 +1,26 @@
+{
+  "totals": {
+    "tx": 3598,
+    "rx": 3600,
+    "rx_bad": 0
+  },
+  "matched": 3598,
+  "unmatched": {
+    "tx": 0,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 0,
+    "rx": 2
+  },
+  "observed_delay_ms": {
+    "min": 70.543534,
+    "p50": 81.734516,
+    "p95": 121.19027725,
+    "max": 134.642161
+  },
+  "matched_window_rx_sequence_gaps": 0,
+  "negative_delays": 0,
+  "last_stat": "STAT bytes=52788 frames=4399 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0 crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+  "air_configuration": "both read C000001C2E00, C2 verified C000001D2E00; UART9600, RF50k; EEPROM unchanged"
+}

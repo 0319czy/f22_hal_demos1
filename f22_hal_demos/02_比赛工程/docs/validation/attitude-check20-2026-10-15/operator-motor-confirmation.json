@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-10-15T16:44:58.550613+08:00",
+  "source": "operator reply in conversation",
+  "operator_quote": "有",
+  "context": "Reply to propeller-free powered motor response procedure: right side low should accelerate M1/M3; nose low should accelerate M1/M2.",
+  "accepted": "Operator confirms corresponding motors accelerate for right-side-low and nose-low tests.",
+  "limits": [
+    "Qualitative operator observation; no tachometer or raw serial record supplied.",
+    "Opposite tilt directions and F4 physical stop not separately confirmed by this brief reply.",
+    "Restoring torque with propellers, thrust and flight remain unaccepted."
+  ],
+  "next": "Using unchanged 15% base/20% cap propeller-free bench, check left-side-low M2/M6 and tail-low M3/M6 acceleration, then F4 stops all four motors."
+}

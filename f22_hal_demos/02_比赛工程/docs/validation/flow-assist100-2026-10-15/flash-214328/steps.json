@@ -1,0 +1,65 @@
+[
+  {
+    "recorded_at": "2026-10-15T21:43:31.034409+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "-c",
+      "savemem 0x08000000 262144 docs/validation/flow-assist100-2026-10-15/flash-214328/preflash_256k.bin"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "elapsed_seconds": 2.9017909960020916,
+    "log": "backup.log"
+  },
+  {
+    "recorded_at": "2026-10-15T21:43:34.017159+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_flow_assist_jp13_pwm100_candidate.bin"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "elapsed_seconds": 2.9821302269992884,
+    "log": "upload.log"
+  },
+  {
+    "recorded_at": "2026-10-15T21:43:34.920248+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 43124 docs/validation/flow-assist100-2026-10-15/flash-214328/readback.bin"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "elapsed_seconds": 0.9027541400027985,
+    "log": "readback.log"
+  }
+]

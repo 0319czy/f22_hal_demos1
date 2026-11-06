@@ -1,0 +1,49 @@
+{
+  "ms": 35290,
+  "epoch": 0,
+  "polls": 1433,
+  "raw_n": 1433,
+  "raw_dx": -239,
+  "raw_dy": -647,
+  "n": 767,
+  "bad": 666,
+  "pollerr": 0,
+  "why": 20,
+  "sat": 0,
+  "dxsum": -108,
+  "dysum": -212,
+  "hx_mcount_milli": -17791,
+  "hy_mcount_milli": -54904,
+  "time_ms": 17989,
+  "imu": 1,
+  "tof": 1,
+  "valid": 1,
+  "mm": 222,
+  "roll_cd": 349,
+  "pitch_cd": -66,
+  "flow": 1,
+  "id": 73,
+  "inv": 182,
+  "q": 127,
+  "i2c_boot": 0,
+  "output_locked": 1,
+  "angle_urad": [
+    87767,
+    -95663,
+    73931
+  ],
+  "hangle_umrad": [
+    24962,
+    -31079,
+    22310
+  ],
+  "PWM": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "host_seconds": 33.0399,
+  "host_time": "2026-10-16T12:37:43.897285+08:00",
+  "selection_note": "Provisional start/end chosen from the recorded 20cm tailward trial and height-valid segment before final lowering; exact movement boundaries were not externally synchronized."
+}

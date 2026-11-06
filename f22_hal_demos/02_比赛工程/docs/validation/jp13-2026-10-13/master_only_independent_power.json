@@ -1,0 +1,28 @@
+{
+  "opened_port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "bytes": 2260,
+  "lines": [
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000",
+    "RADIO_RX bytes=0 frames=0 reject=0 err=0 overflow=0 link=0 cmd=0 tx2_err=0 raw=00000000000000000000000000000000"
+  ],
+  "flight_usb_opened": false
+}

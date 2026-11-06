@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-10-16T12:01:54.310053+08:00",
+  "operator_clarification": "Aircraft moved; ground texture remained stationary. Earlier large tilt was intentional; only final level segment should be used.",
+  "source_records": [
+    "right-final-level-analysis.json",
+    "reversal-check.json"
+  ],
+  "observed_signed_axes": {
+    "aircraft_forward": {
+      "primary": "dy",
+      "sign": "positive"
+    },
+    "aircraft_backward": {
+      "primary": "dy",
+      "sign": "negative"
+    },
+    "aircraft_right": {
+      "primary": "dx",
+      "sign": "positive"
+    },
+    "aircraft_left": {
+      "primary": "dx",
+      "sign": "negative"
+    }
+  },
+  "proposed_translation_matrix": [
+    0,
+    1,
+    1,
+    0
+  ],
+  "meaning": "[forward,right] = [dy,dx] before radians/count and height scaling",
+  "previous_paper_motion_interpretation_withdrawn": true,
+  "acceptance": "Qualitative signed-axis response consistent in selected final level translation segments; no complete optical calibration/flight acceptance",
+  "remaining": [
+    "Full-rate counts and gyro integral capture for scale and rotational compensation",
+    "Known-height known-distance repeated translation with fixed attitude",
+    "Rotation-only tests and comparison after compensation",
+    "Joint IMU/ToF/flow closed-loop tethered flight acceptance"
+  ],
+  "limitations": [
+    "5Hz telemetry snapshots cannot be integrated into full physical displacement.",
+    "Handheld translations include residual roll/pitch changes; pure-translation quantitative fit not claimed."
+  ],
+  "firmware_changed": false,
+  "calibration_flags_changed": false,
+  "motors_locked": true,
+  "serial_released": true
+}

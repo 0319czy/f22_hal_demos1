@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "list",
+    "--no-config",
+    "--json"
+  ],
+  "elapsed_seconds": 0.38033068900040234,
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "usage: pyocd [-h] [-V] [--help-options]  ...\npyocd: error: unrecognized arguments: --json\n"
+}

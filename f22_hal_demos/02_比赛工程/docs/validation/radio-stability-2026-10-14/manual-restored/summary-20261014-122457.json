@@ -1,0 +1,79 @@
+{
+  "remote": "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.0-port0",
+  "receiver": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "remote_baud": 9600,
+  "tx_observation_seconds": 10.0,
+  "warmup_seconds": 3,
+  "drain_seconds": 1,
+  "post_window_rx_excluded": 18,
+  "measurement": "PC observation difference; includes JP13/DAP/USB; board uptimes not subtracted",
+  "totals": {
+    "tx": 200,
+    "rx": 201,
+    "rx_bad": 0
+  },
+  "matched": 200,
+  "unmatched": {
+    "tx": 0,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 0,
+    "rx": 1
+  },
+  "unmatched_note": "Unmatched observations include capture boundaries and telemetry loss; not pure RF loss",
+  "sequence_gaps": {
+    "tx": 0,
+    "rx": 0
+  },
+  "duplicates": {
+    "tx": 0,
+    "rx": 0
+  },
+  "restart_or_reorder": {
+    "tx": 0,
+    "rx": 0
+  },
+  "matched_window_rx_sequence_gaps": 0,
+  "sequence_gap_note": "Unfiltered rx gaps can include pre-capture DAP backlog; matched-window gaps exclude it",
+  "remote_bad_frames": 0,
+  "remote_noise_bytes": 0,
+  "negative_delays": 0,
+  "observed_delay_ms": {
+    "min": 68.088866,
+    "p50": 79.6834535,
+    "p95": 119.08076515,
+    "max": 132.707453
+  },
+  "commands_matched": [
+    0
+  ],
+  "receiver_stats": [
+    "STAT bytes=720 frames=60 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=960 frames=80 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=1200 frames=100 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=1440 frames=120 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=1680 frames=140 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=1920 frames=160 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=2160 frames=180 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=2388 frames=199 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=2640 frames=220 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=2880 frames=240 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+    "STAT bytes=3120 frames=260 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0"
+  ],
+  "events": "docs/validation/radio-stability-2026-10-14/manual-restored/events-20261014-122457.jsonl",
+  "csv": "docs/validation/radio-stability-2026-10-14/manual-restored/matched-20261014-122457.csv",
+  "receiver_diagnostics": [
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2",
+    "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=2"
+  ]
+}

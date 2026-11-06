@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "-c",
+    "savemem 0x08000000 0x40000 docs/validation/pwm50-output-fix-2026-10-15/preflash_256k.bin"
+  ],
+  "exit_code": 0,
+  "time": "2026-10-15T12:20:30.957591+08:00",
+  "bytes": 262144,
+  "sha256": "30c5123491282080b4af7f5367cbbbbc94412b8c85f94fdbfab7926c850c9d56",
+  "image_prefix_sha256": "0347fd15dff4eba4b11831e0f244a45036632a2f831e73058ff18a3a8a98e4ff"
+}

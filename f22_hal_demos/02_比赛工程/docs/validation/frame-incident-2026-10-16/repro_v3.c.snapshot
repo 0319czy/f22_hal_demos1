@@ -1,0 +1,20 @@
+#include "key_events.h"
+#include <assert.h>
+#include <stdio.h>
+static void sample(KeyEvents *s,unsigned keys) {for(unsigned i=0;i<5;i++)KeyEvents_Sample(s,keys);}
+int main(void) {
+ KeyEvents s; KeyEventPacket p; unsigned emergency=0;
+ KeyEvents_Init(&s,0); KeyEvents_Next(&s,&p);
+ sample(&s,8); KeyEvents_Next(&s,&p); /* first F4 frame */
+ sample(&s,12); assert(s.stable==12); /* F3 debounced during held F4 */
+ sample(&s,8); assert(s.stable==8); /* F3 released before next TX */
+ for(unsigned i=0;i<5;i++) {
+  KeyEvents_Next(&s,&p); printf("proto3 packet command=%u keys=%u token=%u\n",p.command,p.keys,p.token);
+  emergency+=(p.command==2 || (p.keys&4));
+ }
+ assert(!emergency); puts("REPRODUCED: proto3 also discards short F3 while F4 held.");
+ KeyEvents_Init(&s,0); KeyEvents_Next(&s,&p);
+ for(unsigned i=0;i<8;i++){sample(&s,1);sample(&s,0);}
+ assert(s.count==8); sample(&s,4); assert(s.count==8 && s.dropped==1);
+ puts("REPRODUCED: proto3 full FIFO drops F3 emergency like an ordinary event.");
+}

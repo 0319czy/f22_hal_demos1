@@ -1,0 +1,2 @@
+guard_state,requested_percent,applied_percent,motor_index,output_enabled,link_valid,accepted_frames,rejected_frames,uart_errors
+0,0,0,0,0,0,0,0,0

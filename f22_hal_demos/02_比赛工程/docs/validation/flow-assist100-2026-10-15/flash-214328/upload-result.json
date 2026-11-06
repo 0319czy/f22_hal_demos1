@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-15T21:43:34.017159+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "load",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "--erase",
+    "sector",
+    "--base-address",
+    "0x08000000",
+    "firmware/contest_flow_assist_jp13_pwm100_candidate.bin"
+  ],
+  "exit_code": 0,
+  "timeout": false,
+  "elapsed_seconds": 2.9821302269992884,
+  "log": "upload.log"
+}

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.stl
+*.html
+.DS_Store
+.history/
+.serena/
+.claude/

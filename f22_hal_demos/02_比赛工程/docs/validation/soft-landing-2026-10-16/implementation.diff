@@ -1,0 +1,346 @@
+--- before/PROJECT_PLAN.md
++++ PROJECT_PLAN.md
+@@ -28,17 +28,13 @@
+ 
+ **最新决定：暂停光流比例/旋转标定，不再安排抬高、平移或移动纹理的采集。当前主问题改为地面起飞后无法稳定升至8cm。**光流用于横向速度反馈，不能产生垂直升力，也不是继续诊断离地能力的前置条件。
+ 
+-**当前板上已烧录100%无光流系留候选，尚未做带桨输出测试。** 飞控用DAP/JP11烧录后回读42488字节，和BIN逐字节一致；复位串口出现`[BOOT] TETHER100_NOFLOW`及`flight=tether100_noflow`，启动PWM为0、IMU和校准有效。启动时`link=0 packets=0`，尚无遥控链路，因此目前不能接收F2。[本轮烧录与启动证据](docs/validation/tethered-pwm100-noflow-2026-10-16/manifest.json)。
++**当前板上最后确认仍为100%无光流系留版，F4立即停机。** 42488字节已读回一致。13:15:59～13:16:59真实串口采到F2启动和F4停机，M1/M2/M3/M6最大打印需求分别为870/940/1000/920‰；启动末段ToF有一次82mm有效读数，随后F4后110mm，不能由此证明稳定悬停。操作者报告一直横向漂移、急停硬落地。13:16:14后link0且收包冻结，是否主动关闭遥控未确认。[原始数据与分析](docs/validation/soft-landing-2026-10-16/capture-analysis.json)。
+ 
+-**已有飞行证据：**此前系留90%版的日志显示遥控/IMU有效，起飞需求升到单路900‰附近，ToF没有报告有效的8cm以上离地，最终fault7（起飞超时）并归零；操作者报告只有零点几厘米抬起，且出现单侧翘起/打转。它证明起飞流程没有完成，不证明总推力一定不足：日志记录的是PWM命令，不是电机转速、桨推力或负载电压。姿态失稳和垂直推力不足仍需区分。90%配置未启用光流，因此光流标定不会解决这次离地失败。[90%试验记录](docs/validation/tether90-drift-2026-10-15/analysis.json)、[固件与参数记录](docs/validation/tether90-2026-10-15/manifest.json)。
++**最新请求：F4正常缓降，另留F3紧急停机。** 已新增独立环境 `contest_tethered_flight_jp13_pwm100_softland`，不会改变历史环境的按键。F2起飞、F4请求降落、F3急停/清故障；下降期间保留姿态环，目标测距以10cm/s降低，进入近地阶段后以每秒20个百分点渐减推力。捕获降落前实际平均输出，修复首次有效离地测距与降落同时发生时误走地面取消的边界。重复/按住F4不清零、不重新计时；同一接收批次F3优先，并识别F4优先发包期间携带的F3按下位。失联、IMU/倾角、ToF及输出故障仍立即停机。
+ 
+-**源码审查结果：**`contest_tethered_flight_jp13` 将 collective 以每秒50个百分点升至90%，约1.8秒到顶；3秒内未读到有效8cm以上高度就触发fault7并立即输出0，因此到顶后最多约1.2秒。此前日志中的state1和非零PWM说明起飞请求已通过启动门并实际进入输出阶段；不是因为光流门禁或PWM驱动20%上限把它拦住。该试验没有启用光流。静态方向测试和合成混控测试支持方向符号，但不覆盖带桨动态扶正。现有证据无法判断主要限制是桨/电机有效推力还是带桨姿态发散；未发现足以据此安全提高上限或放宽超时的明确软件缺陷。
++**候选验证：** `bash scripts/check_closed_loop.sh`通过，包含v2/v3按键→控制器联测、下降/重复包/急停优先级/故障测试和PWM寄存器替身，11个固件环境构建成功。BIN为42628字节，SHA256=`ef529418d6e7caea2f4c99bc48e607b9bec208488a18a19a5dd36989470f28fe`，标记`TETHER100_SOFTLAND`、`flight=tether100_softland keymap=F4land_F3stop`。**尚未烧录**：烧录前4秒采集无新鲜停机遥测，正在确认飞机/从机供电。旧固件按键仍有效；不能先按新版含义操作。[候选和验证记录](docs/validation/soft-landing-2026-10-16/manifest.json)。
+ 
+-**本轮执行：用户要求暂停光流测量，把PWM上限放到100%再试。** 已新增独立无光流环境 `contest_tethered_flight_jp13_pwm100`：起飞基础需求以每秒50个百分点从0缓升，2秒到100%；3秒离地超时、IMU姿态/角速度闭环、ToF有效性门、遥控失联停机、输出看门狗、F4立即停机均保留。100%是控制器与驱动的最高允许占空比，不是四路固定满油门；姿态混控仍会使各路不同。此候选不编入光流闭环，也不要求光流标定。
+-
+-候选已通过 `bash scripts/check_closed_loop.sh`：主机控制器与PWM寄存器替身测试通过，10个PlatformIO环境成功构建；ELF包含闭环、物理PWM驱动及输出看门狗符号，不包含光流控制符号。另新增镜像字符串校验，区分90%、100%无光流和100%光流配置。曾发现无光流100%镜像的启动标签错误地跟随`CL_FLOW_ASSIST`，导致误报TETHER90；代码和构建校验已修复。当前BIN为42488字节，SHA256=`57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264`。
+-
+-**当前实机状态：**100%候选已通过JP11烧录、完整读回及新鲜启动标记确认，当前启动PWM全零；操作者已确认桨叶、电池、系绳与周边安全条件满足。由于本次启动日志`link=0 packets=0`，尚未按F2或带桨测试。下一步恢复遥控链路，确认`link=1 ready=1`后再由操作者按一次F2并观察串口；保持F4随时可停。若3秒内ToF仍无有效离地高度，现有保护会fault7并归零；不改超时、不关闭故障保护。此前90%带桨试验曾单侧翘起/打转，没有确认越过8cm；光流标定继续暂停。
++**稳定性边界：**本次修复降落请求，不解决横向漂移。当前光流芯片可读、ID49/B6正确，但未启用横向闭环；IMU保持姿态不等于锁住位置。光流比例/旋转标定按用户要求仍暂停，不把未经验证的参数写成已标定。平缓目标/PWM变化也不等于真实软着陆已验收。
+ 
+ 以下为按时间顺序保留的历史记录；其中“当前/下一步”只描述对应记录当时状态，不覆盖本节最新状态。
+ 
+@@ -104,7 +100,7 @@
+ | P1 通信和输出停止 | 遥控事件、心跳、DAP日志、F4及断链路径 | 测试窗口内包数守恒/无CRC错；重复包不重复执行；真实输出停止需单独验证 | DAP远程烧录/日志通过；本次F2已被接收并进入LAUNCH，连续包数和丢包统计未随日志摘录保存 |
+ | P2 传感器稳定性 | IMU静止校准、总线状态/引脚诊断、I²C异常恢复、ToF距离变化 | 地面静止和抬起测试连续5分钟无掉识别；异常后只在停机状态恢复；不伪造高度 | IMU有效、四方向静态拆桨差速和约10/20/40cm离地测距趋势均获用户口述确认；无精度标定/5分钟连续记录，先前moving_rate及I²C偶发故障根因未查明 |
+ | P3 动力和姿态方向 | 逐路核实实际旋向、桨型/桨位和差速响应；验证动力供电 | 每个电机实际旋向及下压力正确；低侧增推力产生扶正趋势；F4实际停机 | 旋向已由用户观察，IMU修正后显示方向口述通过；20%上限姿态台架已构建/烧录/完整读回，右低/前低PWM及无桨电机加速获用户口述确认；左低/机尾低及F4实际全停也获用户确认；四方向静态拆桨差速通过，带桨恢复力矩待验收 |
+-| P4 地面离地与定高 | 查明起飞时垂直推力与姿态失稳的主因；再验证地面起飞、越过8cm盲区和高度接管 | 系绳从地面稳定垂直离地；平稳到选定目标；不靠手托或抬高启动；不超过1m | 90%实测未完成有效离地并出现单侧翘起/打转。100%无光流版已烧录、读回一致且启动标记核实；IMU/校准有效，当前遥控link=0，尚未按F2。等链路就绪后做短时系留地面测试；实际推力与带桨姿态待实测 |
++| P4 地面离地与定高 | 查明起飞时垂直推力与姿态失稳的主因；再验证地面起飞、越过8cm盲区和高度接管 | 系绳从地面稳定垂直离地；平稳到选定目标；不靠手托或抬高启动；不超过1m | 90%实测未完成有效离地并出现单侧翘起/打转。100%实测M3曾达1000‰，有单帧82mm有效测距但未完成稳定离地验收；操作者报告持续漂移/F4硬着地。缓降候选已构建未烧录；先验证正常下降，再推进横向稳定 |
+ | P5 光流横向控制 | 飞机能稳定离地后，再验收轴向/比例/旋转补偿与横向反馈 | 平移/旋转响应与机体系一致；定高时漂移明显受控 | **按用户要求暂停**；已有采集仅能确认部分有效高度下有运动响应，没有接受比例/旋转标定，也不作为当前离地任务的阻塞项 |
+ | P6 比赛起降任务 | 红圈起飞；40cm目标保持≥6秒；F3降落；判定着地减推力停机 | 连续实机记录高度、姿态、PWM和落点；降落后全零；飞行阶段不靠方向遥控 | 未完成 |
+ | P7 整场验收/冻结 | 按规则地图、系绳、电池和中心标记测试；建议连续3轮；冻结固件hash | 每轮记录悬停时长/高度范围/落环/故障；只给通过实飞的版本标为参赛版 | 未完成 |
+@@ -113,12 +109,12 @@
+ 
+ ## 4. 下一步具体做什么
+ 
+-当前顺序：**暂停光流采集 → 恢复遥控链路 → 系绳地面起飞观察。**100%无光流候选已经烧录、读回并确认启动标记；不重做已通过的桨位、旋向和拆桨静态差速检查。
++当前顺序：**确认停机/连接 → 更新并读回缓降版 → 核对按键和真实降落 → 再处理横向漂移。** 不重复已通过的桨位、旋向和拆桨四方向差速检查。
+ 
+-1. 100%无光流候选已烧录并读回一致；受控复位确认`TETHER100_NOFLOW`、校准有效和启动PWM=0。发现并修复无光流镜像启动标签错误，构建检查现已防回归。
+-2. 当前串口`link=0 packets=0`。打开遥控后先确认`link=1 ready=1`，起飞前确认状态无故障且四路PWM=0。
+-3. 系留地面只验证一次启动斜坡能否稳定垂直越过8cm。明显单侧翘起、打转、牵绳拉偏或异常振动立即F4；三秒仍无有效离地高度时fault7会自动归零。不同时改光流、PID或超时。
+-4. 电机位置和桨标记已有实机观察记录：M1右前/R/顺、M2左前/L/逆、M3右后/L/逆、M6左后/R/顺。F4和四方向静态拆桨差速也已由用户确认，不重复检查；带桨扶正力矩尚未得到稳定离地证据。
++1. 缓降候选已编译，当前因无新鲜停机遥测尚未烧录；先确认飞机及从机供电、飞机落地停稳。旧板上F4仍急停。
++2. 烧录后须完整读回并确认`TETHER100_SOFTLAND`及`keymap=F4land_F3stop`、启动PWM=0，才按新定义操作。
++3. 新版F2起飞、F4缓降、F3立即停机/清故障。首个验证看F4后进入state4且PWM连续，不是直接全零；触地减推力后才回state0。当前无光流横向闭环，实际漂移和软着陆均未通过。
++4. 记录高度、姿态、PWM和实际触地表现；3秒离地超时及故障立即停机仍保留。要稳定悬停，后续必须单独处理横向反馈和推力/姿态动态，不能只提高占空比。
+ 
+ 本轮修改与验证记录：[姿态差速台架构建、烧录及完整读回](docs/validation/attitude-check20-2026-10-15/manifest.json)。七环境构建、真实台架状态机/共用混控/PWM驱动寄存器替身联测通过，覆盖八种倾角/角速度方向、15%基础/20%限幅、无有效ToF超过2秒、停止/故障锁存及看门狗。JP11先备份256KB并确认此前IMU修正5%固件，再实际擦写38912字节、完整读回40204字节一致。显示脚本合成输入检查通过；未自动监听串口、未发电机指令，随后用户口述确认右低/前低PWM方向正确，见[操作者确认记录](docs/validation/attitude-check20-2026-10-15/operator-pwm-confirmation.json)；随后右低/前低实际电机加速也获[操作者确认](docs/validation/attitude-check20-2026-10-15/operator-motor-confirmation.json)，随后用户又确认左低/机尾低及F4实际全停，见[本轮完成记录](docs/validation/attitude-check20-2026-10-15/operator-bench-completion.json)。[此前IMU修正](docs/validation/imu-mount-fix-2026-10-15/manifest.json)和[早期歧义调查](docs/validation/imu-mount-2026-10-15/candidate-withdrawn.txt)保留追溯。
+ 
+@@ -126,7 +122,9 @@
+ 
+ | 问题 | 定位/处理 | 结果与剩余工作 |
+ |---|---|---|
+-| 光流识别/比例未完成，用户要求暂停标定 | 已采到部分有效高度下的运动响应，但没有接受距离比例或旋转系数。光流只影响横向反馈，不产生垂直升力 | 按用户要求暂停；待离地问题解决后再继续。当前锁止诊断版不可飞 |
++| F4立即停机导致硬落地 | 原F4对应HOVER_STOP，直接清零；新增独立F4缓降/F3急停配置，首次离地交接保留实发推力，重复F4不重置降落 | 11环境及主机联测通过；尚未烧录，等待新鲜停机状态，真实软着陆未验收 |
++| 100%仍持续侧漂 | 当前无光流横向控制，姿态回正不能消除已有横向速度；采集确认实际已输出至100% | 占空比上限已排除旧20%驱动门限；横向稳定仍未解决，不声称此次缓降修复能定点 |
++| 光流识别/比例未完成，用户要求暂停标定 | 已采到部分有效高度下的运动响应，但没有接受距离比例或旋转系数。光流只影响横向反馈，不产生垂直升力 | 按用户要求暂停；待离地问题解决后再继续。当前板上为100%无光流试验，未启用横向闭环 |
+ | 旧起飞配置的90%固定前馈、饱和及取消启动边界 | 新显式试验保留方向修正，单路90%，高度参考捕获离地混控均值；高端先平移保留差分，3秒有限起飞段。复核发现F3在有效地面上可能先加推力，已新增复现回归和最终渐停锁存 | 八环境及联测通过；按最新指令改为单路90%，接线恢复后实际烧录和41624字节读回通过；仍未实飞，不把软件结果当作足够升力证明 |
+ | 固定5%四路同速不能验证姿态差速，飞行配置又受测距/离地超时影响 | 新增独立台架状态机，共用生产姿态/角速度混控；基础15%、驱动硬上限20%，ToF仅显示、不伪造高度；保留F4、断链、IMU及看门狗保护 | 七环境构建、联测及JP11烧录读回通过；右低/前低PWM方向及对应无桨电机加速已获操作者口述确认；四方向静态拆桨差速及F4实际停转获用户口述确认；动态反馈、带桨扶正及推力待验收 |
+ | 快速短按被吞、遥控延迟/掉线 | 按键扫描与发包分开，事件序号/去重、重复发送与释放门；调无线速率；逐包匹配计数 | 有限真实无线自动/手动测试通过；延迟仍存在，不能宣称无延迟或永不丢包 |
+--- before/README.md
++++ README.md
+@@ -2,30 +2,31 @@
+ 
+ 唯一开发目录：`/home/sz/coderepo/f22_hal_demos/02_比赛工程`。先看[比赛计划与当前进度](PROJECT_PLAN.md)。
+ 
+-当前板上为 **电机硬锁止的完整采样标定诊断版** `contest_flow_calibration_jp13`，44040字节完整读回一致。ID49/B6及IMU、ToF、光流读取正常；定性方向为前向dy、右向dx。最新受控前移段有424个有效窗口、无拒绝/轮询错误/饱和，前向加权计数为正；但姿态变化约滚转5.4°、俯仰3.4°，高度111～182mm，且实际位移和动作端点未独立测量，比例及横向结果仍不能验收。当前不能起飞，按键不会启动电机。[标定操作](docs/FLOW_CALIBRATION.md)、[烧录/采集证据](docs/validation/flow-calibration-2026-10-16/manifest.json)。
++当前板上最后确认是100%无光流系留试验版 `contest_tethered_flight_jp13_pwm100_noflow`，旧按键F2起飞/F3降落/F4立即停机。真实串口已采到100%电机需求，但操作者报告横向漂移和F4硬着地，尚未通过稳定飞行。
+ 
+-此前90%系绳起飞试验没有确认越过8cm，操作者报告抬升不足1cm并出现单侧翘起/打转；它不能单凭PWM命令证明总推力不足，且当时没有启用光流。按用户要求，光流标定现暂停，当前优先处理垂直离地问题。板上仍是电机硬锁止诊断版。[分析记录](docs/validation/tether90-drift-2026-10-15/analysis.json)
++已新增 **F4缓降、F3急停** 候选 `contest_tethered_flight_jp13_pwm100_softland`（42628字节），主机联测及11环境构建通过，**尚未烧录**；等待新鲜停机遥测和供电确认。以新启动标记和完整回读确认更新后才使用新按键。[候选及限制](docs/validation/soft-landing-2026-10-16/manifest.json)、[最新计划](PROJECT_PLAN.md)。
+ 
+ ## 当前使用的两端代码
+ 
+-此前[共同控制/光流候选](docs/FLOW_ASSIST.md)有过烧录记录，但现已由电机锁止诊断版替代。100%候选需要光流识别与标定许可，不能作为当前可飞固件。历史90%版未启用光流，也没有完成8cm以上离地；飞行和光流稳定性均未验收。
++历史[光流候选](docs/FLOW_ASSIST.md)需要识别与标定许可；当前100%试验不启用横向光流闭环。缓降候选也未解决横向漂移，飞行和光流稳定性均未验收。
+ 
+ 安装映射为 `(-sensorY,-sensorX,-sensorZ)`，用户口述确认静态方向正确。显式台架与新增系绳试验配置允许使用已确认的静态方向；历史飞行环境仍保持轴向许可0，实飞尚未验收。最新状态见[比赛计划](PROJECT_PLAN.md)。
+ 
+ | 端 | 当前环境 | 入口/配置 |
+ |---|---|---|
+ | 飞控（此前已完成的20%台架） | `contest_attitude_check_jp13` | [src/main.c](src/main.c)、[台架控制](src/bench/attitude_check.c)、[参数](src/flight/closed_loop_profile.h) |
+-| 飞控（当前电机锁止标定诊断） | `contest_flow_calibration_jp13` | [共同控制说明](docs/FLOW_ASSIST.md)、[控制器](src/flight/closed_loop.c) |
++| 飞控（当前已烧录） | `contest_tethered_flight_jp13_pwm100` | 100%无光流，旧F4立即停机 |
++| 飞控（已构建待烧录） | `contest_tethered_flight_jp13_pwm100_softland` | F4缓降/F3急停，[控制器](src/flight/closed_loop.c) |
+ | 遥控 | `tle100_latency_fast`（手动按键） | [remote/tle100/latency_main.c](remote/tle100/latency_main.c)、[遥控配置](remote/tle100/platformio.ini) |
+ | 主机显示 | JP13→无线DAP→电脑，115200 | [scripts/show_remote_keys.py](scripts/show_remote_keys.py) |
+ 
+-飞控环境名字中的v2是历史名称，接收器支持v2/v3。当前板上最后验证的是 `contest_flow_calibration_jp13` 锁止诊断版，F2/F3/F4均不会启动电机；它不能用于判断升力。历史90%系留版使用F2起飞、F3降落、F4急停/清故障，串口标记`flight=tether90`，但没有完成8cm以上离地。光流采集目前按用户要求暂停；垂直离地问题优先。[比赛计划](PROJECT_PLAN.md)、[历史90%系留试验](docs/TETHERED_FLIGHT.md)。
++飞控环境名字中的v2是历史名称，接收器支持v2/v3。新候选确认烧入前，当前F4仍立即停机；新版本串口将持续显示`F4=缓降 F3=急停`。光流读取正常不等于横向控制已启用。[控制与降落说明](docs/TETHERED_FLIGHT.md)。
+ 
+ ## 构建与验证
+ 
+ ```bash
+ cd /home/sz/coderepo/f22_hal_demos/02_比赛工程
+-/home/sz/.platformio/penv/bin/pio run -e contest_flow_assist_jp13
++/home/sz/.platformio/penv/bin/pio run -e contest_tethered_flight_jp13_pwm100_softland
+ bash scripts/check_closed_loop.sh
+ python3 scripts/check_docs.py
+ ```
+--- before/docs/TETHERED_FLIGHT.md
++++ docs/TETHERED_FLIGHT.md
+@@ -1,6 +1,14 @@
+ # 系绳低空起飞试验
+ 
+-> **当前状态（2026-10-16）：**当前板上已烧录 `contest_tethered_flight_jp13_pwm100_noflow`，JP11读回42488字节与BIN逐字节一致；受控复位确认`TETHER100_NOFLOW`、IMU/校准有效、启动PWM全零。遥控当前`link=0 packets=0`，尚未按F2或做带桨输出测试。此前90%日志没有确认越过8cm，并出现单侧翘起/打转。光流测量暂停；当前候选使用IMU姿态闭环，不启用光流横向控制。[本轮记录](validation/tethered-pwm100-noflow-2026-10-16/manifest.json)。
++> **当前状态（2026-10-16）：**100%无光流版已实测启动和F4立即停机；最高打印M3=1000‰、ToF单帧82mm，不能确认稳定悬停。用户报告持续漂移及硬着地。新增F4缓降/F3急停候选，11环境及主机联测通过，**未烧录**；烧录前串口无新鲜状态，待确认飞机/从机供电。[本轮候选与实测](validation/soft-landing-2026-10-16/manifest.json)。
++
++## F4缓降候选（尚未烧录）
++
++独立环境`contest_tethered_flight_jp13_pwm100_softland`，BIN`firmware/contest_tethered_flight_jp13_pwm100_softland.bin`；只有确认启动标记`TETHER100_SOFTLAND`、遥测`keymap=F4land_F3stop`并完整读回一致后，才使用 **F2起飞、F4缓降、F3急停/清故障**。旧环境仍保留F3降落/F4急停。
++
++F4进入state4，保留姿态环和当前实发平均推力，以每秒10cm降低目标测距；近地/盲区后以每秒20个百分点渐减推力到0。F4重传不会直接清零或重置下降计时；F3优先于待处理降落/起飞，F4帧里的F3按下位也触发急停。首次有效离地测距与降落同时到达时，会接入下降控制，避免误作地面取消。严重故障仍立即清零；这是缓降软件逻辑，未证明真实触地冲击已改善。遥控器源码未修改，F3发送排队/空口延迟未重新测量。
++
++当前无光流横向闭环；缓降期间也不能保证锁住位置，侧漂问题仍待处理。
+ 
+ ## 100%无光流系留候选
+ 
+--- before/firmware/README.md
++++ firmware/README.md
+@@ -1,6 +1,8 @@
+ # 固件索引
+ 
+-当前板上已烧录 `contest_tethered_flight_jp13_pwm100_noflow`。JP11烧录后完整读回42488字节与BIN逐字节一致，SHA256=`57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264`。受控复位确认`TETHER100_NOFLOW`启动标记、IMU/校准有效、启动PWM为0；串口当前`link=0 packets=0`，尚未按F2或做带桨输出测试。[本轮烧录、读回和启动证据](../docs/validation/tethered-pwm100-noflow-2026-10-16/manifest.json)。
++**最新候选（未烧录）：** `contest_tethered_flight_jp13_pwm100_softland.bin`，42628字节，SHA256=`ef529418d6e7caea2f4c99bc48e607b9bec208488a18a19a5dd36989470f28fe`。F2起飞、F4缓降、F3急停；标记`TETHER100_SOFTLAND`与`keymap=F4land_F3stop`。11环境构建和主机联测通过，串口暂无新鲜停机状态，等待供电/连接确认；旧板上F4仍立即停机。横向漂移和真实软着陆未验收。[记录](../docs/validation/soft-landing-2026-10-16/manifest.json)。
++
++当前板上已烧录 `contest_tethered_flight_jp13_pwm100_noflow`。JP11烧录后完整读回42488字节与BIN逐字节一致，SHA256=`57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264`。受控复位确认`TETHER100_NOFLOW`启动标记、IMU/校准有效、启动PWM为0；13:16实测已接到F2，最高打印M3=1000‰，F4后归零；随后link0/收包冻结。[本轮烧录、读回和启动证据](../docs/validation/tethered-pwm100-noflow-2026-10-16/manifest.json)。
+ 
+ **当前系留试验配置：**`contest_tethered_flight_jp13_pwm100_noflow.bin`，42488字节，SHA256=`57cdd5a1449578f80a1be018e1b555e256d19730f18c00b716250ad717815264`。使用无光流闭环、100%控制器/驱动上限、0至100%缓升和3秒离地超时；IMU、遥控、ToF、F4及看门狗停机保留。主机联测和10个构建环境通过，已烧录、回读一致且新鲜启动标记确认；实际电机输出和飞行尚未验证。[本轮证据](../docs/validation/tethered-pwm100-noflow-2026-10-16/manifest.json)。
+ 
+--- before/platformio.ini
++++ platformio.ini
+@@ -135,6 +135,13 @@
+     ${env:contest_tethered_flight_jp13.build_flags}
+     -DCL_TETHERED_PWM100=1
+ 
++; Operator-requested key map: F4 lands, F3 stops immediately. Legacy maps unchanged.
++[env:contest_tethered_flight_jp13_pwm100_softland]
++extends = env:contest_tethered_flight_jp13_pwm100
++build_flags =
++    ${env:contest_tethered_flight_jp13_pwm100.build_flags}
++    -DCL_F4_SOFT_LAND=1
++
+ ; Flow-aware candidate: ground IMU, calibrated usable flow blends into XY damping.
+ ; Operator-requested 100% maximum, same ramp and captured takeoff reference.
+ ; F2 refuses flight until physical flow axes/calibration have been accepted.
+--- before/scripts/check_closed_loop.sh
++++ scripts/check_closed_loop.sh
+@@ -51,7 +51,14 @@
+     src/flight/aircraft1.c src/flight/hover.c src/flight/pid.c -lm \
+     -o "$task_closed_dir/radio_v2"
+ "$task_closed_dir/radio_v2"
+-for profile in legacy radio_power tether tether100 flow; do
++cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -g \
++    -DCL_TETHERED_FLIGHT=1 -DCL_TETHERED_PWM100=1 -DCL_F4_SOFT_LAND=1 \
++    -Isrc/flight tests/test_soft_landing_radio.c src/flight/closed_loop_radio.c \
++    src/flight/radio_trace.c src/flight/radio.c src/flight/closed_loop.c \
++    src/flight/aircraft1.c src/flight/hover.c src/flight/pid.c -lm \
++    -o "$task_closed_dir/soft_landing_radio"
++"$task_closed_dir/soft_landing_radio"
++for profile in legacy radio_power tether tether100 softland flow; do
+     profile_flags=(-DTEST_CLOSED_LOOP_PWM=1)
+     if [[ "$profile" == radio_power ]]; then
+         profile_flags+=(-DCL_RADIO_POWER_PROFILE=1)
+@@ -59,8 +66,11 @@
+     if [[ "$profile" == tether ]]; then
+         profile_flags+=(-DCL_RADIO_POWER_PROFILE=1 -DCL_TETHERED_FLIGHT=1)
+     fi
+-    if [[ "$profile" == tether100 ]]; then
++    if [[ "$profile" == tether100 || "$profile" == softland ]]; then
+         profile_flags+=(-DCL_TETHERED_FLIGHT=1 -DCL_TETHERED_PWM100=1)
++    fi
++    if [[ "$profile" == softland ]]; then
++        profile_flags+=(-DCL_F4_SOFT_LAND=1)
+     fi
+     if [[ "$profile" == flow ]]; then
+         profile_flags+=(-DCL_TETHERED_FLIGHT=1 -DCL_FLOW_ASSIST=1)
+@@ -72,12 +82,15 @@
+         -lm -o "$task_closed_dir/pwm_$profile"
+     "$task_closed_dir/pwm_$profile"
+ done
+-for profile in tether tether100; do
++for profile in tether tether100 softland; do
+     profile_flags=(-DCL_TETHERED_FLIGHT=1)
+     if [[ "$profile" == tether ]]; then
+         profile_flags+=(-DCL_RADIO_POWER_PROFILE=1)
+     else
+         profile_flags+=(-DCL_TETHERED_PWM100=1)
++    fi
++    if [[ "$profile" == softland ]]; then
++        profile_flags+=(-DCL_F4_SOFT_LAND=1)
+     fi
+     cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -g \
+         "${profile_flags[@]}" -Isrc/flight \
+@@ -107,16 +120,17 @@
+     -Isrc/flight tests/test_standalone_keys.c src/flight/standalone_keys.c \
+     -o "$task_closed_dir/keys"
+ "$task_closed_dir/keys"
+-pio run -e contest_hover -e contest_aircraft1_closed_loop -e contest_aircraft1_pwm_closed_loop -e contest_aircraft1_standalone -e contest_aircraft1_radio_v2_jp13 -e contest_motor_direction -e contest_attitude_check_jp13 -e contest_tethered_flight_jp13 -e contest_tethered_flight_jp13_pwm100 -e contest_flow_assist_jp13
++pio run -e contest_hover -e contest_aircraft1_closed_loop -e contest_aircraft1_pwm_closed_loop -e contest_aircraft1_standalone -e contest_aircraft1_radio_v2_jp13 -e contest_motor_direction -e contest_attitude_check_jp13 -e contest_tethered_flight_jp13 -e contest_tethered_flight_jp13_pwm100 -e contest_tethered_flight_jp13_pwm100_softland -e contest_flow_assist_jp13
+ python3 - <<'PY'
+ import subprocess
+ from pathlib import Path
+ nm = Path.home() / '.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-nm'
+-for profile in ('contest_hover', 'contest_aircraft1_closed_loop', 'contest_aircraft1_pwm_closed_loop', 'contest_aircraft1_standalone', 'contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_flow_assist_jp13'):
++for profile in ('contest_hover', 'contest_aircraft1_closed_loop', 'contest_aircraft1_pwm_closed_loop', 'contest_aircraft1_standalone', 'contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_tethered_flight_jp13_pwm100_softland', 'contest_flow_assist_jp13'):
+     image = Path(f'.pio/build/{profile}/firmware.bin').read_bytes()
+     markers = {
+         'contest_tethered_flight_jp13': (b'TETHER90', b'flight=tether90'),
+         'contest_tethered_flight_jp13_pwm100': (b'TETHER100_NOFLOW', b'flight=tether100_noflow'),
++        'contest_tethered_flight_jp13_pwm100_softland': (b'TETHER100_SOFTLAND', b'flight=tether100_softland', b'keymap=F4land_F3stop', b'F4=land F3=ESTOP'),
+         'contest_flow_assist_jp13': (b'TETHER100_FLOW', b'flight=tether100_flow'),
+     }
+     if profile in markers:
+@@ -124,12 +138,12 @@
+             assert marker in image, (profile, marker)
+     result = subprocess.check_output([str(nm), f'.pio/build/{profile}/firmware.elf'], text=True)
+     physical = 'Aircraft1Pwm_Apply' in result
+-    assert physical == (profile in ('contest_aircraft1_pwm_closed_loop', 'contest_aircraft1_standalone', 'contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_flow_assist_jp13')), profile
++    assert physical == (profile in ('contest_aircraft1_pwm_closed_loop', 'contest_aircraft1_standalone', 'contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_tethered_flight_jp13_pwm100_softland', 'contest_flow_assist_jp13')), profile
+     direction = profile == 'contest_motor_direction'
+     attitude = profile == 'contest_attitude_check_jp13'
+     assert (' T MotorDirection_Step\n' in result) == direction, profile
+     assert (' T AttitudeCheck_Step\n' in result) == attitude, profile
+-    if profile in ('contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_flow_assist_jp13'):
++    if profile in ('contest_aircraft1_radio_v2_jp13', 'contest_motor_direction', 'contest_attitude_check_jp13', 'contest_tethered_flight_jp13', 'contest_tethered_flight_jp13_pwm100', 'contest_tethered_flight_jp13_pwm100_softland', 'contest_flow_assist_jp13'):
+         assert ' T TaskInput_Feed\n' not in result, 'V2 main must not call the old v1 bridge'
+         for symbol in ('ClosedLoopRadio_Feed', 'ClosedLoopRadio_Take', 'USART2_IRQHandler', 'RadioFast_Configure'):
+             assert f' T {symbol}\n' in result, (profile, symbol)
+--- before/scripts/show_remote_keys.py
++++ scripts/show_remote_keys.py
+@@ -108,13 +108,15 @@
+                     if {"link", "ready"} <= radio_fields.keys():
+                         height += (f" 遥控={radio_fields['link']}"
+                                    f" 就绪={radio_fields['ready']}")
+-                flight_mode = re.search(rb"\bflight=tether(90|100)(?:_(?:noflow|flow))?\b", raw)
++                flight_mode = re.search(rb"\bflight=tether(90|100)(?:_(?:noflow|flow|softland))?\b", raw)
+                 if flight_mode:
+                     ceiling = flight_mode.group(1).decode("ascii")
+                     if re.search(rb"\boutput_locked=1\b", raw):
+                         height += " | 模式=光流识别诊断（电机锁止）"
+                     else:
+                         height += f" | 模式=系绳起飞（上限{ceiling}%）"
++                    if re.search(rb"\bkeymap=F4land_F3stop\b", raw):
++                        height += " F4=缓降 F3=急停"
+                     flight_fields = dict(re.findall(r"\b(link|ready|u_permille|ref_permille|target_mm)=(\d+)\b", line))
+                     state_match = re.search(r"\bstate=(\d+)\b", line)
+                     flight_state = int(state_match.group(1)) if state_match else None
+--- before/src/flight/closed_loop.c
++++ src/flight/closed_loop.c
+@@ -140,9 +140,25 @@
+         /* Cancel a ground launch monotonically, even with valid ground ToF. */
+         c->landing_flare = c->state == CL_LAUNCH;
+ #endif
++#ifdef CL_F4_SOFT_LAND
++        /* A land command can arrive on the first valid airborne sample,
++         * before LAUNCH has handed over to the height loop. Retain current
++         * delivered thrust, not the uncaptured full-power launch reference. */
++        float takeoff_range = c->ground_range_known ?
++            fmaxf(.08f, c->ground_range + .04f) : .08f;
++        if (c->state == CL_LAUNCH && s->range_valid && s->range_m >= takeoff_range)
++            c->landing_flare = 0U;
++        c->collective = c->last_mix_collective;
++        c->height_feedforward = c->last_mix_collective;
++#endif
+         c->state = CL_LAND; c->seconds = 0; c->near_ground_seconds = 0;
+         c->target_range = s->range_valid ? s->range_m : .04f;
++#ifdef CL_F4_SOFT_LAND
++        /* Attitude stabilization continues without resetting its rate state. */
++        FlightPid_Reset(&c->vertical);
++#else
+         ResetPids(c);
++#endif
+     }
+     c->seconds += dt;
+     if (c->state == CL_LAUNCH) {
+--- before/src/flight/closed_loop_profile.h
++++ src/flight/closed_loop_profile.h
+@@ -12,6 +12,9 @@
+ #endif
+ #if defined(CL_TETHERED_PWM100) && defined(CL_FLOW_ASSIST)
+ #error "Choose either the no-flow 100% test profile or the flow-assist profile"
++#endif
++#if defined(CL_F4_SOFT_LAND) && !defined(CL_TETHERED_PWM100)
++#error "The changed F4/F3 key map requires the explicit 100% tether test profile"
+ #endif
+ #ifdef CL_DIRECTION_CHECK
+ #define CL_HOVER_DUTY .05f
+--- before/src/flight/closed_loop_radio.c
++++ src/flight/closed_loop_radio.c
+@@ -54,10 +54,28 @@
+     in->radio.command = event.command; in->radio.last_packet_ms = event.rx_ms;
+     in->radio.accepted++;
+     unsigned allowed = 0U;
+-    if (event.command == RADIO_STOP) {
++#ifdef CL_F4_SOFT_LAND
++    /* Preserve physical key numbers on the wire: F4 still sends RADIO_STOP.
++     * F3 is the dedicated emergency key in this explicit flight profile.
++     * Also honor its live key bit while held F4 has TX priority. */
++    unsigned emergency = event.command == RADIO_LAND || (event.keys & 4U);
++    unsigned request_land = event.command == RADIO_STOP;
++#else
++    unsigned emergency = event.command == RADIO_STOP;
++#endif
++    if (emergency) {
+         /* Every fresh STOP remains effective even while held or inhibited. */
+         in->pending = HOVER_STOP; in->pending_ms = event.rx_ms;
+         in->calibrate = 0U; in->ready = 0U; in->fault_latched = 0U; allowed = 1U;
++#ifdef CL_F4_SOFT_LAND
++    } else if (request_land) {
++        /* Fresh retries/held F4 sustain descent, never convert it to a kill
++         * or override an already pending emergency STOP. */
++        if (!in->fault_latched && in->pending != HOVER_STOP) {
++            in->pending = HOVER_REQUEST_LAND; in->pending_ms = event.rx_ms; allowed = 1U;
++        }
++        in->calibrate = 0U; in->ready = 0U;
++#endif
+     } else if (event.command == RADIO_HEARTBEAT) {
+         if (!event.keys && !in->fault_latched && in->pending != HOVER_STOP)
+             in->ready = 1U;
+--- before/src/main.c
++++ src/main.c
+@@ -308,7 +308,9 @@
+         " bench=attitude20"
+ #endif
+ #ifdef CL_TETHERED_FLIGHT
+-#if defined(CL_TETHERED_PWM100)
++#if defined(CL_F4_SOFT_LAND)
++        " flight=tether100_softland keymap=F4land_F3stop u_permille=%ld ref_permille=%ld target_mm=%ld"
++#elif defined(CL_TETHERED_PWM100)
+         " flight=tether100_noflow u_permille=%ld ref_permille=%ld target_mm=%ld"
+ #elif defined(CL_FLOW_ASSIST)
+         " flight=tether100_flow u_permille=%ld ref_permille=%ld target_mm=%ld"
+@@ -560,7 +562,9 @@
+ #endif
+ #ifdef CL_TETHERED_FLIGHT
+     static const uint8_t tether_mode[] =
+-#if defined(CL_TETHERED_PWM100)
++#if defined(CL_F4_SOFT_LAND)
++        "\r\n[BOOT] TETHER100_SOFTLAND F2=takeoff F4=land F3=ESTOP launch=1000 max=1000 ramp=500/s timeout=3s target_mm=200 captured_reference\r\n";
++#elif defined(CL_TETHERED_PWM100)
+         "\r\n[BOOT] TETHER100_NOFLOW F2=takeoff F3=land F4=stop launch=1000 max=1000 ramp=500/s timeout=3s target_mm=200 captured_reference\r\n";
+ #elif defined(CL_FLOW_ASSIST)
+         "\r\n[BOOT] TETHER100_FLOW F2=takeoff F3=land F4=stop launch=1000 max=1000 ramp=500/s timeout=3s target_mm=200 captured_reference\r\n";

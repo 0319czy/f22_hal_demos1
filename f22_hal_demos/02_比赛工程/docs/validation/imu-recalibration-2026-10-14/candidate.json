@@ -1,0 +1,16 @@
+{
+  "profile": "contest_aircraft1_radio_v2_jp13",
+  "candidate": "candidate.bin",
+  "candidate_sha256": "913617db55baaf1660ac07ec13042a62a9df916566d28132a56eda7d4ef2c8f3",
+  "candidate_size_bytes": 40996,
+  "previous_firmware_backup": "previous_firmware.bin",
+  "previous_sha256": "10ee5e73c88a65b5fccebe516c290631c4ffb57142e6947cc8404ed53e5b4177",
+  "receiver_uid_expected": "30ffd90530574b3036751643",
+  "receiver_uid_observed": "30ffd90530574b3036751643",
+  "software_tests": "passed; see software-check.log",
+  "flash_status": "uploaded_100_percent_verified_and_reset",
+  "runtime_status": "operator logs verify F4 reset, ground START state=1 with PWM ramp, and F4 outputs zero; actual liftoff and flight remain pending",
+  "readback": "readback.bin",
+  "readback_sha256": "913617db55baaf1660ac07ec13042a62a9df916566d28132a56eda7d4ef2c8f3",
+  "readback_matches_candidate": true
+}

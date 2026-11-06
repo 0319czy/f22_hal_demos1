@@ -1,0 +1,21 @@
+{
+  "master": {
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "bytes": 12625,
+    "valid_lines": 45,
+    "sample": [
+      "[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=0 valid=0 mm=0 flow=1 flow_present=1 squal=97 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 calibrated=0 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0",
+      "[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=0 valid=0 mm=0 flow=1 flow_present=1 squal=99 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 calibrated=0 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0",
+      "[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=0 valid=0 mm=0 flow=1 flow_present=1 squal=99 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 calibrated=0 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0",
+      "[CL] state=0 fault=0 dt_ms=6 link=0 packets=0 imu=0 roll_cd=0 pitch_cd=0 tof=0 valid=0 mm=0 flow=1 flow_present=1 squal=100 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 calibrated=0 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0 proto=0 seq=0 ready=0 radio_fault=0 reject=0 crc=0 timeout=0 key_drop=0"
+    ]
+  },
+  "slave": {
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_8120c32d-if02",
+    "baud": 115200,
+    "bytes": 0,
+    "valid_lines": 0,
+    "sample": []
+  }
+}

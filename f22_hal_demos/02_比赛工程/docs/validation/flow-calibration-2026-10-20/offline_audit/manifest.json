@@ -1,0 +1,64 @@
+{
+  "trials": [
+    {
+      "name": "run15_pitch_imu_measured",
+      "folder": "../run15_pitch_imu_measured",
+      "kind": "rotation",
+      "displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot"
+    },
+    {
+      "name": "run16_roll_imu_measured",
+      "folder": "../run16_roll_imu_measured",
+      "kind": "rotation",
+      "displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot"
+    },
+    {
+      "name": "run17_forward_20cm",
+      "folder": "../run17_forward_20cm",
+      "kind": "translation",
+      "displacement_m": [
+        0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement"
+    },
+    {
+      "name": "run11_pitch",
+      "folder": "../run11_pitch",
+      "kind": "holdout",
+      "displacement_m": [
+        0,
+        0
+      ],
+      "distance_source": "Zero horizontal sensor translation assumed during hand-held tilt; unverified pivot"
+    },
+    {
+      "name": "run06",
+      "folder": "../run06",
+      "kind": "holdout",
+      "displacement_m": [
+        0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement"
+    },
+    {
+      "name": "run05",
+      "folder": "../run05",
+      "kind": "holdout",
+      "displacement_m": [
+        -0.2,
+        0
+      ],
+      "distance_source": "Operator instructed/reported 20 cm; no independent position measurement"
+    }
+  ]
+}

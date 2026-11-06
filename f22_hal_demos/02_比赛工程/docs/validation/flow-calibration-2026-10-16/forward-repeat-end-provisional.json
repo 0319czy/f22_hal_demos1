@@ -1,0 +1,49 @@
+{
+  "ms": 334868,
+  "epoch": 0,
+  "polls": 14200,
+  "raw_n": 14200,
+  "raw_dx": -516,
+  "raw_dy": -490,
+  "n": 1379,
+  "bad": 12821,
+  "pollerr": 0,
+  "why": 20,
+  "sat": 0,
+  "dxsum": -61,
+  "dysum": -71,
+  "hx_mcount_milli": -251,
+  "hy_mcount_milli": -12648,
+  "time_ms": 32343,
+  "imu": 1,
+  "tof": 1,
+  "valid": 1,
+  "mm": 86,
+  "roll_cd": 568,
+  "pitch_cd": -162,
+  "flow": 1,
+  "id": 73,
+  "inv": 182,
+  "q": 117,
+  "i2c_boot": 0,
+  "output_locked": 1,
+  "angle_urad": [
+    216463,
+    -125839,
+    31837
+  ],
+  "hangle_umrad": [
+    52030,
+    -35133,
+    9884
+  ],
+  "PWM": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "host_seconds": 122.9134,
+  "host_time": "2026-10-16T12:42:43.497609+08:00",
+  "selection_note": "Provisional endpoint for the complete elevated interval; this spans lifting/height change and lowering, and does not isolate the 20cm horizontal stroke."
+}

@@ -1,0 +1,25 @@
+{
+  "status": "DESIGN_REVIEWED_NOT_IMPLEMENTED",
+  "checks": {
+    "local_links": "238 passed",
+    "tracked_diff_whitespace": "passed"
+  },
+  "read_only_peer_review": [
+    "现有世界/机体系速度转换配对正确，不误报为缺陷",
+    "竖直比力FRD/NED符号核对",
+    "时间对齐与旧80/150ms滤波延迟",
+    "近地接触不可观测与短时惯性误差",
+    "混控输出反馈抗饱和",
+    "20ms I2C/10ms SPI超时与15ms控制门限冲突"
+  ],
+  "changed_files": [
+    "docs/CONTROL_DESIGN_2026-10-16.md",
+    "README.md",
+    "PROJECT_PLAN.md",
+    "docs/TETHERED_FLIGHT.md",
+    "firmware/README.md"
+  ],
+  "firmware_modified": false,
+  "hardware_accessed": false,
+  "remaining": "设计待讨论、实现及动态验收；未承诺实飞稳定/无损落地。"
+}

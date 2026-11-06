@@ -1,0 +1,77 @@
+{
+  "firmware": {
+    "file": "firmware/contest_flow_id_probe_jp13.bin",
+    "bytes": 43448,
+    "sha256": "7fbe379f9f464e09adb67ce5a62b2153d588f7bd88f6f2e7cb631dfcc92c4d8e"
+  },
+  "steps": [
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-identification-2026-10-15/probe-backup.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.897956388998864,
+      "log": "probe-backup.log"
+    },
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_id_probe_jp13.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.992071216001932,
+      "log": "probe-upload.log"
+    },
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 43448 docs/validation/flow-identification-2026-10-15/probe-readback.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.8645559629985655,
+      "log": "probe-readback.log"
+    }
+  ],
+  "motor_command_sent": false,
+  "diagnostic_only": true,
+  "full_readback_matches": true,
+  "capture": {
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "seconds": 15,
+    "bytes": 41468,
+    "lines": 77,
+    "log": "probe-serial.log"
+  }
+}

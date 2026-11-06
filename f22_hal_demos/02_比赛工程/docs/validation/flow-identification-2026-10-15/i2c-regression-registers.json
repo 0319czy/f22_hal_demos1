@@ -1,0 +1,14 @@
+{
+  "core_state": "State.RUNNING",
+  "gpio_b_crh": "0xb4b3ff44",
+  "gpio_b_idr": "0xf738",
+  "gpio_b_odr": "0x1010",
+  "i2c2_cr1": "0x401",
+  "i2c2_sr2": "0x2",
+  "motor_ccr": [
+    0,
+    0,
+    0,
+    0
+  ]
+}

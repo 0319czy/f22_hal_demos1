@@ -1,0 +1,21 @@
+[
+  {
+    "repository": "https://github.com/bitcraze/Bitcraze_PMW3901",
+    "revision": "d322d98d6f61757352d11d922cd194539e165231",
+    "source_url": "https://raw.githubusercontent.com/bitcraze/Bitcraze_PMW3901/master/src/Bitcraze_PMW3901.cpp",
+    "retrieved_date": "2026-10-03",
+    "upstream_file_sha256": "15b45b16faff735496511ca3c0b41d14ad7f1cda80d7f1112b42db33163314c3"
+  },
+  {
+    "repository": "https://github.com/stm32duino/VL53L1X",
+    "revision": "5aa46e743913186c448aaf86dd0f12071fddc0a2",
+    "source_url": "https://raw.githubusercontent.com/stm32duino/VL53L1X/main/src/vl53l1x_class.cpp",
+    "retrieved_date": "2026-10-03",
+    "upstream_file_sha256": "3e4d7d6fa0bee4b279fdd1c095b40db615c694441007995d0a38cd378f64a317"
+  },
+  {
+    "source_url": "https://cdck-file-uploads-global.s3.dualstack.us-west-2.amazonaws.com/digikey/original/3X/f/6/f6d0f4c2dda56cee66c0d4eba1ad2602090b4b97.pdf",
+    "local_file": "ATK-PMW3901-manual.pdf",
+    "sha256": "c350a09f10912944b615b0001f9ffabc6a011b77ded7ba0863dbc4e5f4e6f922"
+  }
+]

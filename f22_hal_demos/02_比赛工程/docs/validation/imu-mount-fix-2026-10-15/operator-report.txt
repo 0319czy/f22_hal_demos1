@@ -1,0 +1,8 @@
+2026-10-15, operator reports only; not independently captured raw IMU.
+1. Nose down: operator explicitly confirmed pitch positive, roll approximately unchanged.
+2. Motor locations reaffirmed: M1=front right, M3=rear right.
+3. After explicitly clarifying LEFT side high / RIGHT side low (M1/M3 lowered), operator again replied "-" for roll.
+These latest isolated oral reports support a candidate 180-degree change of the horizontal body reference: +Y,+X,-Z -> -Y,-X,-Z. Earlier combined-pose logs and ambiguous left/right descriptions are retained in the previous investigation folder and are not used as raw-vector acceptance.
+The corrected mapping must still be verified on the actual board with the same motor-labelled motions. Flight axes remain marked unverified; the deployed profile, if flashing succeeds, is fixed5% motor-direction diagnostic, not flight control. No motor commands are part of flashing/verification.
+
+After successful flash and full readback, the assistant requested repeat right-side-down -> roll positive and nose-down -> pitch negative. Operator replied: 对了. This is recorded as oral confirmation of corrected signs, not numeric telemetry, rate acceptance, motor restoring torque or flight acceptance.

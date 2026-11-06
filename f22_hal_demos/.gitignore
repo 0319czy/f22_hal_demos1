@@ -1,0 +1,9 @@
+# PlatformIO build output and generated remote firmware build files
+**/.pio/
+**/build/
+**/__pycache__/
+
+# Large, broad reference collections remain local; project-specific manuals
+# needed by the teaching and competition projects are included in those folders.
+/无人机资料/
+/竞赛相关技术资料/

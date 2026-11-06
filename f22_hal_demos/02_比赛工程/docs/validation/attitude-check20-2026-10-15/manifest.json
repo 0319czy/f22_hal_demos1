@@ -1,0 +1,128 @@
+{
+  "recorded_at": "2026-10-15T16:37:31.408416+08:00",
+  "profile": "contest_attitude_check_jp13",
+  "status": "software tests/seven builds passed; flashed and full readback matched; operator PWM and physical motor response pending",
+  "firmware": {
+    "file": "firmware/contest_attitude_check_jp13_pwm20.bin",
+    "bytes": 40204,
+    "sha256": "2ad9dcb2434d71a12ab70720620eec56471f1e4e457ee1e8c9c187ff51b464a9"
+  },
+  "source_sha256": {
+    "platformio.ini": "dc4ffdc7509483ecef14c30527b56d22b91350c31f8fbc5c9affa5e2de6b8226",
+    "src/main.c": "b5cca35ad19d2f86c46520e88d41174cf3768f499769cfa69514c9b1c0cd09c9",
+    "src/bench/attitude_check.c": "d7d903584048b5b20f204c8b4cdeff677bcc2c489d3d44f5ea3661d1e933f832",
+    "src/bench/attitude_check.h": "e9eb38de0c262105179778998b4b119975f742140357695daa9bc55c931e59d8",
+    "src/flight/closed_loop.c": "63f92a9f0fbbbdbf2c459d747cf8012842ec4fc5aa46f1a4ea3b2a09b5512e96",
+    "src/flight/closed_loop.h": "b7b8bef2267518f66ef480f4dea813781deaeefeb5edab9ab2f4ebe4080e72e5",
+    "src/flight/closed_loop_config.h": "ab346c1edbca8cfaff185a22eff9ffd6615a04bd96ae38ac46ceea597c2c979b",
+    "src/flight/closed_loop_profile.h": "c245a53b071bba576d470a9411e239b4a1f23e952f569981b219f80519efca0a",
+    "src/flight/aircraft1.c": "f3ac0dfbd406a17a1ff71a94e4a9b565f075adeeae32a3ad6fa7c701d37d56bd",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "tests/test_aircraft1_pwm.c": "9a0e92608be632b7cbc9b14e769a1b59bc13b25e3b8f1cb704252328e86929c1",
+    "scripts/check_closed_loop.sh": "86a4b6e330e8a40d46870a65fd3dd3ced32637a6d9396fd5070b1079e656cb38",
+    "scripts/show_remote_keys.py": "2c443409562cc8f541e7b63473d66f01d3817298c7a47590f2238923a0d727ab"
+  },
+  "preflash": {
+    "time": "2026-10-15T16:33:35.037832+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 262144 docs/validation/attitude-check20-2026-10-15/preflash_256k.bin"
+    ],
+    "exit_code": 0,
+    "matches_previous_image": true,
+    "backup_sha256": "35408a452f56d8c2ff2f6cb6ad89715aba8401f294e5a62b826db7a70386a23b"
+  },
+  "flash": {
+    "time": "2026-10-15T16:34:50.850449+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_attitude_check_jp13_pwm20.bin"
+    ],
+    "exit_code": 0
+  },
+  "readback": {
+    "time": "2026-10-15T16:34:53.603450+08:00",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 40204 docs/validation/attitude-check20-2026-10-15/readback.bin"
+    ],
+    "exit_code": 0,
+    "bytes": 40204,
+    "sha256": "2ad9dcb2434d71a12ab70720620eec56471f1e4e457ee1e8c9c187ff51b464a9",
+    "matches_image": true
+  },
+  "behavior": {
+    "boot": "zero; no auto start",
+    "F2": "start attitude/rate bench from level; ramp base at10 percentage points/sec to15%",
+    "base_duty": 0.15,
+    "per_motor_hard_ceiling": 0.2,
+    "pwm_timer_period_ticks": 200,
+    "base_timer_ticks": 30,
+    "maximum_timer_ticks": 40,
+    "F3_F4": "immediate zero; F4 clears faults; freshF2 required for restart",
+    "shared_production_function": "ClosedLoop_AttitudeMix",
+    "imu_mount": [
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "tof_and_flow": "polled/displayed, not consumed or fabricated by this bench",
+    "takeoff_height_control": false,
+    "two_second_launch_timeout": false,
+    "start_limits": "settled valid IMU, level within8deg, rate within10deg/s, valid radio link",
+    "active_faults": "IMU, link, >15ms loop, tilt>=25deg, output trip; local stop/watchdog retained",
+    "state3": "bench active, not flight hold",
+    "telemetry_marker": "bench=attitude20",
+    "flight_axes_verified_default": false,
+    "explicit_bench_axes_permission": true
+  },
+  "checks": {
+    "closed_loop_script_exit_code": 0,
+    "log": "check.log",
+    "seven_builds_passed": true,
+    "new_register_double": "8 tilt/rate directions;15% base/20% cap; invalid/absent ToF beyond2sec; stop/fault latch; driver/watchdog",
+    "symbol_isolation": "bench uses shared attitude mixer; flight takeoff/height function absent in bench ELF",
+    "display_check": "display-check.log; synthetic saved line, no serial opened"
+  },
+  "agent_motor_commands_sent": false,
+  "serial_monitor_opened": false,
+  "hardware_pwm_direction_verified": false,
+  "physical_motor_response_verified": false,
+  "flight_accepted": false
+}

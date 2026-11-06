@@ -1,0 +1,37 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "tests": [
+    {
+      "baud": 9600,
+      "bytes": 1992,
+      "ascii_control_pct": 35.5,
+      "crlf": 0,
+      "cl": 0,
+      "cal": 0
+    },
+    {
+      "baud": 57600,
+      "bytes": 1037,
+      "ascii_control_pct": 31.1,
+      "crlf": 0,
+      "cl": 0,
+      "cal": 0
+    },
+    {
+      "baud": 115200,
+      "bytes": 2562,
+      "ascii_control_pct": 99.6,
+      "crlf": 10,
+      "cl": 8,
+      "cal": 1
+    },
+    {
+      "baud": 230400,
+      "bytes": 4015,
+      "ascii_control_pct": 27.8,
+      "crlf": 0,
+      "cl": 0,
+      "cal": 0
+    }
+  ]
+}

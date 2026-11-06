@@ -1,0 +1,76 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <assert.h>
+#include <setjmp.h>
+#include "closed_loop_radio.h"
+typedef uint8_t u8; typedef uint16_t u16; typedef uint32_t u32;
+static u32 host_ms=1000, first_send; static unsigned sent_count, sampled_f3, stops;
+static jmp_buf finished; static ClosedLoopRadio input;
+static u32 Now(void) {return host_ms++;}
+static u8 Keys(void) {
+    u8 raw=first_send && host_ms>=first_send+1 && host_ms<first_send+21 ? 12 : 8;
+    if (raw&4) sampled_f3++;
+    if (first_send) printf("Keys at +%u ms = %u\n",host_ms-first_send,raw);
+    return raw;
+}
+static u8 Crc(const u8 *p) {return Radio_Crc(p,11);}
+static void Send(u8 byte) {
+    static u8 bytes[12]; static unsigned used;
+    if(!first_send) first_send=host_ms;
+    bytes[used++]=byte;
+    if(used==12) {
+        host_ms+=13; /* The real transmitter blocks for 12.5ms at 9600 baud. */
+        printf("TX %u at +%u ms: command=%u keys=%u\n",sent_count,host_ms-first_send-13,bytes[5],bytes[6]);
+        for(unsigned j=0;j<12;j++) ClosedLoopRadio_Feed(&input,bytes[j],host_ms+30);
+        HoverCommand command=ClosedLoopRadio_Take(&input,host_ms+30);
+        if(command==HOVER_STOP) stops++;
+        printf("RX decoded hover command=%u; total ESTOP=%u\n",command,stops);
+        used=0;
+        if(++sent_count==4) longjmp(finished,1);
+    }
+}
+static void RunActualV2Loop(void) {
+    u8 p[12]={0xa5,0x5a,2},i,previous,stable,candidate,last_raw;
+    u8 pending=0,repeats=0,urgent=0; u16 sequence=0; u32 scanned,sent,now;
+    previous = stable = candidate = last_raw = Keys();
+    scanned = sent = Now(); sent -= 50UL;
+    for (;;) {
+        u8 edges = 0, force = 0, cmd = 0;
+        now = Now();
+        if ((u32)(now - scanned) >= 5UL) {
+            u8 raw = Keys(); scanned = now;
+            candidate = raw == last_raw ? raw : stable;
+            last_raw = raw; stable = candidate;
+            edges = stable & ~previous; previous = stable;
+            /* Preserve a brief F4 press even if released before the guard. */
+            if (edges & 8) { pending = 3; repeats = 3; force = 1; }
+            else if (edges & 4) { pending = 2; repeats = 3; force = 1; }
+            else if (edges & 2) { pending = 1; repeats = 3; force = 1; }
+            else if (edges & 1) { pending = 4; repeats = 3; force = 1; }
+        }
+        /* E49 normal mode flushes a short packet after ~20ms UART idle.
+         * A 12-byte 9600/8N1 frame occupies 12.5ms. Keep at least 35ms
+         * between frame starts, including immediate key events, so a key
+         * cannot merge into a heartbeat still buffered by the module.
+         * Latch the event until this guard expires instead of losing it. */
+        if (force) urgent = 1;
+        if ((u32)(now - sent) < (urgent ? 35UL : 50UL)) continue;
+        urgent = 0;
+        if (stable & 8) { cmd = 3; pending = repeats = 0; }
+        else if (repeats) { cmd = pending; repeats--; }
+        sent = Now(); sequence++;
+        p[3] = (u8)sequence; p[4] = (u8)(sequence >> 8);
+        p[5] = cmd; p[6] = stable;
+        p[7] = (u8)sent; p[8] = (u8)(sent >> 8);
+        p[9] = (u8)(sent >> 16); p[10] = (u8)(sent >> 24);
+        p[11] = Crc(p);
+        for (i = 0; i < 12; i++) Send(p[i]);
+    }
+}
+int main(void) {
+    ClosedLoopRadio_Init(&input);
+    if(!setjmp(finished)) RunActualV2Loop();
+    assert(sampled_f3>=2);
+    assert(stops==0);
+    puts("REPRODUCED: F3 sampled twice, but held F4 erased the latched F3 emergency before transmission.");
+}

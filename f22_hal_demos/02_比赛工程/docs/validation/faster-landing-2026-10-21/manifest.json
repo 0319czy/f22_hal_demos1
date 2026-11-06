@@ -1,0 +1,10 @@
+{
+  "artifact": "firmware/contest_imu_tof_low_hover_fast_land_20261021.bin",
+  "sha256": "55a2b5f18af04a164777322f83e34ccf137d398ee63003d13d840412a7be61ee",
+  "bytes": 46504,
+  "tests": "5 host suites PASS; synthetic only",
+  "build": "contest_imu_tof_low_hover_jp13 PASS",
+  "flashed": false,
+  "landing_downward_slew_duty_per_sec": 0.5,
+  "landing_final_fade_duty_per_sec": 0.4
+}

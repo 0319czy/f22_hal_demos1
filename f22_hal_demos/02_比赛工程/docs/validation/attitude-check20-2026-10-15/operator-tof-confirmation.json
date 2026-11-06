@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-15T16:49:29.699535+08:00",
+  "source": "operator reply in conversation",
+  "operator_quote": "这个也是对的",
+  "context": "Reply to stopped-motor ToF check: motor battery unplugged, USB retained, hold aircraft level at roughly 10/20/40cm for three seconds each; confirm valid readings, increase on lift and stationary stability.",
+  "accepted": "Operator qualitatively confirms the requested ToF range-response check.",
+  "limits": [
+    "No raw serial lines, independently measured distances or error bounds supplied.",
+    "Not a precision calibration, installation-offset measurement or five-minute sensor stability acceptance.",
+    "No flight or powered optical-flow acceptance."
+  ],
+  "board_firmware_unchanged": "contest_attitude_check_jp13_pwm20.bin",
+  "next": "Prepare bounded tethered flight parameters and validate takeoff/height transition before replacing bench firmware; historical radio flight profile is still 90% nominal/90% ceiling and 20cm sensor-range target with axes gate zero."
+}

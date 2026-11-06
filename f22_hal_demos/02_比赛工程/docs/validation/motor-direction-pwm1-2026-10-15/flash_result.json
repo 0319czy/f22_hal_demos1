@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "load",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "--erase",
+    "sector",
+    "--base-address",
+    "0x08000000",
+    "firmware/contest_motor_direction_pwm1.bin"
+  ],
+  "time": "2026-10-15T12:44:13.540620+08:00",
+  "exit_code": 0
+}

@@ -1,0 +1,62 @@
+{
+  "updated": "2026-10-16T12:51:19+08:00",
+  "status": "PARTIAL: motor-locked calibration diagnostic remains flashed and verified. The latest controlled forward segment has 424 healthy accepted windows and a positive forward-weighted flow response, but ToF height varies 111–182mm, integrated attitude changes about 5.4° roll / 3.4° pitch / -3.8° yaw, and actual displacement plus exact motion boundaries were not independently measured. No scale/rotation coefficient or flight gate is accepted.",
+  "firmware": {
+    "path": "firmware/contest_flow_calibration_jp13.bin",
+    "bytes": 44040,
+    "sha256": "4d6fed6c8fcb00532cd3e7fd78a30048a392f5be827669ec99beb72ee3bb14b4"
+  },
+  "full_readback_matches": true,
+  "tests": {
+    "firmware_build": "build.log",
+    "nine_environment_regression": "regression.log",
+    "capture_math": "capture-test.log",
+    "boot_bus_clear": "bus-test.log",
+    "fitter": "fit-test.log: synthetic shared-scale/rotation recovery, cumulative units, endpoint health and invalid intervals",
+    "display": "display-check.log"
+  },
+  "baseline": "boot-static.json",
+  "first_trial": "forward-check.json",
+  "live_capture": "live-level-forward-repeat/capture.json",
+  "signed_axes_source": "../flow-axis-check-2026-10-16/signed-axis-result.json",
+  "source_sha256": {
+    "src/main.c": "b834a67054cfe6d6f361dd7d3d35abc1cd6ed67d4c0efc68c135ec7137db4301",
+    "src/bench/flow_capture.c": "d4c075b1f8124ab02828b138f908ac2844f264618e082d046903d667392d8302",
+    "src/bench/flow_capture.h": "56537a7b335157e46257aa0899b1fdae741bcbd4280a9bfd6200e533d4acf05e",
+    "src/bench/flow_capture_bus.c": "1d99559335ebfbcd3d6515579ed1caf47eeb9778ba25ded4e5e184404ff2e57c",
+    "platformio.ini": "4c9e848cccf8c5b48bf29f06b6134f153d1fd66526e2e1c4ea8e846438a634ca",
+    "scripts/capture_flow_calibration.py": "2928c4a174de8cad98fa564b19c5e1898edd53cbbf448477c4d046a5fd96c3a6",
+    "scripts/fit_flow_calibration.py": "38bd2bb7b980a0849fb566cce840a6316b27f61ac6cfd643f8e3810d0b87ba2c",
+    "scripts/show_remote_keys.py": "8b046964fcddc6d6a55166b36f2e34a015d098f0f31ca32b9db0432bc1b76197",
+    "tests/test_flow_capture.c": "c6265f7d90bd93f671ad0023618cc936cee2301eaf0404bfaedf3f8935628bc8",
+    "tests/test_flow_capture_bus.py": "c776d29edc0ed6ce75ee8ad10d634fcc1a7a2092ab7ee63675b11165b74a43b5",
+    "tests/test_fit_flow_calibration.py": "1035ba238947804034428f670e58df4525ec2f307502a0b9feabe4f725a56523"
+  },
+  "motor_command_sent": false,
+  "calibration_flags_changed": false,
+  "injected_test_evidence_not_hardware_acceptance": true,
+  "boot_i2c_recovery": "diagnostic-only before normal I2C2 init; this run IMU/ToF healthy, no permanent bus reliability claim",
+  "next": "Repeat a ruler-measured forward translation with explicit start/end dwell snapshots at stable height and attitude; then repeat in reverse and collect lateral plus independent roll/pitch rotations and holdouts. Keep FLOW_CALIBRATED and CL_FLOW_AXES_VERIFIED disabled until a shared fit and independent holdout pass.",
+  "forward_trial_note": "218 full windows, appreciable yaw/tilt and model cross-axis residual; no coefficient accepted",
+  "review": "Independent read-only reviewer confirmed model/units and warned against fitting away a single hand-motion residual; general-A extension deferred.",
+  "parameter_flags_unchanged": true,
+  "return_trial": "return-check-provisional.json",
+  "return_start_snapshot": "return-start-provisional.json",
+  "return_end_snapshot": "return-end-provisional.json",
+  "captures": {
+    "original_20min": "live/capture.json; complete; board accumulator later reached saturation during the wait, so subsequent attempts must inspect sat before using data",
+    "return_attempt_saturated": "live-return-retry/capture.json; 58s capture; sat=1 and accepted-window count unchanged; excluded from calibration",
+    "return_after_DAP_reset": "live-return-after-reset/capture.json; 104s capture; 515 telemetry rows; no partial frames; serial released; motor_command_sent=false; chosen candidate interval has 270 accepted windows, zero rejected windows, zero poll errors, sat=0",
+    "forward_repeat_after_near_ground": "live-level-forward-repeat/capture.json; 139s, 686 telemetry rows, one partial frame, serial released, motor_command_sent=false; all 686 rows remained hard-locked with PWM=0, and sat=0. Selected elevated segment adds 547 accepted windows with zero rejected/poll-error increments, but ToF varies 86–323mm and the interval includes lift/lowering, so excluded from coefficient acceptance.",
+    "controlled_forward_repeat": "live-forward-controlled-retry/capture.json; 35s capture; 176 telemetry rows, one partial frame, serial released; selected valid interval has 424 added accepted windows, bad/pollerr/sat deltas 0, motor outputs locked zero. Positive forward response, but displacement and exact start/end not independently marked and attitude/height vary; candidate evidence only."
+  },
+  "capture_counter_issue": "The motor-locked accumulator intentionally saturates at 65535 samples to protect int32 sums and then rejects additions; the long capture plus wait reached that limit. A DAP reset cleared it for the successful retry. Check sat=0 before using a capture.",
+  "forward_repeat_trial": "forward-repeat-check-provisional.json",
+  "forward_repeat_start_snapshot": "forward-repeat-start-provisional.json",
+  "forward_repeat_end_snapshot": "forward-repeat-end-provisional.json",
+  "forward_repeat_trial_note": "Positive forward-weighted count agrees with the previously established sign. The whole elevated segment predicts only 7.35cm forward and 2.65cm right under the old nominal scale, but exact 20cm motion endpoints were not isolated and attitude/height changed; this is a sensor-response check only.",
+  "controlled_forward_trial": "controlled-forward-check-provisional.json",
+  "controlled_forward_start_snapshot": "controlled-forward-start-provisional.json",
+  "controlled_forward_end_snapshot": "controlled-forward-end-provisional.json",
+  "controlled_forward_note": "35.005s capture, 176 telemetry rows, one partial frame, serial released, motor_command_sent=false. Selected host_seconds 8.0473–18.0894 includes 424 added valid windows; bad/pollerr/sat increments all zero, ToF 111–182mm, SQUAL 101–180, all interval records IMU/ToF/flow valid, PWM hard-locked zero. C=[forward,right]=[143.669,-25.011] m·count; integrated roll/pitch/yaw=+5.404/+3.398/-3.825deg. Positive forward response agrees with established axis sign. Approximate 20cm displacement and exact movement endpoints were not independently verified; attitude/height varied, so exclude from scale/rotation fit and do not interpret right component as real lateral drift."
+}

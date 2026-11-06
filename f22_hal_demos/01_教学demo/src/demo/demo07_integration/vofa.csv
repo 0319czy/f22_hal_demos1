@@ -1,0 +1,2 @@
+state,roll_deg,pitch_deg,yaw_relative_deg,height_m,vz_mps,x_m,y_m,vx_mps,vy_mps,delta_x_counts,delta_y_counts,squal,imu_communication_ok,tof_valid,flow_valid,imu_mount_verified,flow_calibrated,height_target_m,collective,virtual_FL,virtual_FR,virtual_RR,virtual_RL,actual_pwm,stable_seconds,hover_qualified,local_button_input
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

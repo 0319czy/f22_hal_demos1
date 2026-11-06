@@ -1,0 +1,22 @@
+{
+  "samples": 218,
+  "c_forward_right_mcount": [
+    43.966,
+    -11.51
+  ],
+  "b_roll_pitch_mrad": [
+    -0.00332,
+    0.009269
+  ],
+  "angle_change_rad": [
+    -0.016744,
+    0.043781,
+    -0.132858
+  ],
+  "uncompensated_forward_only_k": 0.004548969658372379,
+  "uncompensated_shared_k": 0.004257199583322355,
+  "model_residual_m_under_pure_forward_assumption": 0.05065167937916641,
+  "not_a_measurement_of_actual_lateral_drift": true,
+  "accepted": false,
+  "reason": "Single uncorrected stroke; cross-axis residual and hand attitude variation must be explained by repeats/rotations before coefficients accepted"
+}

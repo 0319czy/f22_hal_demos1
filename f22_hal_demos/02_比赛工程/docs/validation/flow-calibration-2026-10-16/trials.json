@@ -1,0 +1,16 @@
+{
+  "trials": [
+    {
+      "name": "forward20_candidate",
+      "kind": "translation",
+      "start": "forward-start-provisional.json",
+      "end": "forward-end-provisional.json",
+      "displacement_m": [
+        0.2,
+        0
+      ],
+      "operator_measurement": "Operator confirmed marked20cm forward motion; physical distance independently unmeasured",
+      "endpoint_note": "Provisional level-before/after endpoints; short final plateau and residual motion require repeat/holdout"
+    }
+  ]
+}

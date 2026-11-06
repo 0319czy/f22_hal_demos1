@@ -1,0 +1,48 @@
+{
+  "ms": 705403,
+  "epoch": 0,
+  "polls": 29995,
+  "raw_n": 29995,
+  "raw_dx": -1641,
+  "raw_dy": -1110,
+  "n": 5693,
+  "bad": 24302,
+  "pollerr": 0,
+  "why": 22,
+  "sat": 0,
+  "dxsum": -982,
+  "dysum": -468,
+  "hx_mcount_milli": -201942,
+  "hy_mcount_milli": -323973,
+  "time_ms": 133550,
+  "imu": 1,
+  "tof": 1,
+  "valid": 1,
+  "mm": 176,
+  "roll_cd": 118,
+  "pitch_cd": -395,
+  "flow": 1,
+  "id": 73,
+  "inv": 182,
+  "q": 153,
+  "i2c_boot": 0,
+  "output_locked": 1,
+  "angle_urad": [
+    351757,
+    -495977,
+    1643973
+  ],
+  "hangle_umrad": [
+    94068,
+    -235098,
+    516530
+  ],
+  "PWM": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "host_seconds": 34.9692,
+  "host_time": "2026-10-16T12:48:53.986591+08:00"
+}

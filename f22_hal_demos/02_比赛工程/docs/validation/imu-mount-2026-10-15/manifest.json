@@ -1,0 +1,69 @@
+{
+  "recorded_at": "2026-10-15T16:00:11.486012+08:00",
+  "status": "Physical axes unresolved; temporary 180-degree candidate withdrawn before deployment",
+  "latest_operator_pose": "right side high, left side low; front low, rear high",
+  "latest_operator_angles_approx_deg": {
+    "roll": -30,
+    "pitch": 20
+  },
+  "baseline_mount": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    -1
+  ],
+  "source_imu_axes_verified": false,
+  "flash_performed": false,
+  "motor_commands_sent": false,
+  "serial_monitor_opened": false,
+  "checks": {
+    "closed_loop_script_exit_code": 0,
+    "six_build_profiles": [
+      "contest_hover",
+      "contest_aircraft1_closed_loop",
+      "contest_aircraft1_pwm_closed_loop",
+      "contest_aircraft1_standalone",
+      "contest_aircraft1_radio_v2_jp13",
+      "contest_motor_direction"
+    ],
+    "current_log": "current-check.log",
+    "withdrawn_candidate_log": "withdrawn-candidate-check.log",
+    "limitations": "Synthetic software/register tests only; no physical torque or corrected-mount acceptance"
+  },
+  "source_sha256": {
+    "src/flight/closed_loop_config.h": "365eb4794da504e06bd1969e16c6e4b275e7a3d4d43470652d5bdecaa882edaa",
+    "src/main.c": "668b6c51315672ebb4f65ed90ba29ceb2979002d620ec57d67870f1f9a7f9c02",
+    "tests/test_closed_loop.c": "c1fe9feaf3a9c2f139fba73176fc8cc309ee5ea3aff0b8b86b3739b3cf28a5b9"
+  },
+  "built_images": {
+    "contest_hover": {
+      "bytes": 33340,
+      "sha256": "81cec8fbcdfc858ad6b4d6320a4cf2522ec6de66782de9ad37f481c4cc728477"
+    },
+    "contest_aircraft1_closed_loop": {
+      "bytes": 37072,
+      "sha256": "c78aac2d6adbbcedfe2ff1cfc5e8b0e4f64ac5ad861a8d0cda65cbb5d69e5046"
+    },
+    "contest_aircraft1_pwm_closed_loop": {
+      "bytes": 39008,
+      "sha256": "e558d9bdb9f73fbcc01a7bbc113743a8b1b989fc0d785a5714f7d555cee75805"
+    },
+    "contest_aircraft1_standalone": {
+      "bytes": 38688,
+      "sha256": "b16df05d081a57a4c7e6612e71dd007703b41ea869b2558e6d95d02002a095cb"
+    },
+    "contest_aircraft1_radio_v2_jp13": {
+      "bytes": 40996,
+      "sha256": "aec00d0b32149b3fe2a535434a2e1e45f1f77dce09d16fc0613725467a7f8589"
+    },
+    "contest_motor_direction": {
+      "bytes": 38688,
+      "sha256": "fab55ccab9406494d810b06229d4e7896f2bccb48004a7e04cb9c88bc345b2f8"
+    }
+  }
+}

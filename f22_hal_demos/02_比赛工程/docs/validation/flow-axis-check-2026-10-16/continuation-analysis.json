@@ -1,0 +1,32 @@
+{
+  "capture": {
+    "start": "2026-10-16T11:47:24.009620+08:00",
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "raw_log": "114724-serial.log",
+    "timed_log": "114724-timed.jsonl",
+    "motor_command_sent": false,
+    "stage": "back_right_left_continuation"
+  },
+  "markers": "markers.jsonl",
+  "all_id_good": true,
+  "max_abs_roll_deg": 93.34,
+  "max_abs_pitch_deg": 26.91,
+  "all_pwm_zero": true,
+  "status": "PARTIAL: exclude intentionally tilted portion; final level portion supports +dx for paper-right, reversal pending; full calibration withheld",
+  "next": "Confirm actual motion; obtain fixed attitude translation, then full sample counts/gyro integration for quantitative calibration",
+  "capture_complete": true,
+  "seconds": 325.27,
+  "complete_samples": 1603,
+  "partial_samples_excluded": 1,
+  "flow_error_values": [
+    "0"
+  ],
+  "plot": "right-motion-review.png",
+  "calibration_flags_changed": false,
+  "firmware_changed": false,
+  "motor_command_sent": false,
+  "serial_released": true,
+  "operator_correction": "Tilted intentionally earlier; only final portion valid",
+  "final_level_analysis": "right-final-level-analysis.json"
+}

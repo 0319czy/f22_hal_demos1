@@ -1,0 +1,355 @@
+{
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "raw_log": "docs/validation/flight-watch-fixed-2026-10-18/20261018-175936-432136.raw.log",
+  "readable_log": "docs/validation/flight-watch-fixed-2026-10-18/20261018-175936-432136.pretty.log",
+  "telemetry_samples": 550,
+  "keys": [
+    "KEY F4 event=1 seq=14 allowed=1 ready=0",
+    "KEY F4 event=2 seq=22 allowed=1 ready=0",
+    "KEY F4 event=3 seq=28 allowed=1 ready=0",
+    "KEY F2 event=4 seq=36 allowed=1 ready=1",
+    "KEY F4 event=5 seq=95 allowed=1 ready=0",
+    "KEY F4 event=6 seq=294 allowed=1 ready=0",
+    "KEY F4 event=7 seq=299 allowed=1 ready=0",
+    "KEY F4 event=8 seq=303 allowed=1 ready=0",
+    "KEY F4 event=9 seq=310 allowed=1 ready=0",
+    "KEY F2 event=10 seq=318 allowed=1 ready=1",
+    "KEY F3 event=11 seq=366 allowed=1 ready=1",
+    "KEY F4 event=12 seq=620 allowed=1 ready=0",
+    "KEY F4 event=13 seq=626 allowed=1 ready=0",
+    "KEY F2 event=14 seq=636 allowed=1 ready=1",
+    "KEY F4 event=15 seq=686 allowed=1 ready=0",
+    "KEY F4 event=16 seq=831 allowed=1 ready=0",
+    "KEY F4 event=17 seq=839 allowed=1 ready=0",
+    "KEY F2 event=18 seq=853 allowed=1 ready=1",
+    "KEY F4 event=19 seq=947 allowed=1 ready=0",
+    "KEY F4 event=20 seq=953 allowed=1 ready=0",
+    "KEY F2 event=21 seq=964 allowed=1 ready=1",
+    "KEY F4 event=22 seq=1224 allowed=1 ready=0",
+    "KEY F4 event=23 seq=1229 allowed=1 ready=0",
+    "KEY F2 event=24 seq=1242 allowed=1 ready=1",
+    "KEY F4 event=25 seq=1287 allowed=1 ready=0",
+    "KEY F4 event=26 seq=1702 allowed=1 ready=0",
+    "KEY F4 event=27 seq=1706 allowed=1 ready=0",
+    "KEY F2 event=28 seq=1721 allowed=1 ready=1"
+  ],
+  "faults": [
+    {
+      "code": "5",
+      "from": "1",
+      "t_ms": "115188",
+      "imu_raw": "1",
+      "imu_used": "1",
+      "calibrated": "1",
+      "settled_ms": "113500",
+      "armlevel": "0",
+      "acc_mg": "86,-72,-574",
+      "gyro_cdps": "12903,-699,6438",
+      "roll_cd": "2558",
+      "pitch_cd": "-55",
+      "height_um": "0",
+      "vz_mmps": "0",
+      "height_valid": "0",
+      "tof_mm": "8",
+      "status": "9",
+      "fresh": "1",
+      "age_ms": "7",
+      "output_trip": "0",
+      "dt_us": "6000"
+    },
+    {
+      "code": "7",
+      "from": "1",
+      "t_ms": "156178",
+      "imu_raw": "1",
+      "imu_used": "1",
+      "calibrated": "1",
+      "settled_ms": "154487",
+      "armlevel": "0",
+      "acc_mg": "-124,-243,-970",
+      "gyro_cdps": "-4491,-1350,6162",
+      "roll_cd": "1693",
+      "pitch_cd": "-195",
+      "height_um": "59708",
+      "vz_mmps": "0",
+      "height_valid": "0",
+      "tof_mm": "0",
+      "status": "9",
+      "fresh": "1",
+      "age_ms": "4",
+      "output_trip": "0",
+      "dt_us": "6000"
+    },
+    {
+      "code": "7",
+      "from": "1",
+      "t_ms": "161640",
+      "imu_raw": "1",
+      "imu_used": "1",
+      "calibrated": "1",
+      "settled_ms": "159949",
+      "armlevel": "0",
+      "acc_mg": "37,-400,-1130",
+      "gyro_cdps": "-2756,57,1382",
+      "roll_cd": "673",
+      "pitch_cd": "-93",
+      "height_um": "59708",
+      "vz_mmps": "0",
+      "height_valid": "0",
+      "tof_mm": "14",
+      "status": "9",
+      "fresh": "1",
+      "age_ms": "4",
+      "output_trip": "0",
+      "dt_us": "6000"
+    },
+    {
+      "code": "7",
+      "from": "1",
+      "t_ms": "199472",
+      "imu_raw": "1",
+      "imu_used": "1",
+      "calibrated": "1",
+      "settled_ms": "197784",
+      "armlevel": "0",
+      "acc_mg": "-203,-320,-844",
+      "gyro_cdps": "-10852,2162,5166",
+      "roll_cd": "1108",
+      "pitch_cd": "-223",
+      "height_um": "77406",
+      "vz_mmps": "0",
+      "height_valid": "0",
+      "tof_mm": "0",
+      "status": "9",
+      "fresh": "1",
+      "age_ms": "7",
+      "output_trip": "0",
+      "dt_us": "6000"
+    }
+  ],
+  "runs": [
+    {
+      "start_row": 57,
+      "states": [
+        "1",
+        "5"
+      ],
+      "final_state": "5",
+      "final_fault": "5",
+      "active_samples": 13,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 571,
+      "max_abs_pitch_cd": 281,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        21
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 126,
+      "states": [
+        "1",
+        "4",
+        "0"
+      ],
+      "final_state": "0",
+      "final_fault": "0",
+      "active_samples": 36,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 1300,
+      "max_abs_pitch_cd": 431,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        27
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 203,
+      "states": [
+        "1",
+        "0"
+      ],
+      "final_state": "0",
+      "final_fault": "0",
+      "active_samples": 12,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 929,
+      "max_abs_pitch_cd": 261,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        3
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 256,
+      "states": [
+        "1",
+        "5"
+      ],
+      "final_state": "5",
+      "final_fault": "7",
+      "active_samples": 14,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 1604,
+      "max_abs_pitch_cd": 457,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        0
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 282,
+      "states": [
+        "1",
+        "5"
+      ],
+      "final_state": "5",
+      "final_fault": "7",
+      "active_samples": 15,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 767,
+      "max_abs_pitch_cd": 104,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        12,
+        18
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 351,
+      "states": [
+        "1",
+        "0"
+      ],
+      "final_state": "0",
+      "final_fault": "0",
+      "active_samples": 11,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 605,
+      "max_abs_pitch_cd": 199,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        23
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    },
+    {
+      "start_row": 468,
+      "states": [
+        "1",
+        "5"
+      ],
+      "final_state": "5",
+      "final_fault": "7",
+      "active_samples": 15,
+      "peak_pwm_permille": 1000,
+      "max_abs_roll_cd": 1788,
+      "max_abs_pitch_cd": 889,
+      "valid_height_samples": 0,
+      "raw_range_mm": [
+        0,
+        29
+      ],
+      "flow_gains": [
+        "0"
+      ]
+    }
+  ],
+  "last_fields": {
+    "state": "5",
+    "fault": "7",
+    "dt_ms": "6",
+    "link": "1",
+    "packets": "2039",
+    "imu": "1",
+    "roll_cd": "79",
+    "pitch_cd": "110",
+    "height_mm": "77",
+    "vz_mmps": "0",
+    "height_valid": "0",
+    "tof_innovation_rejects": "0",
+    "tof": "1",
+    "valid": "0",
+    "mm": "0",
+    "tof_status": "9",
+    "tof_age_ms": "18",
+    "tof_live": "1",
+    "flow": "1",
+    "flow_present": "1",
+    "squal": "46",
+    "flow_err": "0",
+    "dx": "-2",
+    "dy": "10",
+    "axes": "0",
+    "armlevel": "1",
+    "calibrated": "1",
+    "flow_id": "73",
+    "flow_inv": "182",
+    "flow_fault": "0",
+    "flow_reg": "22",
+    "flow_io": "0",
+    "flow_reads": "3",
+    "flow_attempts": "1",
+    "flow_init": "0",
+    "PWM_permille_M1_M2_M3_M6": "0,0,0,0",
+    "trip": "0",
+    "output_locked": "0",
+    "debug_output": "flow_provisional",
+    "flight": "tether100_flow",
+    "u_permille": "0",
+    "ref_permille": "1000",
+    "target_mm": "40",
+    "flow_req": "1",
+    "flow_mode": "1",
+    "flow_gain": "0",
+    "flow_land": "0",
+    "flow_r_cd": "0",
+    "flow_p_cd": "0",
+    "flow_hold": "0",
+    "flow_err_fwd_mm": "0",
+    "flow_err_right_mm": "0",
+    "flow_vf_ref_mmps": "0",
+    "flow_vr_ref_mmps": "0",
+    "flow_model": "provisional",
+    "link_lost_land": "0",
+    "proto": "2",
+    "seq": "2052",
+    "ready": "1",
+    "radio_fault": "0",
+    "reject": "0",
+    "crc": "0",
+    "timeout": "0",
+    "key_drop": "0"
+  },
+  "operator_observation": "Initially described one side rising/tipping before whole-body liftoff; then clarified there was a little liftoff. No measured stable altitude or hover established.",
+  "interpretation": [
+    "No recorded fault6: under-range freshness fix did not cause immediate measured-ToF cutoff in these trials.",
+    "One roll tilt fault5; further outcomes are enumerated from actual log, not inferred lift capability.",
+    "No ASCEND/HOLD accepted in these runs; optical flow assist gain remained zero during active records.",
+    "Motor mapping/static signs were previously accepted. Current low-rate summaries cannot uniquely distinguish unequal motor/prop thrust, dynamic roll gain/authority, vibration or tether/ground interaction.",
+    "Read-only serial observation only; no reset, flash, gain changes or transmitted motor commands."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-16",
+  "task": "Preflight for user-authorized motor-locked diagnostic firmware flash",
+  "user_reported_aircraft_assembled": true,
+  "candidate": {
+    "profile": "contest_flow_id_probe_jp13",
+    "binary": ".pio/build/contest_flow_id_probe_jp13/firmware.bin",
+    "size_bytes": 41328,
+    "sha256": "1b87ccd1adee9756e08577e5b9a1cdf3f82d75fcd6f64cc62378a5038b75f210",
+    "motor_safety": {
+      "main_loop_forces_stop": true,
+      "pwm_driver_rejects_nonzero": true
+    }
+  },
+  "probe_discovery": {
+    "command": "/home/sz/.platformio/penv/bin/pyocd list --no-config",
+    "exit_code": 0,
+    "output": "No available debug probes are connected"
+  },
+  "host_usb_scan": {
+    "command": "lsusb",
+    "result": "No CMSIS-DAP/DAPLink probe enumerated"
+  },
+  "serial_scan": {
+    "command": "/home/sz/.platformio/penv/bin/pio device list",
+    "result": "Only system ttyS devices listed; no USB serial device enumerated"
+  },
+  "flash_result": "not performed",
+  "target_backup": "not performed",
+  "target_reset": "not performed",
+  "target_readback": "not performed",
+  "blocker": "DAP probe 814dc35a is not visible to the host",
+  "next_action": "Remove propellers and disconnect propulsion battery; connect DAP 814dc35a to the computer and JP11 to the flight controller. Back up target flash before programming, then program and compare a full readback."
+}

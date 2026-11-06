@@ -1,0 +1,7 @@
+Source: user pasted serial log after70% flash; excerpts, not independent capture.
+Attempt1: state=1 fault=0 PWM(M1/M2/M3/M6)=620,700,695,700
+[FAULT] code=7 from=1 t_ms=29931 imu_raw=1 imu_used=1 calibrated=1 settled_ms=28417 armlevel=0 acc_mg=102,216,-986 gyro_cdps=-682,121,-4854 roll_cd=-119 pitch_cd=-51 height_um=0 vz_mmps=0 height_valid=0 tof_mm=7 status=9 fresh=1 age_ms=25 output_trip=0 dt_us=6000
+Attempt2: state=1 fault=0 PWM(M1/M2/M3/M6)=665,700,700,700
+state=1 fault=0 PWM(M1/M2/M3/M6)=675,700,700,675
+[FAULT] code=7 from=1 t_ms=34942 imu_raw=1 imu_used=1 calibrated=1 settled_ms=33429 armlevel=0 acc_mg=128,285,-1110 gyro_cdps=1142,-1430,-1479 roll_cd=102 pitch_cd=-38 height_um=0 vz_mmps=0 height_valid=0 tof_mm=7 status=9 fresh=1 age_ms=43 output_trip=0 dt_us=6000
+Both faults followed by all PWM0. F4 returned IDLE0/fault0. No valid range in the pasted launch excerpts; reported raw launch ranges4..15mm. No separate physical-liftoff observation supplied for70%.

@@ -1,0 +1,23 @@
+{
+  "environment": "contest_aircraft1_pwm_closed_loop",
+  "size": 37308,
+  "sha256": "eb394db4043e7670b2939087e6b5552966403fd5c69bbffa2a3e6c7eae51eb5b",
+  "physical_pwm": true,
+  "motor_positions": {
+    "FL": "M2 CCW",
+    "FR": "M1 CW",
+    "RR": "M3 CCW",
+    "RL": "M6 CW"
+  },
+  "imu_body_axes": [
+    "sensorY",
+    "sensorX",
+    "-sensorZ"
+  ],
+  "nominal_duty": 0.15,
+  "max_duty": 0.2,
+  "flow_feedback": false,
+  "flashed": false,
+  "hardware_closed_loop_verified": false,
+  "review_passed": true
+}

@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""Fit the existing optical model from measured, cumulative FCAL trial endpoints.
+
+Input JSON: {"trials":[{"name":"...", "kind":"translation|rotation|holdout",
+"start":"snapshot.json", "end":"snapshot.json", "displacement_m":[forward,right]}]}.
+Paths are relative to the trial file. Produces evidence only; never changes flags.
+"""
+import argparse
+import json
+from pathlib import Path
+import numpy as np
+
+
+def interval(start, end):
+    for row in (start, end):
+        if row["PWM"] != [0, 0, 0, 0] or row["output_locked"] != 1:
+            raise ValueError("trial is not a motor-locked diagnostic")
+        if row["sat"] or (row["id"], row["inv"]) != (73, 182):
+            raise ValueError("saturated sums or invalid optical identification")
+        if not all(row[key] == 1 for key in ("imu", "tof", "flow", "valid")) or row["mm"] < 80:
+            raise ValueError("trial endpoint does not have valid height/IMU/flow")
+    if end["epoch"] != start["epoch"] or end["ms"] <= start["ms"]:
+        raise ValueError("sensor/reset epoch changed or time did not advance")
+    if end["bad"] != start["bad"] or end["pollerr"] != start["pollerr"]:
+        raise ValueError("an invalid sensor interval occurred inside the trial")
+    if end["n"] - start["n"] < 5:
+        raise ValueError("fewer than five accepted full sensor windows")
+    if end["n"] - start["n"] > (end["ms"] - start["ms"]) / 20 + 2:
+        raise ValueError("sample count exceeds the configured maximum 50Hz")
+    delta = lambda key: end[key] - start[key]
+    counts_height = np.array([delta("hy_mcount_milli"), delta("hx_mcount_milli")]) / 1000.
+    rotation_height = (np.array(end["hangle_umrad"]) - start["hangle_umrad"])[:2] / 1e6
+    angles = (np.array(end["angle_urad"]) - start["angle_urad"]) / 1e6
+    return counts_height, rotation_height, angles
+
+
+def design(c, b):
+    return np.array([[c[0], -b[0], -b[1], 0, 0],
+                     [c[1], 0, 0, -b[0], -b[1]]], dtype=float)
+
+
+def fit(trials):
+    train = [t for t in trials if t["kind"] != "holdout"]
+    if not any(t["kind"] == "translation" for t in train) or sum(t["kind"] == "rotation" for t in train) < 2:
+        raise ValueError("need measured translations and independent roll/pitch rotation trials")
+    matrix = np.vstack([design(t["c"], t["b"]) for t in train])
+    target = np.concatenate([t["displacement_m"] for t in train])
+    scale = np.linalg.norm(matrix, axis=0)
+    if np.any(scale < 1e-9):
+        raise ValueError("missing independent rotation/translation excitation")
+    normal = matrix / scale
+    coefficients, _, rank, singular = np.linalg.lstsq(normal, target, rcond=None)
+    if rank != 5:
+        raise ValueError("rank-deficient trials; cannot identify scale and all four rotation terms")
+    coefficients /= scale
+    k = float(coefficients[0])
+    rotation = coefficients[1:].reshape(2, 2)
+    report = {"radians_per_count": k, "translation": [0, 1, 1, 0],
+              "rotation": rotation.flatten().tolist(), "rank": int(rank),
+              "normalized_condition": float(singular[0] / singular[-1]), "trials": []}
+    for t in trials:
+        predicted = design(t["c"], t["b"]) @ coefficients
+        truth = np.asarray(t["displacement_m"], dtype=float)
+        report["trials"].append({"name": t["name"], "kind": t["kind"],
+            "measured_m": truth.tolist(), "predicted_m": predicted.tolist(),
+            "error_m": float(np.linalg.norm(predicted-truth)),
+            # Integral of body-axis gyro Z is not an Euler yaw difference.
+            "gyro_z_integral_deg": float(t["angles"][2]*180/np.pi)})
+    report["plausible_scale"] = 0 < k <= .02
+    report["calibration_accepted"] = False
+    report["reason"] = "Candidate fit only: inspect measured motion/pivot, conditioning and independent holdout errors before accepting; flags remain unchanged."
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("trials", type=Path)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    manifest = json.loads(args.trials.read_text())
+    trials = []
+    for trial in manifest["trials"]:
+        start = json.loads((args.trials.parent/trial["start"]).read_text())
+        end = json.loads((args.trials.parent/trial["end"]).read_text())
+        c, b, angles = interval(start, end)
+        trials.append(dict(trial, c=c, b=b, angles=angles))
+    result = fit(trials)
+    args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

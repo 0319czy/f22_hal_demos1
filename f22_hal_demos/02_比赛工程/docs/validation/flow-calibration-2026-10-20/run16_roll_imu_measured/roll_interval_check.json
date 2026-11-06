@@ -1,0 +1,18 @@
+{
+  "start_event": 66,
+  "end_event": 67,
+  "roll_change_deg": 14.88,
+  "pitch_change_deg": -3.36,
+  "bad_delta": 0,
+  "accepted_windows": 306,
+  "height_start_end_mm": [
+    104,
+    127
+  ],
+  "gyro_angle_change_deg": [
+    14.959526960409203,
+    -3.073288317302223,
+    1.5140982694127134
+  ],
+  "sensor_interval_valid": true
+}

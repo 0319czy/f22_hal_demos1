@@ -1,0 +1,48 @@
+{
+  "status": "DESIGN_ONLY",
+  "firmware_changed": false,
+  "hardware_access": false,
+  "sources": [
+    {
+      "name": "四元数与欧拉角之间的转换.pdf",
+      "sha256": "4d8f6230f553e1faf1f2f6634fb732a8b31ffa25aefb2674a57aa64ac8625863"
+    },
+    {
+      "name": "惯性导航_秦永元.pdf",
+      "sha256": "d91197dd925925e99b5622c40c1a1cbd6d12efd0284ab549278d088a4cfe1302"
+    },
+    {
+      "name": "叉积法融合陀螺和加速度核心程序详解（圆点博士四轴）.pdf",
+      "sha256": "648cb0645a94e0f9d18a060eaf570d775af2e9c78329498ae68fbe42825f402d"
+    },
+    {
+      "name": "基于互补滤波器的四旋翼飞行器姿态解算.pdf",
+      "sha256": "e1c0b749081bb74a3354b62a1bf363f7dc6a9897aba608f86adb58d13653bee0"
+    },
+    {
+      "name": "姿态解算说明（Mini AHRS）.pdf",
+      "sha256": "239b4a1ac9ba2ac2417cf6d5386879f7343668653992ca0af0e652cfd79764f8"
+    },
+    {
+      "name": "四元数解算姿态完全解析及资料汇总（3）.docx",
+      "sha256": "576ae32be80d9484c44f44a5cc0474f5caa936d361a305400ac55ac73ab4c8c1"
+    },
+    {
+      "name": "四元数解算姿态完全解析及资料汇总（2）.docx",
+      "sha256": "9b0766e3a089b0051b66aa48debc6dfa077d27592e311e1c2a03c0f53e69997c"
+    },
+    {
+      "name": "四元数解算姿态完全解析及资料汇总（1）.docx",
+      "sha256": "2cda37cd31236f4713863f148a902fadfba41118c5d4eb679f132f6040c05749"
+    },
+    {
+      "name": "惯性导航基本原理-(入门两天半).pdf",
+      "sha256": "c62e9a1b0bb5a20ce0ad2643306481e2d4796669efac68bce91af4c84e65da39"
+    },
+    {
+      "name": "基于PI_PD控制器的四旋翼姿态控制_唐健杰.pdf",
+      "sha256": "3c61f94e65ad540f2903be3b13cb57f31f16e6fae6656cdbb01dead5adb4ee09"
+    }
+  ],
+  "reading_scope": "控制/互补滤波论文相关章节，叉积代码，Mini AHRS相关章节，DOCX文本；四元数转换PDF第1页图像；秦永元书仅抽查绪论，未通读402页。"
+}

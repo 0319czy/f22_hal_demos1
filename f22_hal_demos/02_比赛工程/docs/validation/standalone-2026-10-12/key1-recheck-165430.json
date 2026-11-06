@@ -1,0 +1,13 @@
+{
+  "frames": 149,
+  "flow_valid_frames": 149,
+  "squal_min": 49,
+  "squal_max": 78,
+  "state_values": [
+    "0"
+  ],
+  "fault_values": [
+    "0"
+  ],
+  "pwm_all_zero": true
+}

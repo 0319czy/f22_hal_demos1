@@ -1,0 +1,21 @@
+{
+  "bytes": 46432,
+  "sha256": "0f22d03e578a7d370b6a5a115270353ddcce0d97cf5b1a3b6e80b82b17123504",
+  "readback_match": true,
+  "roll_limit": 0.08,
+  "previous_roll_limit": 0.04,
+  "P_I_unchanged": true,
+  "other_axes_unchanged": true,
+  "synthetic_roll_regression": "PASS",
+  "postflash_state": 0,
+  "postflash_fault": 0,
+  "postflash_link": 1,
+  "postflash_ready": 1,
+  "postflash_PWM": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "physical_retest_performed": false
+}

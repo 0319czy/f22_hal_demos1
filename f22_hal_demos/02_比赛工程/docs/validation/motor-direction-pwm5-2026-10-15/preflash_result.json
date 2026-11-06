@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "commander",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "-c",
+    "savemem 0x08000000 0x40000 docs/validation/motor-direction-pwm5-2026-10-15/preflash_256k.bin"
+  ],
+  "time": "2026-10-15T12:47:57.131035+08:00",
+  "exit_code": 0
+}

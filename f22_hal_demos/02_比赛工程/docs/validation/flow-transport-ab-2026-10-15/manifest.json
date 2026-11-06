@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-15T22:26:33.023000+08:00",
+  "candidate": {
+    "path": "firmware/contest_flow_spi_duplex_probe_jp13.bin",
+    "bytes": 43504,
+    "sha256": "8897ed5d610c12ac5f945b65278484207b87e568dce9585e3004872af3c11b69"
+  },
+  "built": true,
+  "host_spi_tests_exit": 0,
+  "flashed": false,
+  "serial_captured": false,
+  "reason": "No DAP in lsusb; no /dev/serial/by-id or ttyACM/ttyUSB device",
+  "board_last_verified_image": "firmware/contest_flow_id_probe_jp13.bin",
+  "motor_lock": "FLOW_ID_PROBE inherited; main STOP and physical driver reject nonzero PWM",
+  "experiment": "Alternative only: command byte full-duplex, write command+payload contiguous; unchanged 500us single-read/50us burst delay, no pin change",
+  "confirmed": "Existing product49 response and CS influence; 272 raised samples show fixed invalid motion despite ToF179-363mm",
+  "unresolved": "Far-end MOSI/address/write delivery, electrical integrity, device state vs driver; no unique hardware/software root yet",
+  "primary_sources": [
+    "https://wiki.bitcraze.io/_media/projects:crazyflie2:expansionboards:pot0189-pmw3901mb-txqt-ds-r1.40-280119.pdf",
+    "https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/src/drivers/optical_flow/pmw3901/PMW3901.cpp"
+  ],
+  "next": "Reconnect master DAP and power target; flash/readback candidate and compare ID/inverse/config5B/motion with split baseline. No motor command."
+}

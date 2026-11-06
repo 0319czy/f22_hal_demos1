@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-16T11:26:22.701709+08:00",
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "steps": [
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-transport-ab-2026-10-16/backup.bin"
+      ],
+      "exit": 0,
+      "seconds": 3.1375256309999884,
+      "log": "backup.log"
+    },
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_spi_duplex_probe_jp13.bin"
+      ],
+      "exit": 0,
+      "seconds": 3.0710411339999837,
+      "log": "upload.log"
+    },
+    {
+      "args": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 43504 docs/validation/flow-transport-ab-2026-10-16/readback.bin"
+      ],
+      "exit": 0,
+      "seconds": 1.2047368240000083,
+      "log": "readback.log"
+    }
+  ],
+  "motor_command_sent": false,
+  "previous_image_matches": true,
+  "image": {
+    "path": "firmware/contest_flow_spi_duplex_probe_jp13.bin",
+    "bytes": 43504,
+    "sha256": "8897ed5d610c12ac5f945b65278484207b87e568dce9585e3004872af3c11b69"
+  },
+  "full_readback_matches": true,
+  "status": "PARTIAL: transport A/B completed; optical fault unchanged. Shared I2C recovered after reset; root cause unresolved.",
+  "baseline_samples": 33,
+  "post_clear_samples": 76,
+  "last_consecutive_imu_tof_healthy_samples": 74,
+  "flow_result": {
+    "id": 73,
+    "inverse": 255,
+    "dx": -27650,
+    "dy": -27650,
+    "squal": 254,
+    "config_4e_5b": [
+      0,
+      0
+    ],
+    "interpretation": "Changing command receive handling and contiguous writes did not fix optical identification/data. Does not prove all software or all wiring correct."
+  },
+  "i2c_recovery": "i2c-recovery.json: SDA0/SCL1/SR2BUSY2 cleared to SDA1/SR2=0; reset, then final consecutive samples IMU1/ToF1",
+  "outputs": "All captured CCR-derived PWM values 0,0,0,0; output_locked1",
+  "pin_reference": "docs/MODULE_WIRING.md and ATK-PMW3901-manual.pdf PDF page5",
+  "next": "Check actual SPI command path at module endpoint, especially MOSI; do not change height gates or mark flow calibrated"
+}

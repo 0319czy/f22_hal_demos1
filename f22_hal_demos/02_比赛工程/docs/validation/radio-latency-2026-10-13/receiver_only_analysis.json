@@ -1,0 +1,13 @@
+{
+  "valid_received_frames": 90,
+  "commands": [
+    0
+  ],
+  "sequence_gaps_in_received_telemetry": 8,
+  "rx_interval_ms": {
+    "min": 49,
+    "p50": 51.0,
+    "max": 217
+  },
+  "note": "No remote USB observations yet: absolute one-way or PC observed delay cannot be measured"
+}

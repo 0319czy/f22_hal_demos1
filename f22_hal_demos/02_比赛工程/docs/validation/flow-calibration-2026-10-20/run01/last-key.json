@@ -1,0 +1,13 @@
+{
+  "key": 3,
+  "event": 18,
+  "sequence": 63968,
+  "allowed": 0,
+  "ready": 0,
+  "snapshot_valid": false,
+  "reason": "key_not_allowed",
+  "snapshot": null,
+  "host_time": "2026-10-20T19:32:40.274712+08:00",
+  "host_seconds": 161.4226,
+  "host_connection": 1
+}

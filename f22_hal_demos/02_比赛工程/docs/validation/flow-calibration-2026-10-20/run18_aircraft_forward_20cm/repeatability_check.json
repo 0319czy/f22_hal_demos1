@@ -1,0 +1,16 @@
+{
+  "run17": {
+    "height_weighted_forward_counts": 24.831,
+    "height_weighted_right_counts": -3.299,
+    "forward_only_candidate_radians_per_count": 0.008054448068946077,
+    "uncorrected_flow_vector_angle_deg": -7.567889630461468
+  },
+  "run18": {
+    "height_weighted_forward_counts": 19.485,
+    "height_weighted_right_counts": -3.022,
+    "forward_only_candidate_radians_per_count": 0.010264305876315116,
+    "uncorrected_flow_vector_angle_deg": -8.815973433473323
+  },
+  "new_vs_previous_forward_count_ratio": 0.7847046031170714,
+  "calibration_accepted": false
+}

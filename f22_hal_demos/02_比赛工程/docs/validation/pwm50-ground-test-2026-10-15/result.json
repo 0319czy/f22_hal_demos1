@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-15",
+  "source": "operator pasted serial log and described physical behavior; no independent capture",
+  "firmware_record": "docs/validation/pwm50-output-fix-2026-10-15/manifest.json",
+  "attempts": 2,
+  "pwm_telemetry_source": "src/main.c SendClosedLoop reads TIM3 CCR1/CCR2/CCR3 and TIM4 CCR1 multiplied by 5; confirms timer register settings, not oscilloscope waveforms or measured thrust",
+  "max_register_duty_permille": 500,
+  "fault_codes": [
+    7,
+    7
+  ],
+  "output_trip": [
+    0,
+    0
+  ],
+  "state_transition": "IDLE -> LAUNCH -> FAULT; operator F4 returns IDLE",
+  "tof_raw_mm_observed_during_launch": [
+    5,
+    15
+  ],
+  "valid_liftoff_height_observed": false,
+  "max_abs_pitch_deg_in_periodic_launch_lines": 11.54,
+  "operator_observation": "确定是升力，然后车身有向一边偏移的感觉，但是抬起好像没有",
+  "conclusions": [
+    "Previous 20% driver-ceiling fault9 did not recur in these two attempts; timer settings reached 50%.",
+    "Both attempts timed out waiting for a valid >=8cm range; no confirmed liftoff.",
+    "Estimated attitude changes with motor output; physical tilt, vibration, surface contact, tether and thrust imbalance remain to be separated.",
+    "Near-ground invalid ToF values are not accurate height measurements.",
+    "Several channels saturate at 50%; collective at the output ceiling leaves limited positive correction authority. This alone does not establish the cause of failed liftoff."
+  ],
+  "next": "Verify propeller type/orientation and motor positions with power disconnected; verify IMU signs and stabilizing differential with propellers removed and motor battery disconnected before another thrust trial. Check tether obstruction and loaded battery voltage if those pass.",
+  "flight_accepted": false
+}

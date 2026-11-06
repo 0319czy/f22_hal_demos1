@@ -1,0 +1,13 @@
+{
+  "firmware/contest_hover.bin": "46f55afc417e25c517c18ef01b596f1536ed91948e69ac60d5993ad4fd9a696f",
+  "remote/tle100/tle100.hex": "393263891e9cb3990fcb61c93d607e64ebf8ffcc9372ca50968ec64ea0d4c16a",
+  "firmware/contest_imu_check.bin": "1f003093496bae1484e36829507b7b495cc36ba731ce2a3ee4a65afc48e03e34",
+  "firmware/contest_motor_preview.bin": "b6d3cc21d77e183d4a7e0f5c9716d89fa8b57d0eed9035474cc203d24e6f8d91",
+  "firmware/contest_motor_m1.bin": "aae69845251658094ee20fc03e50847e19965817fa1982cca935d752e7dcdc68",
+  "firmware/contest_motor_m2.bin": "2235312116cea8c5c04644d8722e9ead8803178b1558ec4d5e4d62387d8b2fdc",
+  "firmware/contest_motor_m3.bin": "658f7faa593f202e068be1cde4765f7fc3209e32f1ef1b6103ea86647e848cca",
+  "firmware/contest_motor_m4.bin": "0d2328c37927a3cd90d89ddce37df97e97180db37a450ddd9783f92a40e921a5",
+  "firmware/contest_motor_m3_direct.bin": "7494aea54b4fdbf92efe3a6e21e731aeb834a3e7b4074529713248be5968cab8",
+  "firmware/contest_motor_quad_direct.bin": "4bc9f80541de6a5dd7eaf0d09625b247b94a61d9fd3e2c4d428f822a214bbf21",
+  "firmware/contest_motor_quad_diag.bin": "a6f4173cb16934c5f4ad6fc2daad2e489a771483290f70a6f7533205d6c7bf53"
+}

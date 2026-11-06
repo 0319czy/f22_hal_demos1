@@ -1,0 +1,12 @@
+{
+  "src/main.c": "1654a8f03eb653afa3b450573671837e93af7053f612a72b5bfb1bd6dcda2bb5",
+  "src/flight/closed_loop_radio.c": "32b7bbf75951e9be33bc4c89bb94609e09c8532982415ff7fc8575936fd4e32c",
+  "src/flight/closed_loop_radio.h": "7ad4837d56ecd168b3b987cd530f504532429851284a7b4f9e73cb930358b9a7",
+  "src/flight/closed_loop.c": "2a4c3daaf81b93f3acc67e4499d29d14eb24f851d08efded27b7b2dda5aa4146",
+  "src/flight/closed_loop_config.h": "7b6c9397f34c7c64cd6484ff41e75227792a072e226ca924e1d2e6da817edfb2",
+  "src/hal/Src/aircraft1_pwm.c": "d805de71c1784df19341964334576a7a7afdeb58fc828f6b2129efe9fd8189af",
+  "src/bench/radio_fast_config.c": "4d1d29995ea1ba54747d189b42f379eec028dfe31df63f6b6041dd2f963220cd",
+  "scripts/show_remote_keys.py": "9bb0645a85a3ec3856e8b9f5b4cc9f2dfbd0adc46a04c07a0f680ac724acc8e0",
+  "tests/test_closed_loop_radio.c": "1fe0de66e1cb2a58775e11ec3086e358e024e47d88024da58001904c07306cff",
+  "platformio.ini": "a5362ae8777ba85f2440f886b54d347db57e27d5e6d266e68249e5f5200da2ab"
+}

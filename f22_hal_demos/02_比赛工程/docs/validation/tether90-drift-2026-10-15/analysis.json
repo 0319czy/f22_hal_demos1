@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-15T17:50:42.093927+08:00",
+  "source": "selected exact rows from operator pasted logs; no independent serial capture",
+  "operator_quotes": [
+    "我感觉总是乱飞呢",
+    "整体已离地，但向旁边漂移",
+    "就0.几cm感觉"
+  ],
+  "findings": [
+    "User qualitatively reports brief near-ground lift and sideways drift, about sub-centimeter; no confirmed8cm or20cm flight.",
+    "Displayed launch sequence remains state1,fault0,valid0; ToF raw3-25mm in pasted launch rows.",
+    "Peak displayed channel900permille; final displayed motor values795,900,855,795, reported mixed mean838permille.",
+    "F4 seq583 is followed by state0 and all PWM0; no new fault transition is shown during this displayed start.",
+    "Initial state5/fault5 is already latched at excerpt start; its trigger snapshot and trajectory were not supplied.",
+    "flow_present0,flow0,errors1,axes0: sensor not recognized and lateral loop disabled.",
+    "Ground invalid ToF is consistent with reported near-floor lift; it is not evidence of a new range sensor failure.",
+    "Default90% reference/zero target during state1 are not measured hover demand or active height target."
+  ],
+  "not_proven": [
+    "Insufficient total thrust",
+    "Stable free flight",
+    "Cause of optical-flow identification failure",
+    "Properly tuned dynamic PID or lateral positioning"
+  ],
+  "changes": "Host display only: launch stage and absent flow/lateral-disabled labels. No controller/ceiling changes and no flash.",
+  "next": "Diagnose absent optical-flow identity/IO in stopped state; preserve existing static acceptance. Resolve stable vertical departure from blind zone before calibrated flow velocity feedback; do not enable uncalibrated axes by flag alone."
+}

@@ -1,0 +1,1 @@
+PASS: replayed 236 real telemetry samples; fault6 translation; physical output enabled; provisional calibration wording; peak PWM 91.5%; key event and terminal restoration. No serial port opened by display validation.

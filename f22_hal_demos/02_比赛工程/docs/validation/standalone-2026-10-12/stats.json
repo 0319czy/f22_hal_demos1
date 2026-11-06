@@ -1,0 +1,26 @@
+{
+  "frames": 75,
+  "state_values": [
+    0
+  ],
+  "fault_values": [
+    0
+  ],
+  "dt_ms_values": [
+    5,
+    6
+  ],
+  "tof_mm_min": 11,
+  "tof_mm_max": 22,
+  "roll_deg_min": -2.62,
+  "roll_deg_max": -2.57,
+  "pitch_deg_min": -0.39,
+  "pitch_deg_max": -0.35000000000000003,
+  "imu_all_valid": true,
+  "flow_all_valid": true,
+  "arm_level_all_ok": true,
+  "pwm_all_zero": true,
+  "trip_values": [
+    0
+  ]
+}

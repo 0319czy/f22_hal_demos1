@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-16",
+  "scope": "Control-design alignment: static gravity attitude initialization, radio-loss response, launch-to-landing handover, telemetry and regression",
+  "source_of_truth": "docs/CONTROL_DESIGN_2026-10-16.md",
+  "changes": [
+    "When radio validity expires after 300 ms, an active controller with valid vertical state requests the normal controlled-landing path and latches link_lost_landing for telemetry.",
+    "During blind-zone launch, radio loss only uses the monotonic ground-launch fade when fresh raw ToF confirms near ground; without vertical or near-ground evidence it reports CL_LINK_LOST and zeros output rather than claiming a controlled landing.",
+    "A landing request from launch with valid range captures the actually emitted mixer mean for a bumpless transition. This is a transition reference only, not a learned hover-throttle estimate.",
+    "Three-pass review found that an intentional landing request during blind-zone CL_LAUNCH starts the bounded thrust fade without near-ground evidence; unlike the radio-loss path, it cannot prove the aircraft is still on the ground. This remains a pre-flight blocker and is documented without changing flight behavior in this review.",
+    "Attitude startup now waits for a stable 40-sample gravity window and initializes the body-to-NED quaternion from mean specific force; unstable/inverted starts remain invalid. This is a static alignment gate, not a complete dynamic acceleration classifier.",
+      "Design notes now distinguish implemented behavior from target behavior: no accelerometer bias estimate, adaptive vibration confidence, nonzero rate D, mixer saturation feedback, thrust calibration, inertial-flow fusion or relative-position hold is claimed.",
+    "Critical IMU, ToF, timing and output faults retain their existing fault-stop behavior; HOVER_STOP remains the immediate stop command.",
+    "JP13 closed-loop telemetry includes link_lost_land; design, project status and historical tethered-flight notes were updated."
+  ],
+  "validation": {
+    "command": "bash scripts/check_closed_loop.sh",
+    "result": "PASS",
+    "coverage": [
+      "Host regression suites with AddressSanitizer and UndefinedBehaviorSanitizer",
+      "Initial gravity alignment: stable tilted poses, insufficient window, gyro motion, changing near-1g acceleration, and inverted start",
+      "Radio v2/v3 bridge, controlled descent on link loss, reconnect does not resume, STOP and fresh START recovery",
+      "Tethered and flow-assisted closed-loop tests for link-loss descent, blind-zone handling and sensor-fault override",
+      "Independent PWM lock and output-register substitute tests",
+      "10 PlatformIO environments built successfully; firmware marker, output lock and symbol isolation checks passed"
+    ],
+    "focused_tests": [
+      "tests/test_tethered_flight.c passed with CL_HOST_REPLAY_ONLY, CL_TETHERED_FLIGHT and CL_RADIO_POWER_PROFILE",
+      "tests/test_flow_assist.c passed with CL_HOST_REPLAY_ONLY, CL_TETHERED_FLIGHT, CL_FLOW_ASSIST and CL_RADIO_POWER_PROFILE",
+      "git diff --check passed"
+    ],
+    "locked_build_artifacts": {
+      "contest_tethered_flight_jp13": {
+        "bytes": 42104,
+        "sha256": "633357a8c9c6827edd50e2305367b09f8ab261cdf8ccc28d9d6f18b0dcc5e6a6"
+      },
+      "contest_tethered_flight_jp13_pwm100": {
+        "bytes": 42132,
+        "sha256": "8531bc431825100c50fe4259b700c4ed25304446799156f835f063afa9d27d06"
+      },
+      "contest_flow_assist_jp13": {
+        "bytes": 42412,
+        "sha256": "be6cebe9e9c9a70accee0991e06960b72740f9cd839cdb46cf7a2981611a6a8c"
+      }
+    }
+  },
+  "three_pass_review": [
+    {
+      "pass": 1,
+      "focus": "逐条对照控制方案的传感融合、分段控制与状态转换",
+      "result": "与本轮实现一致；设计中尚未实现的项目仍明确标为未完成",
+      "checked": [
+        "稳定40样本平均重力初始化机体到NED四元数；姿态环始终运行；首个有效ToF后即启用垂直修正，8cm仅作起飞阶段/光流距离判据",
+        "光流仅在距离、质量和标定有效时渐进参与横向速度阻尼",
+        "有效高度下的遥控失联进入正常下降；遥控失联发生在盲区启动时，只有新鲜近地原始ToF才能走地面取消渐停",
+        "设计目标和当前实现已分开说明：静态姿态门、短时互补高度估计和速度阻尼存在；动态加速度可信度、KF偏置/协方差、推力标定和相对位置控制仍是缺口"
+      ],
+      "open_gaps": [
+        "静止重力门限不能排除恒定线加速度，且门限未用真实振动/启动记录验证",
+        "高度观察器仍是短时互补估计，不是带偏置和协方差的三状态KF；固定ToF创新门限未整定，也未扣安装高度d0",
+        "加速度零偏/自适应振动权重、非零角速度D和混控饱和反馈未实现；光流比例/旋转补偿没有实测标定，悬停推力及动态PID没有飞行整定"
+      ]
+    },
+    {
+      "pass": 2,
+      "focus": "复核状态边界、重复事件、故障优先级和急停语义",
+      "result": "回归覆盖的边界通过；未验证的传感器失效边界保留为飞行阻塞",
+      "checked": [
+        "持续失联不会反复重置降落计时；无线恢复或新的START不会恢复旧飞行，需STOP后新START",
+        "正常降落的触地末段渐停需要新鲜原始5至39mm状态正常读数；融合高度无效本身不能触发。已确认代码差异：盲区CL_LAUNCH时操作者主动取消会不经近地证据直接启动0.20 duty/s减推力，失联分支则要求新鲜近地证据；前者不能证明飞机仍在地面，列为飞行前阻塞",
+        "IMU、ToF超时、倾角、时序和输出故障仍走故障关断；HOVER_STOP仍是立即停机"
+      ],
+      "open_gaps": [
+        "ToF完全失联且惯性延拓过期时仍会故障归零；尚无经过验证的空中降级方案",
+      "盲区启动且融合高度无效时，主动降落/取消命令会无近地证据直接渐停；首次有效ToF前若已离地，可能空中减推力。与要求新鲜近地证据的失联处理不同，该分支须在动力飞行前修正或完成专门验证",
+        "正常降落、遥控失联降落及软着陆均未做硬件或飞行验收"
+      ]
+    },
+    {
+      "pass": 3,
+      "focus": "复跑测试、干净重建、固件锁止标记及验证记录",
+      "result": "通过",
+      "checked": [
+        "最终文档变更后重跑scripts/check_closed_loop.sh通过，10个PlatformIO环境构建及主机回归通过",
+        "最终源码后，三个系留/光流环境清理各自构建目录后重新编译、链接；全部固件标记和物理输出隔离检查通过，摘要中的BIN长度/SHA-256及ELF/对象时间戳已复算",
+        "scripts/check_docs.py、summary.json解析、目标文档空白字符检查及git diff --check通过；未打开串口、未烧录、未驱动电机"
+      ]
+    }
+  ],
+  "hardware": {
+    "serial_opened_this_review": false,
+    "firmware_programmed_this_review": false,
+    "motors_commanded_this_review": false,
+    "acceptance": "Synthetic tests and locked builds only; no radio end-to-end or flight validation."
+  },
+  "remaining_blockers": [
+    "A total ToF loss or expired inertial height estimate still faults to zero output; no unvalidated fixed-throttle fallback was added.",
+    "The short height observer is not the proposed three-state covariance filter and has no synchronized high-rate sensor replay or tuned innovation noise.",
+    "Attitude gains, thrust margin, flow calibration, link-loss landing and normal landing have no dynamic flight acceptance.",
+    "Hardware tethered-flight profiles remain locked after the reported frame damage."
+  ]
+}

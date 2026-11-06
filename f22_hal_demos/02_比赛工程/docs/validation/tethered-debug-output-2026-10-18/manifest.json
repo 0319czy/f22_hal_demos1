@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-18",
+  "status": "flashed_and_readback_verified",
+  "target": {
+    "mcu": "STM32F103RC",
+    "programmer": "Horco CMSIS-DAP",
+    "probe_id": "814dc35a",
+    "interface": "JP11",
+    "connect_mode": "under-reset"
+  },
+  "firmware": {
+    "environment": "contest_tethered_flight_debug_jp13_pwm100",
+    "path": "firmware/contest_tethered_flight_debug_jp13_pwm100.bin",
+    "size_bytes": 45224,
+    "sha256": "ce55accb93ef98e4bd66a14c77d19ca726711d1cfeba132eb1568c25da22d632",
+    "motor_output_enabled": true,
+    "motor_pwm_ceiling_permille": 1000,
+    "control_scope": [
+      "IMU attitude and angular-rate feedback",
+      "ToF vertical observation and height control",
+      "wireless takeoff and landing commands"
+    ],
+    "not_included": [
+      "optical-flow lateral feedback",
+      "validated full competition hover behavior"
+    ],
+    "keys": {
+      "F2": "takeoff",
+      "F3": "controlled_landing",
+      "F4": "immediate_motor_stop"
+    }
+  },
+  "preflash_backup": {
+    "path": "docs/validation/tethered-debug-output-2026-10-18/preflash_256k.bin",
+    "size_bytes": 262144,
+    "sha256": "2468c249d688c3e7ee0adc353fac215d743da3beb9c673176795d2f19956931f"
+  },
+  "flash": {
+    "command": "/home/sz/.platformio/penv/bin/pyocd load --no-config --probe 814dc35a --target stm32f103rc --connect under-reset --erase sector --base-address 0x08000000 firmware/contest_tethered_flight_debug_jp13_pwm100.bin",
+    "erased_bytes": 45056,
+    "programmed_bytes": 45056,
+    "skipped_bytes": 2048,
+    "result": "success"
+  },
+  "readback": {
+    "path": "docs/validation/tethered-debug-output-2026-10-18/readback.bin",
+    "size_bytes": 45224,
+    "sha256": "ce55accb93ef98e4bd66a14c77d19ca726711d1cfeba132eb1568c25da22d632",
+    "byte_for_byte_matches_firmware": true
+  },
+  "software_validation": {
+    "command": "PATH=/home/sz/.platformio/penv/bin:$PATH bash scripts/check_closed_loop.sh",
+    "host_regression_and_sanitizer_tests": "passed",
+    "controller_to_pwm_register_double_test": "passed",
+    "platformio_environments_built": 11,
+    "binary_marker_and_symbol_checks": "passed"
+  },
+  "runtime_validation": {
+    "post_flash_serial_boot_check": "not_performed",
+    "motor_output_test": "not_performed",
+    "flight_test": "not_performed",
+    "operator_reported_frame_repaired": true,
+    "optical_flow_calibration_permit": 0
+  },
+  "limitations": [
+    "This image deliberately unlocks physical motor output for tethered debugging; it is not a flight-acceptance result.",
+    "The optical-flow sensor is not used in the lateral control loop in this image.",
+    "F4 is an immediate stop command; F3 requests controlled landing.",
+    "The image has not been checked for fresh boot telemetry after flashing."
+  ]
+}

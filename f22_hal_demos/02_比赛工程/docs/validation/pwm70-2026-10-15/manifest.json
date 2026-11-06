@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-15",
+  "profile": "contest_aircraft1_radio_v2_jp13",
+  "status": "flashed and complete image readback verified; physical flight unverified",
+  "requested_pwm_profile": {
+    "nominal_duty": 0.7,
+    "physical_driver_max_duty": 0.7,
+    "launch_ramp_duty_per_second": 0.5,
+    "nominal_time_to_target_seconds": 1.4,
+    "launch_timeout_seconds": 2.0,
+    "f4_stop_retained": true,
+    "current_feedback_control": false,
+    "flow_axes_verified": false
+  },
+  "firmware": {
+    "file": "firmware/contest_aircraft1_radio_v2_jp13_pwm70.bin",
+    "bytes": 40996,
+    "sha256": "0312e08817a86f0db55f329bdb5472a7b760c89c87f447bf15782a61337a00fc"
+  },
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "connection": "JP11 SWD via wireless CMSIS-DAP",
+  "preflash_backup": {
+    "file": "docs/validation/pwm70-2026-10-15/preflash_256k.bin",
+    "bytes": 262144,
+    "sha256": "1a4b0f798cb40054aab65ee0e558e13ca8e5a359f03915bb05609a54539d47bb",
+    "result": {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 0x40000 docs/validation/pwm70-2026-10-15/preflash_256k.bin"
+      ],
+      "time": "2026-10-15T12:28:35.846333+08:00",
+      "exit_code": 0
+    }
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_aircraft1_radio_v2_jp13_pwm70.bin"
+    ],
+    "time": "2026-10-15T12:28:38.607807+08:00",
+    "exit_code": 0
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 40996 docs/validation/pwm70-2026-10-15/readback.bin"
+    ],
+    "time": "2026-10-15T12:28:40.025864+08:00",
+    "exit_code": 0,
+    "bytes": 40996,
+    "sha256": "0312e08817a86f0db55f329bdb5472a7b760c89c87f447bf15782a61337a00fc",
+    "matches_image": true
+  },
+  "verification": {
+    "check_log": "docs/validation/pwm70-2026-10-15/check.log",
+    "check_log_sha256": "3c5403d86847fbbb0a9668f070b6dfb165780bdc1b460d46f504078f06070d57",
+    "host_tests": "ASAN/UBSAN; real controller -> register-double driver ramp/tilt/stop for current power profile and legacy15/20%; exact cap, overcap, nonfinite, watchdog, key-stop, link, timeout and landing checks",
+    "builds": "five PlatformIO environments passed; physical-output isolation checks passed",
+    "postflash_serial_capture": "not opened automatically",
+    "motor_commands_sent": false,
+    "flight_accepted": false
+  },
+  "superseded_by": "docs/validation/pwm90-2026-10-15/manifest.json",
+  "physical_trial": "operator pasted two attempts reaching700permille, both fault7; output_trip0; range invalid. See operator_log_excerpt.txt"
+}

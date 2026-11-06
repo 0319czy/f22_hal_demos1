@@ -1,0 +1,31 @@
+# 编译与构建产物
+**/.pio/
+**/build/
+**/__pycache__/
+*.pyc
+
+# 历史备份快照（体积大，留在本机）
+_flash-backup-*/
+_pathfix_backup_*/
+_tuning_backup_*/
+**/archive/
+
+# 本机 IDE 配置
+**/.vscode/
+
+# PPT 渲染中间产物
+ppt_build/preview*/
+ppt_build/pv*/
+
+# 系统垃圾
+.DS_Store
+*~
+*.swp
+
+# 原始采集日志与大体量样本数据（保留汇总文档，不保留原始逐帧数据）
+f22_hal_demos/02_比赛工程/logs/
+*.jsonl
+
+# 参考资源库（体积过大，留在本机）
+无人机资料/
+竞赛相关技术资料/

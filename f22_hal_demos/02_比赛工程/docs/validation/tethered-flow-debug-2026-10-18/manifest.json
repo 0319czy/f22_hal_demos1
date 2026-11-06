@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-18",
+  "purpose": "Build, flash, read back, and inspect the tethered integrated IMU/ToF/PMW3901 control image with physical motor output enabled.",
+  "status": "Integrated control image is installed and boots. Physical output is enabled but idle at zero PWM. No takeoff or flight acceptance was performed.",
+  "profile": "contest_tethered_flow_debug_jp13",
+  "firmware": {
+    "path": "firmware/contest_tethered_flow_debug_jp13_provisional.bin",
+    "size_bytes": 47292,
+    "sha256": "7b9011bac2a430473203fdd2019659a829679f8503e7832d83d16e4c72a1e5b8",
+    "output_locked": false,
+    "pwm_ceiling_permille": 1000,
+    "idle_pwm_permille": [0, 0, 0, 0],
+    "radio_mapping": {
+      "F2": "takeoff",
+      "F3": "controlled descent",
+      "F4": "immediate stop"
+    }
+  },
+  "control_paths": {
+    "imu": "Attitude and rate loop runs throughout powered flight.",
+    "tof": "Fused vertical observation and height loop run when ToF range is valid; 5-39 mm near-ground samples remain outside the valid-height policy.",
+    "pmw3901": "Relative XY position outer loop and optical-flow velocity inner loop are compiled into the active profile and fade in at 80 mm usable range; IMU attitude control remains active.",
+    "flow_calibration": "Provisional signed axes forward=+dy/right=+dx and nominal scale 0.002131946 rad/count; FLOW_CALIBRATED and CL_FLOW_AXES_VERIFIED remain 0. This is active tethered trial control, not accepted calibration or stable-flight proof."
+  },
+  "software_validation": {
+    "command": "bash scripts/check_closed_loop.sh",
+    "result": "PASS: host control, PWM, flow, recovery, and safety tests; 12 PlatformIO firmware environments; active profile markers and physical PWM driver symbol checked.",
+    "bus_recovery_unit_test": "PASS: python3 tests/test_flow_capture_bus.py"
+  },
+  "programming": {
+    "probe": "814dc35a",
+    "target": "stm32f103rc",
+    "interface": "JP11 SWD via CMSIS-DAP, under-reset",
+    "command": "/home/sz/.platformio/penv/bin/pyocd load --no-config --probe 814dc35a --target stm32f103rc --connect under-reset --erase sector --base-address 0x08000000 firmware/contest_tethered_flow_debug_jp13_provisional.bin",
+    "result": "PASS: 45056 bytes erased/programmed; 4096 bytes skipped.",
+    "preflash_backups": [
+      {
+        "path": "docs/validation/tethered-flow-debug-2026-10-18/preflash_256k.bin",
+        "sha256": "c4be18ebdc6d2b405d4cb7f4612f4633d5b5a2420a4e77e9016bf0c65d4a1914"
+      },
+      {
+        "path": "docs/validation/tethered-flow-debug-2026-10-18/preflash_after_first_image_256k.bin",
+        "sha256": "2ff4db8cba98fe4dd98580da5795973597dda9339c9c4e563409587fc86e13ae"
+      }
+    ],
+    "readback": "docs/validation/tethered-flow-debug-2026-10-18/readback_i2c_recovery.bin",
+    "readback_bytes": 47292,
+    "readback_sha256": "7b9011bac2a430473203fdd2019659a829679f8503e7832d83d16e4c72a1e5b8",
+    "readback_matches_firmware": true
+  },
+  "boot_capture": {
+    "log": "docs/validation/tethered-flow-debug-2026-10-18/boot_uart_i2c_recovery.log",
+    "reset_command": "/home/sz/.platformio/penv/bin/pyocd commander --no-config --probe 814dc35a --target stm32f103rc --connect attach --command reset --command go",
+    "i2c2_boot_clear_pulses": 0,
+    "imu_calibration": "ok=1, reason=ok, id=104, 100 samples",
+    "tof": "present; raw distance 5-27 mm and valid=0 on the table, below the 40 mm valid-height policy",
+    "pmw3901": "present; id=0x73, inverse=0xB6, flow_err=0, flow_fault=0",
+    "radio_link": 0,
+    "flight_state": 0,
+    "pwm_permille": [0, 0, 0, 0],
+    "output_locked": 0
+  },
+  "earlier_boot_issue": "The first active-flow image booted with I2C2 BUSY after a debug reset, leaving IMU/ToF unavailable. I2C2_ClearBusAtBoot was added before peripheral initialization; this image reports boot_bus_clear=0, calibrated IMU, ToF present, and flow present.",
+  "flight_acceptance": "Pending. Current boot capture has radio link=0. The board has not received a takeoff command in this validation, and no physical motor or flight response is claimed."
+}

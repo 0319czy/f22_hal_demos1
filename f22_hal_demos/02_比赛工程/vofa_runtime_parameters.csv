@@ -1,0 +1,2 @@
+rate_kp,rate_ki,roll_limit,pitch_yaw_limit,rate_integral_limit,angle_to_rate_gain,rate_ref_limit_dps,left_trim,front_trim,yaw_trim,collective_trim,target_range_m,height_to_vz_gain,vz_target_limit_mps,vertical_kp,vertical_ki,vertical_limit,vertical_integral_limit,collective_slew_up,collective_slew_down,land_collective_slew_down,land_final_fade_per_sec,takeoff_range_m,ground_clearance_margin_m,target_range_slew,launch_vz_target_limit,launch_trim_slew,launch_trim_limit
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

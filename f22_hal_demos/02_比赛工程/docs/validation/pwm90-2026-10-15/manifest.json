@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-15",
+  "profile": "contest_aircraft1_radio_v2_jp13",
+  "status": "flashed and complete image readback verified; physical flight unverified",
+  "requested_pwm_profile": {
+    "nominal_duty": 0.9,
+    "physical_driver_max_duty": 0.9,
+    "launch_ramp_duty_per_second": 0.5,
+    "nominal_time_to_target_seconds": 1.8,
+    "launch_timeout_seconds": 2.0,
+    "f4_stop_retained": true,
+    "current_feedback_control": false,
+    "flow_axes_verified": false
+  },
+  "firmware": {
+    "file": "firmware/contest_aircraft1_radio_v2_jp13_pwm90.bin",
+    "bytes": 40996,
+    "sha256": "0bc5f79474646a880dbd4ba51b197c79125b3f46023d88a31b9d23b546f73bb5"
+  },
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "connection": "JP11 SWD via wireless CMSIS-DAP",
+  "preflash_backup": {
+    "file": "docs/validation/pwm90-2026-10-15/preflash_256k.bin",
+    "bytes": 262144,
+    "sha256": "a6cdd474b5e8cf48b1a65e91658a362771823bc4e8398ff1871ca3ca9faab012",
+    "result": {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 0x40000 docs/validation/pwm90-2026-10-15/preflash_256k.bin"
+      ],
+      "time": "2026-10-15T12:31:00.178694+08:00",
+      "exit_code": 0
+    }
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_aircraft1_radio_v2_jp13_pwm90.bin"
+    ],
+    "time": "2026-10-15T12:31:03.138129+08:00",
+    "exit_code": 0
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 40996 docs/validation/pwm90-2026-10-15/readback.bin"
+    ],
+    "time": "2026-10-15T12:31:04.639073+08:00",
+    "exit_code": 0,
+    "bytes": 40996,
+    "sha256": "0bc5f79474646a880dbd4ba51b197c79125b3f46023d88a31b9d23b546f73bb5",
+    "matches_image": true
+  },
+  "verification": {
+    "check_log": "docs/validation/pwm90-2026-10-15/check.log",
+    "check_log_sha256": "823fcd2032d771287785545ddf2411f144cfee7c51ed3d5e10842174dee09ffb",
+    "host_tests": "ASAN/UBSAN; real controller -> register-double driver ramp/tilt/stop for current power profile and legacy15/20%; exact cap, overcap, nonfinite, watchdog, key-stop, link, timeout and landing checks",
+    "builds": "five PlatformIO environments passed; physical-output isolation checks passed",
+    "postflash_serial_capture": "not opened automatically",
+    "motor_commands_sent": false,
+    "flight_accepted": false
+  },
+  "source_sha256": {
+    "src/flight/closed_loop_profile.h": "280f5d8d95a4d98e06e4d6508bd754a15ef06b8f35b1f8a8259ae18a51f11d11",
+    "src/flight/closed_loop_config.h": "99af9fb5e802f07d6f4b07a21199c6b82e4a766b3970333960ac4803712218f1",
+    "src/flight/closed_loop.c": "b4c15a3cf0c27ae4dfcac2126d75080d091da2b58926e68917e21a7a5dbf7ede",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "platformio.ini": "263543248e349bfde3c911f09077a737a7181a9739bb38f46e391208db62413f",
+    "scripts/check_closed_loop.sh": "fcdd924ea41cd8252ab2887e811898d23928b4ada8fe164210f1a7887a56cd4a",
+    "tests/test_closed_loop.c": "70d086f005b709f6252ae86472d0719debc60daa47dd6fb9b14b1c18ed774a67",
+    "tests/test_aircraft1_pwm.c": "191d995475d562d0613fcfa66773b95a2bd4970569c921f65093ef7c3afa40d3"
+  },
+  "parameter_validation": "Removed fixed80% ceiling; configuration now must fit the same selected shared profile as PWM driver. Above-profile config is rejected by regression test.",
+  "physical_trial": "Two operator trials reached900permille, both fault7 with output_trip0 and invalid range; asymmetric lifting/spinning confirmed. No stable takeoff.",
+  "latest_operator_test": "docs/validation/pwm90-ground-test-2026-10-15/result.json",
+  "replaced_on_board_by": "docs/validation/motor-direction-pwm1-2026-10-15/manifest.json"
+}

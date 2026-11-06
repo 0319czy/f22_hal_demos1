@@ -1,0 +1,104 @@
+{
+  "start": "2026-10-20T19:51:17.888022+08:00",
+  "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "baud": 115200,
+  "motor_command_sent": false,
+  "connected": false,
+  "connections": 22,
+  "disconnects": [
+    {
+      "host_seconds": 3.0064,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 7.0521,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 11.0952,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 15.1417,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 19.1861,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 23.2311,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 27.2774,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 31.3216,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 35.3673,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 39.412,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 43.4575,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 47.5026,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 51.5485,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 55.5929,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 60.8427,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 64.8878,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 68.9339,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 72.9799,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 77.0242,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 81.0685,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 85.1131,
+      "error": "no serial data for 3 seconds"
+    },
+    {
+      "host_seconds": 89.1592,
+      "error": "no serial data for 3 seconds"
+    }
+  ],
+  "open_failures": 0,
+  "discarded_partial_bytes": 69,
+  "seconds": 90.096,
+  "samples": 0,
+  "partial_frames": 0,
+  "serial_released": true
+}

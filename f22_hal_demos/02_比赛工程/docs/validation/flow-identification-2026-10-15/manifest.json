@@ -1,0 +1,158 @@
+{
+  "firmware": {
+    "file": "firmware/contest_flow_id_probe_jp13.bin",
+    "bytes": 43448,
+    "sha256": "7fbe379f9f464e09adb67ce5a62b2153d588f7bd88f6f2e7cb631dfcc92c4d8e"
+  },
+  "steps": [
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-identification-2026-10-15/probe-backup.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.897956388998864,
+      "log": "probe-backup.log"
+    },
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_id_probe_jp13.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.992071216001932,
+      "log": "probe-upload.log"
+    },
+    {
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 43448 docs/validation/flow-identification-2026-10-15/probe-readback.bin"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.8645559629985655,
+      "log": "probe-readback.log"
+    }
+  ],
+  "motor_command_sent": false,
+  "diagnostic_only": true,
+  "full_readback_matches": true,
+  "capture": {
+    "port": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+    "baud": 115200,
+    "seconds": 15,
+    "bytes": 41468,
+    "lines": 77,
+    "log": "probe-serial.log"
+  },
+  "recorded_at": "2026-10-15T22:16:32.198346+08:00",
+  "status": "PARTIAL: diagnostic firmware flashed/readback matches; self-captured valid-height data confirms optical stream invalid. IMU and ToF restored after stopped-board I2C clear plus reset. Root cause and optical calibration unresolved.",
+  "source_sha256": {
+    "src/sensors/flow.c": "5ad10d0e557407f7076cd0d91cc76cbf44a188b4fc7309494ad4890112ee8606",
+    "src/sensors/flow.h": "0a97831b34680894c32f80327b2e5a14c4914bfd90763b2d27f0a5b80eb51d2d",
+    "src/sensors/f22_sensor_bus.c": "3956a9a0c758fe5653c3a431a3dbee487ce1baea94befd3229dc233140281ba0",
+    "src/main.c": "9d6d202e65e88d8d0993ee3623b988dc9e578fc30f026f8062da88bcad7d46a5",
+    "src/hal/Src/aircraft1_pwm.c": "ce7c5b3d29ef15c60ea501006130ec6d122673a822c1890b26f9243810853550",
+    "platformio.ini": "d950f7b9c89e6c5a44d95f4cbc7e6d3969505df5acdd1be3fa7a2dc1254c07ae",
+    "scripts/show_remote_keys.py": "63fa0802d5d40f7e94701db84bba0e0d5444188151833026a39ec8f0836474f8",
+    "tests/test_flow_driver.c": "c285aefd1c0ed6b7dfddb1caf942c8a19b0eaa5fe045b72d4037fd9ad3770c11"
+  },
+  "actual_height_comparison": {
+    "samples": 272,
+    "imu_values": [
+      "1"
+    ],
+    "tof_values": [
+      "1"
+    ],
+    "min_mm": 179,
+    "max_mm": 363,
+    "flow_pairs": [
+      [
+        "-27650",
+        "-27650"
+      ]
+    ],
+    "squal": [
+      "254"
+    ]
+  },
+  "manual_findings": {
+    "file": "docs/references/ATK-PMW3901-manual.pdf",
+    "pdf_page8": "Manufacturer reads0/0x5f but does not gate InitRegisters on inverseB6",
+    "pdf_page9": "Uses image min/max and pixel outlier rejection; ID alone is insufficient to accept data",
+    "pdf_page5": "Schematic verified visually; HEAD2 pins5=NCS,6=MOSI,7=MISO,8=SCLK"
+  },
+  "interpretation": {
+    "not_due_only_to_near_ground": true,
+    "optical_valid": false,
+    "optical_motion_raw": "Fixed -27650 on both axes and SQUAL254 in all272 samples despite varying valid ToF179-363mm",
+    "configuration_readback": "4E/5B read0; write/readback or transport unresolved, not proof of which physical fault",
+    "SPI_comparison": "all4 modes at prescalers32/256 failed to obtain good inverse/data; canonical GPIO simulation same symptom; swapped CS/MOSI not validated",
+    "chip_select": "deasserted PB12 readsFF; asserted PB12 clocks49 response; no proof of far-end MOSI integrity"
+  },
+  "i2c_regression": {
+    "observed": "after intrusive stopped-board register probing/flash, I2C2 SR2BUSY2 and SDA low; IMU0/ToF0",
+    "recovery": {
+      "before": {
+        "SCL": 1,
+        "SDA": 0,
+        "SR2": 2
+      },
+      "gpio_released": {
+        "SCL": 1,
+        "SDA": 0,
+        "SR2": 2
+      },
+      "after_bus_clear": {
+        "SCL": 1,
+        "SDA": 1,
+        "SR2": 0
+      },
+      "after_restore": {
+        "SCL": 1,
+        "SDA": 1,
+        "SR2": 0
+      }
+    },
+    "accepted_evidence": "after-bus-clear-reset.log and height-motion-comparison.log show IMU1/ToF1; live clear alone did not restore continuous UART until target reset",
+    "root_cause": "likely interrupted I2C during debug halt; not proven; no persistent firmware bus-recovery fix claimed"
+  },
+  "current_board_mode": "temporary raw identification diagnostic, main forcesSTOP plus driver rejects every nonzero duty",
+  "tests": {
+    "regression": "check.log: nine production environments passed",
+    "diagnostic_build": "probe-build.log: diagnostic environment passed",
+    "output_lock": "probe-output-lock-test.log: actual driver register-double rejects any nonzero demand",
+    "driver_probe": "injected inverseFF can inspect raw data but present/valid remain0"
+  },
+  "captured_serial": true
+}

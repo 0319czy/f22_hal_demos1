@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-21",
+  "change": "Centralized the IMU-attitude + ToF-vertical closed-loop tuning gains into src/flight/closed_loop_tuning.h; behavior-preserving (all numeric values unchanged).",
+  "files": [
+    "src/flight/closed_loop_tuning.h",
+    "src/flight/closed_loop.c"
+  ],
+  "verification": "scripts/check_closed_loop.sh exited 0: host tests, 13 environment builds, and symbol/marker assertions all passed.",
+  "firmware": "none rebuilt or flashed; no motor output touched"
+}

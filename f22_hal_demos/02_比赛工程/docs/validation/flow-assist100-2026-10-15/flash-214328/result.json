@@ -1,0 +1,80 @@
+{
+  "recorded_at": "2026-10-15T21:43:34.920592+08:00",
+  "status": "FLASHED_AND_COMPLETE_READBACK_VERIFIED",
+  "profile": "contest_flow_assist_jp13",
+  "image": "firmware/contest_flow_assist_jp13_pwm100_candidate.bin",
+  "bytes": 43124,
+  "sha256": "9a0a2d318e7ad0971dda035ce9b4a14b8066012b330005f4c38939bc0d2fb6ad",
+  "readback": "docs/validation/flow-assist100-2026-10-15/flash-214328/readback.bin",
+  "backup": "docs/validation/flow-assist100-2026-10-15/flash-214328/preflash_256k.bin",
+  "backup_sha256": "cd0ed45c52c82ef585e628c284513dc3898eea7fe89f1eaa7c48c6f54e6fcbba",
+  "steps": [
+    {
+      "recorded_at": "2026-10-15T21:43:31.034409+08:00",
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "-c",
+        "savemem 0x08000000 262144 docs/validation/flow-assist100-2026-10-15/flash-214328/preflash_256k.bin"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 2.9017909960020916,
+      "log": "backup.log"
+    },
+    {
+      "recorded_at": "2026-10-15T21:43:34.017159+08:00",
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "load",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "under-reset",
+        "--erase",
+        "sector",
+        "--base-address",
+        "0x08000000",
+        "firmware/contest_flow_assist_jp13_pwm100_candidate.bin"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 2.9821302269992884,
+      "log": "upload.log"
+    },
+    {
+      "recorded_at": "2026-10-15T21:43:34.920248+08:00",
+      "command": [
+        "/home/sz/.platformio/penv/bin/pyocd",
+        "commander",
+        "--no-config",
+        "--probe",
+        "814dc35a",
+        "--target",
+        "stm32f103rc",
+        "--connect",
+        "attach",
+        "-c",
+        "savemem 0x08000000 43124 docs/validation/flow-assist100-2026-10-15/flash-214328/readback.bin"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 0.9027541400027985,
+      "log": "readback.log"
+    }
+  ],
+  "motor_start_command_sent": false,
+  "serial_monitor_opened": false,
+  "physical_supply_state": "Not independently observed; operator explicitly instructed flash after USB-only instruction",
+  "optical_calibration_verified": false
+}

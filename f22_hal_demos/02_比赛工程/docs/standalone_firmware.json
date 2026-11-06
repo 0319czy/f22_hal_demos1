@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12",
+  "profile": "contest_aircraft1_standalone",
+  "uid_bytes": "30ffd90530574b3036751643",
+  "port": "/dev/ttyUSB0",
+  "usb_path": "1-13",
+  "size": 37000,
+  "sha256": "2d2e177c8acc6ba3acb7d49f724d329168e557b738b34387b01861f655f0bba5",
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": true,
+  "motor_closed_loop_hardware_verified": false,
+  "flow_feedback": false,
+  "radio_enabled": false,
+  "capture": {
+    "frames": 75,
+    "state_values": [
+      0
+    ],
+    "fault_values": [
+      0
+    ],
+    "dt_ms_values": [
+      5,
+      6
+    ],
+    "tof_mm_min": 11,
+    "tof_mm_max": 22,
+    "roll_deg_min": -2.62,
+    "roll_deg_max": -2.57,
+    "pitch_deg_min": -0.39,
+    "pitch_deg_max": -0.35000000000000003,
+    "imu_all_valid": true,
+    "flow_all_valid": true,
+    "arm_level_all_ok": true,
+    "pwm_all_zero": true,
+    "trip_values": [
+      0
+    ]
+  }
+}

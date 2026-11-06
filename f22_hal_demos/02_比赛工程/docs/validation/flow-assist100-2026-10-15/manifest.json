@@ -1,0 +1,136 @@
+{
+  "recorded_at": "2026-10-15T21:34:34.060133+08:00",
+  "profile": "contest_flow_assist_jp13",
+  "status": "PARTIAL: flashed via JP11/DAP814dc35a; full43124-byte readback matches; optical identification/calibration and stable flight pending",
+  "firmware": {
+    "file": "firmware/contest_flow_assist_jp13_pwm100_candidate.bin",
+    "bytes": 43124,
+    "sha256": "9a0a2d318e7ad0971dda035ce9b4a14b8066012b330005f4c38939bc0d2fb6ad"
+  },
+  "source_sha256": {
+    "platformio.ini": "1509f90d52b6acca91f0f81e622462aed86b46cf458128e4896587d042c81704",
+    "src/main.c": "1477a0ce5682ddb4b22dcb7d100610978e129e3f5cce8abbef8f23f777cf301d",
+    "src/flight/closed_loop_profile.h": "62d662f3a94c00b80cf37c6f45dc9a9c195d7e06a4bc4216e67baedb087b2130",
+    "src/flight/closed_loop_config.h": "3a3081030d6e3ad4b8e7e37df3575b3a97c5689345054249a618ead21b8baddf",
+    "src/flight/closed_loop.c": "5518428261eddedcb3aea06ee79bde7382838313093195bede866dd8ee954a90",
+    "src/flight/flow_assist.c": "ab8ce69e74d27380337b631e009bc06dc6bb31d003a7104aa7c3e2a94b09fe2c",
+    "src/sensors/flow.c": "6db74bb5d2973fe44e5e250add95eb04ba99d282e3859035b0b79fc06fdb0d68",
+    "src/sensors/flow.h": "96636d17306e7709fcce427809eae8364e9b11362200bc8e83ff117281c73fd9",
+    "scripts/check_closed_loop.sh": "24b34f6dd95548ca0c7771ba0ff4c45598f9e07708298f5e70ffaf51daf14eb4",
+    "scripts/show_remote_keys.py": "19c1cff9373b488b76e54a024474a59a9ccb2d2761760c1e865dab32d1ceb421",
+    "tests/test_aircraft1_pwm.c": "79a2980a790c55d92bb843f65ded73c829cd1ab48125ecfb5c2595c75609eb51",
+    "tests/test_flow_assist.c": "9eb7789d9fc566dc9f5d181b0a1203cf721cc7729c80d23e5bc6b11d09771e8e"
+  },
+  "behavior": {
+    "launch_reference_ceiling": 1.0,
+    "per_motor_ceiling": 1.0,
+    "ramp_per_second": 0.5,
+    "launch_timeout_seconds": 3,
+    "first_target_sensor_range_m": 0.2,
+    "imu_always_active": true,
+    "flow_calibration_verified": false,
+    "missing_flow_start_fault": 14,
+    "uncalibrated_flow_start_fault": 13,
+    "stop_link_imu_tilt_watchdog_protections": "retained"
+  },
+  "verification": {
+    "log": "check.log",
+    "driver_at_100_percent": "controller through actual PWM driver, fake registers CCR=200 ARR=199, no output trip; synthetic only",
+    "maximum_not_constant_throttle": true,
+    "display": "display-check.log: 100% label and calibration state passed",
+    "physical_readback": true,
+    "live_serial_capture": false
+  },
+  "previous_90_percent_candidate_preserved": "d1a8af9bd5babd3b0fc783db36b6b540bf174d10b9452960f84bb00730356201",
+  "hardware_enumeration": "device-enumeration.json",
+  "hardware_flash": {
+    "recorded_at": "2026-10-15T21:43:34.920592+08:00",
+    "status": "FLASHED_AND_COMPLETE_READBACK_VERIFIED",
+    "profile": "contest_flow_assist_jp13",
+    "image": "firmware/contest_flow_assist_jp13_pwm100_candidate.bin",
+    "bytes": 43124,
+    "sha256": "9a0a2d318e7ad0971dda035ce9b4a14b8066012b330005f4c38939bc0d2fb6ad",
+    "readback": "docs/validation/flow-assist100-2026-10-15/flash-214328/readback.bin",
+    "backup": "docs/validation/flow-assist100-2026-10-15/flash-214328/preflash_256k.bin",
+    "backup_sha256": "cd0ed45c52c82ef585e628c284513dc3898eea7fe89f1eaa7c48c6f54e6fcbba",
+    "steps": [
+      {
+        "recorded_at": "2026-10-15T21:43:31.034409+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "commander",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "-c",
+          "savemem 0x08000000 262144 docs/validation/flow-assist100-2026-10-15/flash-214328/preflash_256k.bin"
+        ],
+        "exit_code": 0,
+        "timeout": false,
+        "elapsed_seconds": 2.9017909960020916,
+        "log": "backup.log"
+      },
+      {
+        "recorded_at": "2026-10-15T21:43:34.017159+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "load",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "under-reset",
+          "--erase",
+          "sector",
+          "--base-address",
+          "0x08000000",
+          "firmware/contest_flow_assist_jp13_pwm100_candidate.bin"
+        ],
+        "exit_code": 0,
+        "timeout": false,
+        "elapsed_seconds": 2.9821302269992884,
+        "log": "upload.log"
+      },
+      {
+        "recorded_at": "2026-10-15T21:43:34.920248+08:00",
+        "command": [
+          "/home/sz/.platformio/penv/bin/pyocd",
+          "commander",
+          "--no-config",
+          "--probe",
+          "814dc35a",
+          "--target",
+          "stm32f103rc",
+          "--connect",
+          "attach",
+          "-c",
+          "savemem 0x08000000 43124 docs/validation/flow-assist100-2026-10-15/flash-214328/readback.bin"
+        ],
+        "exit_code": 0,
+        "timeout": false,
+        "elapsed_seconds": 0.9027541400027985,
+        "log": "readback.log"
+      }
+    ],
+    "motor_start_command_sent": false,
+    "serial_monitor_opened": false,
+    "physical_supply_state": "Not independently observed; operator explicitly instructed flash after USB-only instruction",
+    "optical_calibration_verified": false
+  },
+  "previous_verified_board_image": {
+    "file": "firmware/contest_tethered_flight_jp13_pwm90.bin",
+    "bytes": 41624,
+    "sha256": "dec7f44022cc41ad253163e2a990fc2a8547893549230a669167d97ce54cc73e"
+  },
+  "current_verified_board_image": {
+    "file": "firmware/contest_flow_assist_jp13_pwm100_candidate.bin",
+    "bytes": 43124,
+    "sha256": "9a0a2d318e7ad0971dda035ce9b4a14b8066012b330005f4c38939bc0d2fb6ad"
+  }
+}

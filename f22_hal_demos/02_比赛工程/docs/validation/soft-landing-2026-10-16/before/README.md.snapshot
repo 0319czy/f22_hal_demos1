@@ -1,0 +1,62 @@
+# F22 悬停比赛工程
+
+唯一开发目录：`/home/sz/coderepo/f22_hal_demos/02_比赛工程`。先看[比赛计划与当前进度](PROJECT_PLAN.md)。
+
+当前板上为 **电机硬锁止的完整采样标定诊断版** `contest_flow_calibration_jp13`，44040字节完整读回一致。ID49/B6及IMU、ToF、光流读取正常；定性方向为前向dy、右向dx。最新受控前移段有424个有效窗口、无拒绝/轮询错误/饱和，前向加权计数为正；但姿态变化约滚转5.4°、俯仰3.4°，高度111～182mm，且实际位移和动作端点未独立测量，比例及横向结果仍不能验收。当前不能起飞，按键不会启动电机。[标定操作](docs/FLOW_CALIBRATION.md)、[烧录/采集证据](docs/validation/flow-calibration-2026-10-16/manifest.json)。
+
+此前90%系绳起飞试验没有确认越过8cm，操作者报告抬升不足1cm并出现单侧翘起/打转；它不能单凭PWM命令证明总推力不足，且当时没有启用光流。按用户要求，光流标定现暂停，当前优先处理垂直离地问题。板上仍是电机硬锁止诊断版。[分析记录](docs/validation/tether90-drift-2026-10-15/analysis.json)
+
+## 当前使用的两端代码
+
+此前[共同控制/光流候选](docs/FLOW_ASSIST.md)有过烧录记录，但现已由电机锁止诊断版替代。100%候选需要光流识别与标定许可，不能作为当前可飞固件。历史90%版未启用光流，也没有完成8cm以上离地；飞行和光流稳定性均未验收。
+
+安装映射为 `(-sensorY,-sensorX,-sensorZ)`，用户口述确认静态方向正确。显式台架与新增系绳试验配置允许使用已确认的静态方向；历史飞行环境仍保持轴向许可0，实飞尚未验收。最新状态见[比赛计划](PROJECT_PLAN.md)。
+
+| 端 | 当前环境 | 入口/配置 |
+|---|---|---|
+| 飞控（此前已完成的20%台架） | `contest_attitude_check_jp13` | [src/main.c](src/main.c)、[台架控制](src/bench/attitude_check.c)、[参数](src/flight/closed_loop_profile.h) |
+| 飞控（当前电机锁止标定诊断） | `contest_flow_calibration_jp13` | [共同控制说明](docs/FLOW_ASSIST.md)、[控制器](src/flight/closed_loop.c) |
+| 遥控 | `tle100_latency_fast`（手动按键） | [remote/tle100/latency_main.c](remote/tle100/latency_main.c)、[遥控配置](remote/tle100/platformio.ini) |
+| 主机显示 | JP13→无线DAP→电脑，115200 | [scripts/show_remote_keys.py](scripts/show_remote_keys.py) |
+
+飞控环境名字中的v2是历史名称，接收器支持v2/v3。当前板上最后验证的是 `contest_flow_calibration_jp13` 锁止诊断版，F2/F3/F4均不会启动电机；它不能用于判断升力。历史90%系留版使用F2起飞、F3降落、F4急停/清故障，串口标记`flight=tether90`，但没有完成8cm以上离地。光流采集目前按用户要求暂停；垂直离地问题优先。[比赛计划](PROJECT_PLAN.md)、[历史90%系留试验](docs/TETHERED_FLIGHT.md)。
+
+## 构建与验证
+
+```bash
+cd /home/sz/coderepo/f22_hal_demos/02_比赛工程
+/home/sz/.platformio/penv/bin/pio run -e contest_flow_assist_jp13
+bash scripts/check_closed_loop.sh
+python3 scripts/check_docs.py
+```
+
+这些命令不会烧录。遥控器是独立8051工程，在`remote/tle100/`构建；不要把飞控BIN烧到遥控器。历史固定50%、连续转动等诊断例程不是当前主线；默认`contest_hover`是无电机输出联调环境。
+
+## 操作者看串口
+
+显示按键、高度、状态、PWM、IMU与校准：
+
+```bash
+/home/sz/.platformio/penv/bin/python -u /home/sz/coderepo/f22_hal_demos/02_比赛工程/scripts/show_remote_keys.py
+```
+
+只看按键加`--keys-only`，看原始日志加`--full`。主机DAP唯一ID为814dc35a，脚本默认用它的by-id路径；避免ttyACM编号变化。一个串口只开一个监视器。
+
+## 目录与资料
+
+| 目录/文档 | 用途 |
+|---|---|
+| [PROJECT_PLAN.md](PROJECT_PLAN.md) | 比赛要求、实施计划、进度、问题记录 |
+| [docs/COMPETITION.md](docs/COMPETITION.md) | 规则出处及实现边界 |
+| [docs/MODULE_WIRING.md](docs/MODULE_WIRING.md) | 模块接线；出现疑问查原理图 |
+| [docs/MOTOR_MAPPING.md](docs/MOTOR_MAPPING.md) | 当前机头、电机位置和俯视旋向 |
+| `src/flight/` | 状态机、PID、观测、混控、遥控协议 |
+| `src/hal/`、`src/sensors/` | 板级接口和传感器驱动 |
+| `src/bench/` | 显式选用的诊断例程，非正式起飞入口 |
+| `remote/tle100/` | 遥控器源码及配置 |
+| `scripts/`、`tests/` | 工具与主机验证 |
+| [firmware/README.md](firmware/README.md) | 当前固件与历史BIN说明 |
+| `docs/references/`、`docs/validation/` | 手册/规则与原始证据 |
+| [archive/README.md](archive/README.md) | 历史文件、迁移备份，不作为当前状态 |
+
+Downloads里的旧工程路径已改为指向此工程的软链接，旧命令仍能找到同一套文件。旧笔记中的“当前/待确认”属于对应日期的历史状态，最新判断以PROJECT_PLAN和当前源码为准。

@@ -1,0 +1,6 @@
+{
+  "config": [
+    "CFG TX read=1 applied=1 rollback=0 original=C000001C2E00 active=C000001D2E00\r\n"
+  ],
+  "bytes": 4701
+}

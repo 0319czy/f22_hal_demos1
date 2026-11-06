@@ -1,0 +1,25 @@
+{
+  "totals": {
+    "tx": 3599,
+    "rx": 3574,
+    "rx_bad": 0
+  },
+  "matched": 3572,
+  "unmatched": {
+    "tx": 4,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 23,
+    "rx": 2
+  },
+  "observed_delay_ms": {
+    "min": 70.553745,
+    "p50": 90.60710549999999,
+    "p95": 110.5672692,
+    "max": 115.718074
+  },
+  "matched_window_rx_sequence_gaps": 27,
+  "receiver_byte_reject_conservation": "43173 bytes = 3573*12 accepted frame bytes + 297 rejected bytes; 297=27*11",
+  "interpretation": "Most original loss fixed by preserving E49 split frames; residual malformed frames remain, no proven DAP loss"
+}

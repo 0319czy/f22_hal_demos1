@@ -1,0 +1,74 @@
+{
+  "capture": "live-forward-controlled-retry/capture.json",
+  "start_snapshot": "controlled-forward-start-provisional.json",
+  "end_snapshot": "controlled-forward-end-provisional.json",
+  "interval_selection": {
+    "method": "Nearest telemetry snapshots around pre-motion baseline and endpoint hold; motion onset/end were not hardware-marked.",
+    "host_seconds": [
+      8.0473,
+      18.0894
+    ],
+    "board_ms": [
+      678522,
+      688489
+    ],
+    "duration_s": 9.967,
+    "telemetry_rows_inclusive": 50
+  },
+  "operator_action": {
+    "requested": "Move aircraft forward approximately 20cm in 2-3s while keeping it level and near 20cm above textured desk; hold endpoint.",
+    "reply": "好了",
+    "distance_m": 0.2,
+    "distance_measured_independently": false,
+    "timing_and_motion_endpoints_exactly_marked": false
+  },
+  "validity": {
+    "accepted_window_delta": 424,
+    "bad_window_delta": 0,
+    "poll_error_delta": 0,
+    "saturation_delta": 0,
+    "all_interval_rows_imu_tof_flow_valid": true,
+    "height_mm_range": [
+      111,
+      182
+    ],
+    "quality_range": [
+      101,
+      180
+    ],
+    "all_motor_outputs_locked_zero": true
+  },
+  "features": {
+    "C_forward_right_m_count": [
+      143.669,
+      -25.011
+    ],
+    "B_height_weighted_roll_pitch_m_rad": [
+      0.013296,
+      0.008846
+    ],
+    "integrated_roll_pitch_yaw_rad": [
+      0.094316,
+      0.059308,
+      -0.066759
+    ],
+    "integrated_roll_pitch_yaw_deg": [
+      5.404,
+      3.398,
+      -3.825
+    ],
+    "endpoint_attitude_cd": {
+      "start_roll_pitch": [
+        -385,
+        483
+      ],
+      "end_roll_pitch": [
+        151,
+        803
+      ]
+    }
+  },
+  "calibration_accepted": false,
+  "conclusion": "Positive forward-weighted flow accumulation agrees with the established forward sign. The interval includes appreciable roll/pitch/yaw change and ToF varies 111-182mm; the physical displacement and exact motion boundaries were not independently measured. Do not update scale/rotation coefficients or infer lateral drift from this trial.",
+  "motor_command_sent": false
+}

@@ -1,0 +1,34 @@
+{
+  "profile": "contest_motor_radio50",
+  "file": "firmware/contest_motor_radio50.bin",
+  "size": 12756,
+  "sha256": "f6aa054c40bb7987b9c0ab442ad1fd03059d1479e38880b0326a75565ff24777",
+  "uid_bytes": "30ffd90530574b3036751643",
+  "build_passed": true,
+  "synthetic_radio_tests_passed": true,
+  "pwm_register_double_tests_passed": true,
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": true,
+  "duty_percent": 50,
+  "outputs": [
+    "M1",
+    "M2",
+    "M3",
+    "M6"
+  ],
+  "start_key": "F1/P1 (protocol command 4)",
+  "stop_keys": [
+    "F3",
+    "F4",
+    "KEY1",
+    "KEY2"
+  ],
+  "rx": "USART1 RX-only 9600",
+  "diagnostics": "JP13 USART2 TX 115200",
+  "link_timeout_ms": 300,
+  "sensors_sampled": false,
+  "flight_closed_loop": false,
+  "runtime_port": "/dev/ttyACM0",
+  "radio_link_seen": false
+}

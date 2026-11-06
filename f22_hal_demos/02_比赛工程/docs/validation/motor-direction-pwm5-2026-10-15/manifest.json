@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-15",
+  "profile": "contest_motor_direction",
+  "purpose": "Propeller-free motor rotation observation at fixed5% PWM",
+  "status": "tests/builds passed; flashed and complete image readback verified; physical rotation pending",
+  "firmware": {
+    "file": "firmware/contest_motor_direction_pwm5.bin",
+    "bytes": 38688,
+    "sha256": "fdd55cd01d71840f1dd7dfaf43c09756832175506183dc655ec280fe402f1317"
+  },
+  "source_sha256": {
+    "src/bench/motor_direction.c": "816a219d193f9b7128cbabf457dc1e979961fa07ae11215f80b59bc639be7093",
+    "src/bench/motor_direction.h": "a1ecc253c9af97cb61fa0477c160f37129c856039b1b9c9017c5f5268bc48221",
+    "src/main.c": "668b6c51315672ebb4f65ed90ba29ceb2979002d620ec57d67870f1f9a7f9c02",
+    "src/flight/closed_loop_profile.h": "406345c01266cf23ca2e3b00361245ef2b4101f225c8c5b955a0f532339c4921",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "platformio.ini": "e97a2f3784abe7bda83d115c9ba8d7ae7a9e485ee36aaf82c86bb7eda82531e8",
+    "tests/test_aircraft1_pwm.c": "8eb08065687eb7333c4f07bb6d061c35e9f5e73a80f8a9854e05ddee56f6795d",
+    "scripts/check_closed_loop.sh": "57cfd116c889298ae22a78d60dcac118e4c6914b959090203db6f16341a130d2"
+  },
+  "behavior": {
+    "output_pins": "M1/M2/M3/M6",
+    "duty": 0.05,
+    "driver_max_duty": 0.05,
+    "timer_ticks_on": 10,
+    "timer_period_ticks": 200,
+    "boot": "all0; no automatic start",
+    "F2": "new permitted press starts fixed5%",
+    "F3": "immediate stop",
+    "F4": "immediate stop and clear fault",
+    "link_loss": "fault and zero; F4/new press required for restart",
+    "local_keys_and_20ms_watchdog": "retained",
+    "imu_tof_height_gates": "not used in direction diagnostic; sensors still logged",
+    "automatic_starting_kick": false,
+    "attitude_height_feedback": false,
+    "flight_takeoff_mode": false
+  },
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "connection": "JP11 SWD via wireless DAP",
+  "preflash_backup": {
+    "file": "docs/validation/motor-direction-pwm5-2026-10-15/preflash_256k.bin",
+    "bytes": 262144,
+    "sha256": "e4943c32508ccbdd824ae3c563c1dd82c1136e3a8e6411493f13be5b2a6dbd32",
+    "previous_image_sha256": "0dee6230589ce14e660e905d5ac6fe3be0d0d3b9310ebc0f49a79a26a474b278"
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_motor_direction_pwm5.bin"
+    ],
+    "time": "2026-10-15T12:47:59.938419+08:00",
+    "exit_code": 0
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 38688 docs/validation/motor-direction-pwm5-2026-10-15/readback.bin"
+    ],
+    "time": "2026-10-15T12:48:02.091742+08:00",
+    "exit_code": 0,
+    "bytes": 38688,
+    "sha256": "fdd55cd01d71840f1dd7dfaf43c09756832175506183dc655ec280fe402f1317",
+    "matches_image": true
+  },
+  "verification": {
+    "log": "docs/validation/motor-direction-pwm5-2026-10-15/check.log",
+    "log_sha256": "26bd5993d5f85f6a152981011b3aafb0ab89e39cd05a887de99483751106b524",
+    "register_double": "1000 steps/6s with invalid sensors: all four CCRs exactly10/200=5%; no ramp; boot0,F3/F4,link/trip/timing and5% driver ceiling passed",
+    "builds": "six environments passed; diagnostic symbol present only in its environment; flight step absent from diagnostic ELF",
+    "postflash_serial_capture": "not opened automatically",
+    "motor_commands_sent": false,
+    "physical_motor_rotation": "not observed; operator said previous1% appeared too low"
+  },
+  "flight_accepted": false,
+  "operator_feedback_on_previous_profile": "太小了好像"
+}

@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-10-15T17:35:54.111431+08:00",
+  "command": [
+    "/home/sz/.platformio/penv/bin/pyocd",
+    "load",
+    "--no-config",
+    "--probe",
+    "814dc35a",
+    "--target",
+    "stm32f103rc",
+    "--connect",
+    "under-reset",
+    "--erase",
+    "sector",
+    "--base-address",
+    "0x08000000",
+    "firmware/contest_tethered_flight_jp13_pwm90.bin"
+  ],
+  "exit_code": 0
+}

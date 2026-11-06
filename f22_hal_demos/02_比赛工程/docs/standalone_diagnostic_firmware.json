@@ -1,0 +1,20 @@
+{
+  "size": 37716,
+  "sha256": "67d69e0c4d6588f0d1d65690a222439c5639f5e9f712ba4a205a0c9587177544",
+  "profile": "contest_aircraft1_standalone",
+  "diagnostic_snapshot": true,
+  "tested": true,
+  "flashed": true,
+  "write_verified": true,
+  "uid_bytes": "30ffd90530574b3036751643",
+  "runtime_seen": true,
+  "active_motor_feedback_verified": false,
+  "pwm_nonzero_runtime_seen": true,
+  "launch_timeout_observed": true,
+  "height_feedback_tested": false,
+  "attitude_pwm_response_observed": true,
+  "tof_feedback_connected": true,
+  "target_height_reached": false,
+  "height_hold_verified": false,
+  "flow_measurement_valid_in_30s": false
+}

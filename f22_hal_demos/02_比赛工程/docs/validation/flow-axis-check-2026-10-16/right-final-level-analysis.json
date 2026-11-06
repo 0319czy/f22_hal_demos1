@@ -1,0 +1,51 @@
+{
+  "operator_correction": "Tilted intentionally earlier; only final portion valid",
+  "source": "114724-timed.jsonl",
+  "full_after_level_window": [
+    201,
+    210
+  ],
+  "full_after_level_snapshot_dx_sum": 3,
+  "analysis_window": [
+    205,
+    210
+  ],
+  "selection": "Final five seconds before ground return; operator identified final segment as valid. Earlier level portion also retained and contains opposite signed motion; not used as a full-distance calibration.",
+  "samples": 24,
+  "ranges": {
+    "mm": [
+      295,
+      359
+    ],
+    "roll_cd": [
+      -347,
+      333
+    ],
+    "pitch_cd": [
+      69,
+      432
+    ],
+    "dx": [
+      -4,
+      6
+    ],
+    "dy": [
+      -3,
+      6
+    ],
+    "squal": [
+      121,
+      152
+    ]
+  },
+  "dx_positive": 16,
+  "dx_negative": 1,
+  "dx_zero": 7,
+  "mean_abs_dx": 2.0416666666666665,
+  "mean_abs_dy": 1,
+  "snapshot_dx_sum": 41,
+  "snapshot_dy_sum": 6,
+  "candidate": "Operator clarified actual movement was aircraft-right with texture fixed. Final stroke mainly +dx; body right velocity uses +dx. Earlier paper-right implied -dx interpretation withdrawn.",
+  "no_distance_integration_claim": true,
+  "config_changed": false
+}

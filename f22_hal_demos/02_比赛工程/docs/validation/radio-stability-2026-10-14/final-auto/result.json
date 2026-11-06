@@ -1,0 +1,98 @@
+{
+  "remote": "/dev/serial/by-path/pci-0000:00:14.0-usb-0:4:1.0-port0",
+  "receiver": "/dev/serial/by-id/usb-Horco_Horco_CMSIS-DAP_814dc35a-if02",
+  "remote_baud": 9600,
+  "tx_observation_seconds": 300.0,
+  "warmup_seconds": 3,
+  "drain_seconds": 1,
+  "post_window_rx_excluded": 18,
+  "measurement": "PC observation difference; includes JP13/DAP/USB; board uptimes not subtracted",
+  "totals": {
+    "tx": 6062,
+    "rx": 6064,
+    "rx_bad": 0
+  },
+  "matched": 6062,
+  "unmatched": {
+    "tx": 0,
+    "rx": 0
+  },
+  "expired_unmatched": {
+    "tx": 0,
+    "rx": 2
+  },
+  "unmatched_note": "Unmatched observations include capture boundaries and telemetry loss; not pure RF loss",
+  "sequence_gaps": {
+    "tx": 0,
+    "rx": 0
+  },
+  "duplicates": {
+    "tx": 0,
+    "rx": 0
+  },
+  "restart_or_reorder": {
+    "tx": 0,
+    "rx": 0
+  },
+  "matched_window_rx_sequence_gaps": 0,
+  "sequence_gap_note": "Unfiltered rx gaps can include pre-capture DAP backlog; matched-window gaps exclude it",
+  "remote_bad_frames": 0,
+  "remote_noise_bytes": 0,
+  "negative_delays": 0,
+  "observed_delay_ms": {
+    "min": 54.169425,
+    "p50": 80.55744899999999,
+    "p95": 130.09139445,
+    "max": 162.603124
+  },
+  "commands_matched": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "events": "docs/validation/radio-stability-2026-10-14/final-auto/events-20261014-121805.jsonl",
+  "csv": "docs/validation/radio-stability-2026-10-14/final-auto/matched-20261014-121805.csv",
+  "commands_tx": {
+    "0": 5002,
+    "3": 169,
+    "4": 297,
+    "1": 297,
+    "2": 297
+  },
+  "commands_matches": {
+    "0": 5002,
+    "3": 169,
+    "4": 297,
+    "1": 297,
+    "2": 297
+  },
+  "tx_start_spacing_ms": {
+    "min": 36,
+    "max": 52
+  },
+  "stat_conservation": {
+    "intervals": 299,
+    "accepted_delta": 6043,
+    "observed_rx": 6043,
+    "mismatches": 0
+  },
+  "receiver_stat_last": "STAT bytes=73476 frames=6123 reject=0 err=0 drop=0 tx_err=0 link=1 motors=0",
+  "receiver_diag_last": "DIAG crc=0 timeout=0 timeout_bytes=0 gap_max=35",
+  "verdict": "PASS for this finite automatic synthetic-key real-RF test; no universal zero-loss or zero-delay guarantee",
+  "synthetic_key_verification": {
+    "period_ms": 757,
+    "pressed_ms": 80,
+    "complete_presses": 396,
+    "per_key_presses": {
+      "F1": 99,
+      "F2": 99,
+      "F3": 99,
+      "F4": 99
+    },
+    "first_packet_matches": 396,
+    "missed_first_packets": 0,
+    "method": "independent read-only review of complete TX device-time synthetic slots and raw RX/CSV matches; capture-edge slots excluded"
+  }
+}

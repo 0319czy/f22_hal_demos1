@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-15",
+  "profile": "contest_aircraft1_radio_v2_jp13",
+  "status": "fixed, tested, flashed and full image readback verified; physical 50% launch untested",
+  "defect": "Previous controller profile requested 50% but physical driver default remained 20%; Aircraft1Pwm_Apply rejected demands above .20 and latched CL_OUTPUT_FAULT (fault9).",
+  "reproduction": {
+    "file": "docs/validation/pwm50-output-fix-2026-10-15/before_fix.log",
+    "result": "pre-fix controller-to-driver register-double test rejected demand .201 at ramp step 66 with driver ceiling .200",
+    "is_hardware": false
+  },
+  "fix": "Controller configuration and physical-driver default ceiling now share closed_loop_profile.h; explicit bench overrides are retained.",
+  "requested_pwm_profile": {
+    "nominal_duty": 0.5,
+    "physical_driver_max_duty": 0.5,
+    "launch_ramp_duty_per_second": 0.5,
+    "launch_timeout_seconds": 2.0,
+    "f4_stop_retained": true,
+    "flow_axes_verified": false
+  },
+  "firmware": {
+    "file": "firmware/contest_aircraft1_radio_v2_jp13_pwm50_outputfix.bin",
+    "bytes": 40992,
+    "sha256": "632ec96e7a5a2bed090a87e82a7e5c5b82df0eb8b053702370c1f43d3c573df7"
+  },
+  "source_sha256": {
+    "src/flight/closed_loop_profile.h": "6744599b511abd87a2efbab4b2b30b4b4457890e7cfb5e37c359cfcaa0c458b5",
+    "src/flight/closed_loop_config.h": "99af9fb5e802f07d6f4b07a21199c6b82e4a766b3970333960ac4803712218f1",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "tests/test_aircraft1_pwm.c": "76eca0338187156d4340b9cca4d69c75e682c343bb5e2ba011b9285f5fa6fd19",
+    "scripts/check_closed_loop.sh": "db1e9607dc9942a73c21775800daab32f0f410666abb8003f92198c89df5a30d",
+    "platformio.ini": "95615dd7c1e7789478d3aeb5e8827a2f937c938f224a87ebb0d7dc5be5659274"
+  },
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "connection": "JP11 SWD via wireless CMSIS-DAP",
+  "preflash_backup": {
+    "file": "docs/validation/pwm50-output-fix-2026-10-15/preflash_256k.bin",
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "-c",
+      "savemem 0x08000000 0x40000 docs/validation/pwm50-output-fix-2026-10-15/preflash_256k.bin"
+    ],
+    "exit_code": 0,
+    "time": "2026-10-15T12:20:30.957591+08:00",
+    "bytes": 262144,
+    "sha256": "30c5123491282080b4af7f5367cbbbbc94412b8c85f94fdbfab7926c850c9d56",
+    "image_prefix_sha256": "0347fd15dff4eba4b11831e0f244a45036632a2f831e73058ff18a3a8a98e4ff"
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_aircraft1_radio_v2_jp13_pwm50_outputfix.bin"
+    ],
+    "exit_code": 0,
+    "time": "2026-10-15T12:20:46.721468+08:00"
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 40992 docs/validation/pwm50-output-fix-2026-10-15/readback.bin"
+    ],
+    "exit_code": 0,
+    "matches_image": true,
+    "time": "2026-10-15T12:20:47.556078+08:00",
+    "bytes": 40992,
+    "sha256": "632ec96e7a5a2bed090a87e82a7e5c5b82df0eb8b053702370c1f43d3c573df7"
+  },
+  "verification": {
+    "check_log": "docs/validation/pwm50-output-fix-2026-10-15/check.log",
+    "check_log_sha256": "8408faf85d9405a96ed6230571fa173b06dbadf1d9d65f7f214bb759e995e3e0",
+    "host_tests": "ASAN/UBSAN tests passed; legacy and 50% real-controller -> PWM register-double launch, tilt and stop; exact limit, overlimit, invalid values, watchdog and local stop tests",
+    "builds": "five PlatformIO environments passed; physical-output isolation checks passed",
+    "hardware": "flash programmed 40960 bytes in 20 pages, skipped 2048; all 40992 image bytes read back match",
+    "flight_accepted": false,
+    "postflash_serial_capture": "not performed; no automatic monitor",
+    "motor_commands_sent": false
+  },
+  "latest_operator_test": "docs/validation/pwm50-ground-test-2026-10-15/result.json",
+  "superseded_by": "docs/validation/pwm60-2026-10-15/manifest.json"
+}

@@ -1,0 +1,2 @@
+distance_mm,distance_m,height_level_m,vz_level_mps,tof_present,tof_valid,tof_raw_status,tof_id,sample_age_ms,fresh_sample,tof_errors,actual_pwm
+0,0,0,0,0,0,0,0,0,0,0,0

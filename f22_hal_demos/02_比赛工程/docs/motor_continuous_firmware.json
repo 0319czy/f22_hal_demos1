@@ -1,0 +1,26 @@
+{
+  "profile": "contest_motor_m1236_pwm15",
+  "file": "firmware/contest_motor_m1236_pwm15.bin",
+  "size": 11300,
+  "sha256": "3393a2452b1725b809588251864dd7e50ae221f264af234c96bc171a8a05a501",
+  "build_passed": true,
+  "synthetic_control_tests_passed": true,
+  "pwm_register_double_tests_passed": true,
+  "flashed": true,
+  "write_verified": true,
+  "runtime_seen": false,
+  "continuous_hardware_run_verified": false,
+  "duty_percent": 15,
+  "output_order": [
+    "M1",
+    "M2",
+    "M3",
+    "M6"
+  ],
+  "sensors_sampled": false,
+  "flight_closed_loop": false,
+  "key1": "toggle start/stop",
+  "key2": "immediate stop",
+  "startup": "PWM zero; no automatic start",
+  "uid_bytes": "30ffd90530574b3036751643"
+}

@@ -1,0 +1,42 @@
+{
+  "recorded_at": "2026-10-15T21:34:34.060044+08:00",
+  "ports": [],
+  "usb_devices": [
+    {
+      "device": "1-11",
+      "idVendor": "174f",
+      "idProduct": "246f",
+      "product": "Integrated Camera",
+      "manufacturer": "",
+      "serial": "0001"
+    },
+    {
+      "device": "1-14",
+      "idVendor": "8087",
+      "idProduct": "0026"
+    },
+    {
+      "device": "1-6",
+      "idVendor": "048d",
+      "idProduct": "c195",
+      "product": "ITE Device(8258)",
+      "manufacturer": "ITE Tech. Inc."
+    },
+    {
+      "device": "usb1",
+      "idVendor": "1d6b",
+      "idProduct": "0002",
+      "product": "xHCI Host Controller",
+      "manufacturer": "Linux 7.0.0-38-generic xhci-hcd",
+      "serial": "0000:00:14.0"
+    },
+    {
+      "device": "usb2",
+      "idVendor": "1d6b",
+      "idProduct": "0003",
+      "product": "xHCI Host Controller",
+      "manufacturer": "Linux 7.0.0-38-generic xhci-hcd",
+      "serial": "0000:00:14.0"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "operator_correction": "Earlier tilt excluded, final level right stroke retained",
+  "right_analysis": "right-final-level-analysis.json",
+  "left_source": "115434-timed.jsonl",
+  "left_window": [
+    28,
+    31
+  ],
+  "left_samples": 15,
+  "left_dx_positive": 1,
+  "left_dx_negative": 8,
+  "left_snapshot_dx_sum": -19,
+  "left_snapshot_dy_sum": 0,
+  "left_ranges": {
+    "mm": [
+      233,
+      279
+    ],
+    "roll_cd": [
+      162,
+      496
+    ],
+    "pitch_cd": [
+      122,
+      273
+    ],
+    "dx": [
+      -6,
+      1
+    ],
+    "dy": [
+      -3,
+      2
+    ],
+    "squal": [
+      120,
+      140
+    ]
+  },
+  "qualitative_observation": "Operator clarified aircraft movement: aircraft-right mainly +dx, aircraft-left mainly -dx; body right uses +dx. Earlier paper-motion interpretation withdrawn.",
+  "config_changed": false,
+  "full_calibration_accepted": false
+}

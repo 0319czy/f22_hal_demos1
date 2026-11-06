@@ -1,0 +1,58 @@
+{
+  "first": "17:36:32",
+  "last": "17:36:52",
+  "frames": 99,
+  "values": {
+    "state": [
+      "0"
+    ],
+    "fault": [
+      "0"
+    ],
+    "imu": [
+      "1"
+    ],
+    "tof": [
+      "1"
+    ],
+    "valid": [
+      "0",
+      "1"
+    ],
+    "flow": [
+      "1"
+    ],
+    "flow_present": [
+      "1"
+    ],
+    "flow_err": [
+      "0"
+    ],
+    "armlevel": [
+      "0",
+      "1"
+    ],
+    "PWM_permille_M1_M2_M3_M6": [
+      "0,0,0,0"
+    ]
+  },
+  "ranges": {
+    "mm": [
+      0,
+      196
+    ],
+    "roll_cd": [
+      -3158,
+      380
+    ],
+    "pitch_cd": [
+      -1851,
+      4068
+    ],
+    "squal": [
+      48,
+      154
+    ]
+  },
+  "last_frame": "17:36:52 [CL LOCAL] state=0 fault=0 dt_ms=6 link=1 packets=0 imu=1 roll_cd=-265 pitch_cd=1509 tof=1 valid=0 mm=2 flow=1 flow_present=1 squal=57 flow_err=0 dx=0 dy=0 axes=0 armlevel=0 PWM_permille_M1_M2_M3_M6=0,0,0,0 trip=0"
+}

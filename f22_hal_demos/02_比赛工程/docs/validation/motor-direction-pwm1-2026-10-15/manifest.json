@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-15",
+  "profile": "contest_motor_direction_pwm1",
+  "purpose": "Propeller-free motor rotation observation at fixed1% PWM",
+  "status": "host tests/builds passed; flashed and full image readback verified; physical rotation not yet observed",
+  "firmware": {
+    "file": "firmware/contest_motor_direction_pwm1.bin",
+    "bytes": 38696,
+    "sha256": "0dee6230589ce14e660e905d5ac6fe3be0d0d3b9310ebc0f49a79a26a474b278"
+  },
+  "source_sha256": {
+    "src/bench/motor_direction.c": "816a219d193f9b7128cbabf457dc1e979961fa07ae11215f80b59bc639be7093",
+    "src/bench/motor_direction.h": "a1ecc253c9af97cb61fa0477c160f37129c856039b1b9c9017c5f5268bc48221",
+    "src/main.c": "fa610c7ab1aa4a6f18df26e8bb06abd3af3ccca3ad3d01ef5f16ad7e435c7dca",
+    "src/flight/closed_loop_profile.h": "4e52d18a0ebd59885a83aecaea023f35c74183133da85d188fdcd2fc25d6d14b",
+    "src/hal/Src/aircraft1_pwm.c": "ffb2a7ff21b9817b7e54f1227e64681513cfb6396c128d6753cf58e4ebad826d",
+    "platformio.ini": "3560b5934a088f8a1e2a22b45d9eba67ee453fe38d92edb17bc7042a0fc14ae5",
+    "tests/test_aircraft1_pwm.c": "118489c4ba23d01b5ee68cba45f0d6a5a82da01ff7dc27836cb4da83304a53bb",
+    "scripts/check_closed_loop.sh": "ca8a151afce6d5e5de76751e32e7b6c1976e5f4983a7fa39d0e062ac8396d628"
+  },
+  "behavior": {
+    "output_pins": "M1/M2/M3/M6",
+    "duty": 0.01,
+    "driver_max_duty": 0.01,
+    "timer_ticks_on": 2,
+    "timer_period_ticks": 200,
+    "boot": "all0; no automatic start",
+    "F2": "new permitted press starts fixed1%",
+    "F3": "immediate stop",
+    "F4": "immediate stop and clear fault",
+    "link_loss": "fault and zero; F4/new press required for restart",
+    "local_keys_and_20ms_watchdog": "retained",
+    "imu_tof_height_gates": "not used in direction diagnostic; sensors still logged",
+    "automatic_starting_kick": false,
+    "attitude_height_feedback": false,
+    "flight_takeoff_mode": false
+  },
+  "probe_uid": "814dc35a",
+  "target": "stm32f103rc",
+  "connection": "JP11 SWD via wireless DAP",
+  "preflash_backup": {
+    "file": "docs/validation/motor-direction-pwm1-2026-10-15/preflash_256k.bin",
+    "bytes": 262144,
+    "sha256": "4b7e8c039311fe95846980b51df5eb09817b1348ec578989e091b7f7e6b8fe79",
+    "previous_image_sha256": "0bc5f79474646a880dbd4ba51b197c79125b3f46023d88a31b9d23b546f73bb5"
+  },
+  "flash": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "load",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "under-reset",
+      "--erase",
+      "sector",
+      "--base-address",
+      "0x08000000",
+      "firmware/contest_motor_direction_pwm1.bin"
+    ],
+    "time": "2026-10-15T12:44:13.540620+08:00",
+    "exit_code": 0
+  },
+  "readback": {
+    "command": [
+      "/home/sz/.platformio/penv/bin/pyocd",
+      "commander",
+      "--no-config",
+      "--probe",
+      "814dc35a",
+      "--target",
+      "stm32f103rc",
+      "--connect",
+      "attach",
+      "-c",
+      "savemem 0x08000000 38696 docs/validation/motor-direction-pwm1-2026-10-15/readback.bin"
+    ],
+    "time": "2026-10-15T12:44:16.142655+08:00",
+    "exit_code": 0,
+    "bytes": 38696,
+    "sha256": "0dee6230589ce14e660e905d5ac6fe3be0d0d3b9310ebc0f49a79a26a474b278",
+    "matches_image": true
+  },
+  "verification": {
+    "log": "docs/validation/motor-direction-pwm1-2026-10-15/check.log",
+    "log_sha256": "a7dce4a121ce0520dc2efcad6b49b4d5bac84705b6a72bcbe3a07dd910d0486b",
+    "register_double": "1000 steps/6s with invalid sensors: all four CCRs exactly2; no ramp; boot0, F3/F4, link loss latch, timing/output fault and1% driver ceiling passed",
+    "builds": "six environments passed; diagnostic symbol present only in its environment; flight step absent from diagnostic ELF",
+    "postflash_serial_capture": "not opened automatically",
+    "motor_commands_sent": false,
+    "physical_motor_rotation": "not observed;1% may be insufficient to start"
+  },
+  "flight_accepted": false,
+  "superseded_by": "docs/validation/motor-direction-pwm5-2026-10-15/manifest.json",
+  "operator_feedback": "太小了好像; exact rotation not independently observed"
+}
